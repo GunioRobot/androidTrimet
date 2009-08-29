@@ -28,7 +28,9 @@ public class TrimetClient {
 	 * @param locationIDs The list of location IDs you want arrival info for.
 	 */
 	public void fetchArrivals(List<Integer> locationIDs) {
-		
+		String url = String.format(Constants.URL_BASE_ARRIVALS, mAppId);
+		url += "/locIDs/" + Util.listIntegersToString(locationIDs);
+		// TODO make and parse request
 	}
 	
 	/**
@@ -36,26 +38,35 @@ public class TrimetClient {
 	 * @param routes The list of route IDs you want detour info for.
 	 */
 	public void findDetours(List<Integer> routes) {
-		
+		String url = String.format(Constants.URL_BASE_DETOURS, mAppId);
+		url += "/routes/" + Util.listIntegersToString(routes);
+		// TODO make and parse request
 	}
 	
 	/**
-	 * Find stops near the specified location.
+	 * Find stops near the specified location. Note: a maximum of 15 stops will be returned.
 	 * @param latitude The latitude in decimal format to center the search on (example: 45.523232d).
 	 * @param longitude The longitude in decimal format to center the search on (example: -122.671452d).
-	 * @param max The number of stops to find (max 15).
+	 * @param distanceInMeters The radius in which to search for stops (in meters). If the radius is less than 10 then the default of 400 will be used.
 	 */
-	public void findNearbyStops(double latitude, double longitude, int max) {
+	public void findNearbyStops(double latitude, double longitude, int distanceInMeters) {
+		if (distanceInMeters < 10)
+			distanceInMeters = 400;
 		
+		String url = String.format(Constants.URL_BASE_NEARBY, mAppId);
+		url += "/ll/" + Double.toString(longitude) + "," + Double.toString(latitude);
+		url += "/meters/" + Integer.toString(distanceInMeters);
+		
+		// TODO make and parse request
 	}
 	
 	/**
 	 * Find stops near the specified location.
 	 * @param location The location to center the search on.
-	 * @param max The number of stops to find (max 15).
+	 * @param distanceInMeters The radius in which to search for stops (in meters). If the radius is less than 10 then the default of 400 will be used.
 	 */
-	public void findNearbyStops(Location location, int max) {
-		this.findNearbyStops(location.getLatitude(), location.getLongitude(), max);
+	public void findNearbyStops(Location location, int distanceInMeters) {
+		this.findNearbyStops(location.getLatitude(), location.getLongitude(), distanceInMeters);
 	}
 	
 
@@ -64,7 +75,15 @@ public class TrimetClient {
 	 * @param options The options you want to search by.
 	 */
 	public void fetchRoutes(RouteConfigOptions options) {
+		String url = String.format(Constants.URL_BASE_ROUTECONFIG, mAppId);
 		
+		if (options.getRoutes()        != null) url += "/routes/"   + options.getRoutes()       ;
+		if (options.getDirection()     != null) url += "/dir/"      + options.getDirection()    ;
+		if (options.getStops()         != null) url += "/stops/"    + options.getStops()        ;
+		if (options.getTP()            != null) url += "/tp/"       + options.getTP()           ;
+		if (options.getStartSequence() != null) url += "/startSeq/" + options.getStartSequence();
+		if (options.getEndSequence()   != null) url += "/endSeq/"   + options.getEndSequence()  ;
+		// TODO make and parse request
 	}
 	
 	
@@ -73,7 +92,20 @@ public class TrimetClient {
 	 * @param options The options you want to search by.
 	 */
 	public void fetchTripPlanner(TripPlannerOptions options) {
+		String url = String.format(Constants.URL_BASE_TRIPPLANNER, mAppId);
 		
+		if (options.getFromPlace()       != null) url += "/fromPlace/"       + options.getFromPlace()      ;
+		if (options.getFromCoord()       != null) url += "/fromCoord/"       + options.getFromCoord()      ;
+		if (options.getToPlace()         != null) url += "/toPlace/"         + options.getToPlace()        ;
+		if (options.getToCoord()         != null) url += "/toCoord/"         + options.getToCoord()        ;
+		if (options.getDate()            != null) url += "/Date/"            + options.getDate()           ;
+		if (options.getTime()            != null) url += "/Time/"            + options.getTime()           ;
+		if (options.getArriveDepart()    != null) url += "/Arr/"             + options.getArriveDepart()   ;
+		if (options.getMaxWalk()         != null) url += "/Walk/"            + options.getMaxWalk()        ;
+		if (options.getMode()            != null) url += "/Mode/"            + options.getMode()           ;
+		if (options.getMaxIntineraries() != null) url += "/MaxIntineraries/" + options.getMaxIntineraries();
+		
+		// TODO make and parse request
 	}
 	
 	
