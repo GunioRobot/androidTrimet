@@ -2,6 +2,8 @@ package com.fixedd.AndroidTrimet;
 
 import java.util.List;
 
+import com.fixedd.AndroidTrimet.util.Util;
+
 import android.location.Location;
 
 /**

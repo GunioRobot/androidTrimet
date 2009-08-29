@@ -1,4 +1,4 @@
-package com.fixedd.AndroidTrimet;
+package com.fixedd.AndroidTrimet.util;
 
 import java.util.List;
 
