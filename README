@@ -1,0 +1,9 @@
+WARNING:
+This is so pre-alpha you might as well assume it isn't real.
+
+Notes:
+This currently requires Android 1.5+. I see no reason it couldn't be back-
+ported to 1.0+ if AsyncTask was replaced with UserTask from: 
+http://code.google.com/p/shelves/source/browse/trunk/Shelves/src/org/curiouscreature/android/shelves/util/UserTask.java
+but I elected to go with the class that's built in to 1.5.
+
