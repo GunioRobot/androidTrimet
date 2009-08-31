@@ -16,7 +16,7 @@ public class TrimetClient {
 
 	/**
 	 * Class constructor  
-	 * @param appId The application ID assigned to your application by Trimet. This can be procured from http://developer.trimet.org/registration/
+	 * @param appId The application ID assigned to your application by Trimet. This can be procured from <a href="http://developer.trimet.org/registration/">http://developer.trimet.org/registration/</a>
 	 */
 	public TrimetClient(String appId) {
 		this.mAppId = appId;
