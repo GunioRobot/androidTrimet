@@ -24,20 +24,21 @@ public class Schedule {
 	 * Get the error message.
 	 * @return The error messge
 	 */
-	public String getmErrorMessage() { return mErrorMessage; }
+	public String getErrorMessage() { return mErrorMessage; }
 	/**
 	 * Get routes applicable for the route numbers provided.
 	 * @return The routes.
 	 */
-	public List<RouteType> getmRoutes() { return mRoutes; }
+	public List<RouteType> getRoutes() { return mRoutes; }
 	/**
 	 * Get detours applicable for the route numbers provided.
 	 * @return The detours in effect.
 	 */
-	public List<DetourType> getmDetours() { return mDetours; }
+	public List<DetourType> getDetours() { return mDetours; }
 
 	
 	/**
+	 * Contains information on the configuration of a route.
 	 * This class encapsulates the routeType data from the schema.
 	 * @author Jeremy Logan
 	 *
@@ -57,23 +58,28 @@ public class Schedule {
 		}
 
 		/**
-		 * @return the mDirs
+		 * The route's directions.
+		 * @return the route's directions.
 		 */
 		public List<RouteDirectionType> getDirs() { return mDirs; }
 		/**
-		 * @return the mRoute
+		 * The route's id.
+		 * @return the route's id.
 		 */
 		public int getRoute() { return mRoute; }
 		/**
-		 * @return the mDesc
+		 * The route's description.
+		 * @return the description of the route.
 		 */
 		public String getDesc() { return mDesc; }
 		/**
-		 * @return the mDetour
+		 * Indicates if this route has a detour in effect.
+		 * @return whether there's a detour in effect for this route.
 		 */
 		public boolean isDetour() { return mDetour; }
 		/**
-		 * @return the mType
+		 * The type of the route.
+		 * @return the type of the route, either 'B' for bus, or 'R' for fixed guide way (either rail or aerial tram).
 		 */
 		public String getType() { return mType; }
 	}
@@ -96,15 +102,18 @@ public class Schedule {
 		}
 		
 		/**
-		 * @return the mStops
+		 * The stops associated with this route's direction.
+		 * @return the stops associated with this route's direction.
 		 */
 		public List<StopType> getStops() { return mStops; }
 		/**
-		 * @return the mDir
+		 * A number indicating the direction of the route.
+		 * @return the number of the direction, either 1 for inbound or 0 for outbound.
 		 */
 		public int getDir() { return mDir; }
 		/**
-		 * @return the mDesc
+		 * Describes the direction of the route.
+		 * @return the route's description.
 		 */
 		public String getDesc() { return mDesc; }
 	}
@@ -130,33 +139,40 @@ public class Schedule {
 		}
 
 		/**
-		 * @return the mDesc
+		 * The description of the stop.
+		 * @return the description of the stop.
 		 */
 		public String getDesc() { return mDesc; }
 		/**
-		 * @return the mLocid
+		 * The stop's locationID.
+		 * @return the stop's locationID.
 		 */
 		public int getLocid() { return mLocid; }
 		/**
-		 * @return the mLat
+		 * The stop's latitude.
+		 * @return the stop's latitude.
 		 */
 		public double getLat() { return mLat; }
 		/**
-		 * @return the mLng
+		 * The stop's longitude.
+		 * @return the stop's longitude.
 		 */
 		public double getLng() { return mLng; }
 		/**
-		 * @return the mSeq
+		 * The stop's sequence number for the route's direction.
+		 * @return the stop's sequence number for the route's direction.
 		 */
 		public int getSeq() { return mSeq; }
 		/**
-		 * @return the mTp
+		 * Whether the stop is considered a time point for the route's direction.
+		 * @return whether the stop is a time point.
 		 */
 		public boolean isTp() { return mTp; }
 	}
 	
 	/**
 	 * This class encapsulates the detourType data from the schema.
+	 * Contains information about a detour that may apply to one or more routes at the time the query was made.
 	 * @author Jeremy Logan
 	 *
 	 */
@@ -176,27 +192,33 @@ public class Schedule {
 		}
 
 		/**
-		 * @return the mRoutes
+		 * The routes affected by the detour.
+		 * @return the routes
 		 */
 		public List<RouteType> getRoutes() { return mRoutes; }
 		/**
-		 * @return the mBegin
+		 * Time the detour begins. This will always be a time prior to the time the query was made. This field is used internally and may be of little use outside of TriMet.
+		 * @return the begin time
 		 */
 		public long getBegin() { return mBegin; }
 		/**
-		 * @return the mEnd
+		 * The time the detour will become invalid. Note that this will always be a time after the time the query was made. Some end times will be very far in the future and will be removed once the detour is no longer in effect. This field is used internally and may be of little use outside of TriMet.
+		 * @return the end time
 		 */
 		public long getEnd() { return mEnd; }
 		/**
-		 * @return the mId
+		 * A unique identifier of the detour.
+		 * @return the id
 		 */
 		public String getId() { return mId; }
 		/**
-		 * @return the mDesc
+		 * A plain text description of the detour.
+		 * @return the description
 		 */
 		public String getDesc() { return mDesc; }
 		/**
-		 * @return the mPhonetic
+		 * A phonetic spelling of the route detour. This field is used by TriMet's 238-Ride text-to-speech system.
+		 * @return the phonetic spelling
 		 */
 		public String getPhonetic() { return mPhonetic; }
 	}
