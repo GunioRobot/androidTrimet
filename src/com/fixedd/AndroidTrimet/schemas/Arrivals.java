@@ -266,7 +266,6 @@ public class Arrivals {
 		 */
 		public int getFeet() { return mFeet; }
 	}
-	
 
 	/**
 	 * This class encapsulates the layoverType data from the schema.
