@@ -2,9 +2,9 @@ package com.fixedd.AndroidTrimet;
 
 import java.util.List;
 
-import com.fixedd.AndroidTrimet.util.Util;
-
 import android.location.Location;
+
+import com.fixedd.AndroidTrimet.util.Util;
 
 /**
  * Base client class for talking to the Trimet API. Instantiate a copy of the class then call one of the public methods to query the API. 
@@ -27,21 +27,55 @@ public class TrimetClient {
 	 * Reports next arrivals at a stop identified by location ID.
 	 * @param locationIDs The list of location IDs you want arrival info for.
 	 */
-	public void fetchArrivals(List<Integer> locationIDs) {
+	public com.fixedd.AndroidTrimet.schemas.Arrivals.ResultSet fetchArrivals(List<Integer> locationIDs) {
 		String url = String.format(Constants.URL_BASE_ARRIVALS, mAppId);
 		url += "/locIDs/" + Util.listIntegersToString(locationIDs);
-		// TODO make and parse request
+		return doArrivals(url);
 	}
+	
+	/**
+	 * Reports next arrivals at a stop identified by location ID.
+	 * @param locationIDs The location ID you want arrival info for.
+	 */
+	public com.fixedd.AndroidTrimet.schemas.Arrivals.ResultSet fetchArrival(int locationID) {
+		String url = String.format(Constants.URL_BASE_ARRIVALS, mAppId);
+		url += "/locIDs/" + Integer.toString(locationID);
+		return doArrivals(url);
+	}
+	
+	private com.fixedd.AndroidTrimet.schemas.Arrivals.ResultSet doArrivals(String url) {
+		// TODO make and parse request
+		return null;
+	}
+	
+	
 	
 	/**
 	 * Retrieves a list of detours currently in effect by route.
 	 * @param routes The list of route IDs you want detour info for.
 	 */
-	public void findDetours(List<Integer> routes) {
+	public com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet findDetours(List<Integer> routes) {
 		String url = String.format(Constants.URL_BASE_DETOURS, mAppId);
 		url += "/routes/" + Util.listIntegersToString(routes);
-		// TODO make and parse request
+		return doDetours(url);
 	}
+	
+	/**
+	 * Retrieves a list of detours currently in effect by route.
+	 * @param routes The route ID you want detour info for.
+	 */
+	public com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet findDetour(int route) {
+		String url = String.format(Constants.URL_BASE_DETOURS, mAppId);
+		url += "/routes/" + Integer.toString(route);
+		return doDetours(url);
+	}
+	
+	private com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet doDetours(String url) {
+		// TODO make and parse request
+		return null;
+	}
+	
+	
 	
 	/**
 	 * Find stops near the specified location. Note: a maximum of 15 stops will be returned.
@@ -74,7 +108,7 @@ public class TrimetClient {
 	 * This will return a list of all routes.
 	 * @param options The options you want to search by.
 	 */
-	public void fetchRoutes(RouteConfigOptions options) {
+	public com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet fetchRoutes(RouteConfigOptions options) {
 		String url = String.format(Constants.URL_BASE_ROUTECONFIG, mAppId);
 		
 		if (options.getRoutes()        != null) url += "/routes/"   + options.getRoutes()       ;
@@ -84,6 +118,8 @@ public class TrimetClient {
 		if (options.getStartSequence() != null) url += "/startSeq/" + options.getStartSequence();
 		if (options.getEndSequence()   != null) url += "/endSeq/"   + options.getEndSequence()  ;
 		// TODO make and parse request
+		
+		return null;
 	}
 	
 	
