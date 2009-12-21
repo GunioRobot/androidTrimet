@@ -3,14 +3,7 @@ package com.fixedd.AndroidTrimet.parsers;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import com.fixedd.AndroidTrimet.schemas.Arrivals.ArrivalType;
-import com.fixedd.AndroidTrimet.schemas.Arrivals.BlockPositionType;
-import com.fixedd.AndroidTrimet.schemas.Arrivals.LayoverType;
-import com.fixedd.AndroidTrimet.schemas.Arrivals.LocationType;
-import com.fixedd.AndroidTrimet.schemas.Arrivals.ResultSet;
-import com.fixedd.AndroidTrimet.schemas.Arrivals.RouteStatusType;
-import com.fixedd.AndroidTrimet.schemas.Arrivals.TripType;
+import com.fixedd.AndroidTrimet.schemas.Arrivals.*;
 
 public class ArrivalHandler extends DefaultHandler {
 	protected ResultSet        mResultSet            = null;

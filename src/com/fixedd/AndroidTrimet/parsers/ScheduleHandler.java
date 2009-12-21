@@ -3,14 +3,8 @@ package com.fixedd.AndroidTrimet.parsers;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
 import android.util.Log;
-
-import com.fixedd.AndroidTrimet.schemas.Schedule.DetourType;
-import com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet;
-import com.fixedd.AndroidTrimet.schemas.Schedule.RouteDirectionType;
-import com.fixedd.AndroidTrimet.schemas.Schedule.RouteType;
-import com.fixedd.AndroidTrimet.schemas.Schedule.StopType;
+import com.fixedd.AndroidTrimet.schemas.Schedule.*;
 
 public class ScheduleHandler extends DefaultHandler {
 	protected ResultSet          mResultSet        = null;
