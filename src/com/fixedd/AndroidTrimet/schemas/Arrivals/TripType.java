@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for tripType complex type.
  * 
@@ -23,7 +26,7 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
  * 
  * 
  */
-public class TripType {
+public class TripType implements Parcelable {
 
     protected int progress;
     protected int destDist;
@@ -153,4 +156,46 @@ public class TripType {
         this.desc = value;
     }
 
+    
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(progress);
+		dest.writeInt(destDist);
+		dest.writeInt(route);
+		dest.writeInt(dir);
+		dest.writeInt(tripNum);
+		dest.writeInt(pattern);
+		dest.writeString(desc);
+	}
+
+	public static final Parcelable.Creator<TripType> CREATOR = new Parcelable.Creator<TripType>() {
+		public TripType createFromParcel(Parcel in) {
+			return new TripType(in);
+		}
+
+		public TripType[] newArray(int size) {
+			return new TripType[size];
+		}
+	};
+	
+	private TripType(Parcel dest) {
+		progress = dest.readInt();
+	    destDist = dest.readInt();
+	    route    = dest.readInt();
+	    dir      = dest.readInt();
+	    tripNum  = dest.readInt();
+	    pattern  = dest.readInt();
+	    desc     = dest.readString();
+	}
 }

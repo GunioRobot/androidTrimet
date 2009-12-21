@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /**
  * <p>Java class for blockPositionType complex type.
@@ -29,7 +32,7 @@ import java.util.List;
  * 
  * 
  */
-public class BlockPositionType {
+public class BlockPositionType implements Parcelable {
 
     protected List<TripType> trip;
     protected List<LayoverType> layover;
@@ -201,4 +204,46 @@ public class BlockPositionType {
         this.feet = value;
     }
 
+
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(trip   );
+	    dest.writeTypedList(layover);
+	    dest.writeLong  (at     );
+	    dest.writeDouble(lat    );
+	    dest.writeDouble(lng    );
+	    dest.writeInt   (heading);
+	    dest.writeInt   (feet   );
+	}
+
+	public static final Parcelable.Creator<BlockPositionType> CREATOR = new Parcelable.Creator<BlockPositionType>() {
+		public BlockPositionType createFromParcel(Parcel in) {
+			return new BlockPositionType(in);
+		}
+
+		public BlockPositionType[] newArray(int size) {
+			return new BlockPositionType[size];
+		}
+	};
+	
+	private BlockPositionType(Parcel dest) {
+		dest.readTypedList(trip, TripType.CREATOR);
+	    dest.readTypedList(layover, LayoverType.CREATOR);
+	    at      = dest.readLong  ();
+	    lat     = dest.readDouble();
+	    lng     = dest.readDouble();
+	    heading = dest.readInt   ();
+	    feet    = dest.readInt   ();
+	}
 }

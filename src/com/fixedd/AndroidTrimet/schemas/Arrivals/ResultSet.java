@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /**
  * <p>Java class for resultSet complex type.
@@ -27,7 +30,7 @@ import java.util.List;
  * 
  * 
  */
-public class ResultSet {
+public class ResultSet implements Parcelable {
 
     protected String errorMessage;
     protected List<LocationType> location;
@@ -170,4 +173,43 @@ public class ResultSet {
         this.queryTime = value;
     }
 
+
+
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString   (errorMessage);
+		dest.writeTypedList(location    );
+		dest.writeTypedList(arrival     );
+		dest.writeTypedList(routeStatus );
+		dest.writeLong     (queryTime   );
+	}
+
+	public static final Parcelable.Creator<ResultSet> CREATOR = new Parcelable.Creator<ResultSet>() {
+		public ResultSet createFromParcel(Parcel in) {
+			return new ResultSet(in);
+		}
+
+		public ResultSet[] newArray(int size) {
+			return new ResultSet[size];
+		}
+	};
+	
+	private ResultSet(Parcel dest) {
+		errorMessage = dest.readString();
+	    dest.readTypedList(location   , LocationType   .CREATOR);
+	    dest.readTypedList(arrival    , ArrivalType    .CREATOR);
+	    dest.readTypedList(routeStatus, RouteStatusType.CREATOR);
+	    queryTime    = dest.readLong();
+	}
 }

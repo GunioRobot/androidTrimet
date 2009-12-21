@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for arrivalType complex type.
  * 
@@ -34,7 +37,7 @@ import java.util.List;
  * 
  * 
  */
-public class ArrivalType {
+public class ArrivalType implements Parcelable {
 
     protected List<BlockPositionType> blockPosition;
     protected int route;
@@ -319,4 +322,58 @@ public class ArrivalType {
         this.status = value;
     }
 
+
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(blockPosition);
+	    dest.writeInt   (route    );
+	    dest.writeInt   (locid    );
+	    dest.writeInt   (dir      );
+	    dest.writeString(shortSign);
+	    dest.writeString(fullSign );
+	    dest.writeLong  (estimated);
+	    dest.writeLong  (scheduled);
+	    dest.writeInt   (block    );
+	    dest.writeString(piece    );
+	    dest.writeString(Boolean.toString(departed));
+	    dest.writeString(Boolean.toString(detour  ));
+	    dest.writeString(status   );
+	}
+
+	public static final Parcelable.Creator<ArrivalType> CREATOR = new Parcelable.Creator<ArrivalType>() {
+		public ArrivalType createFromParcel(Parcel in) {
+			return new ArrivalType(in);
+		}
+
+		public ArrivalType[] newArray(int size) {
+			return new ArrivalType[size];
+		}
+	};
+	
+	private ArrivalType(Parcel dest) {
+		dest.readTypedList(blockPosition, BlockPositionType.CREATOR);
+		route     = dest.readInt();
+	    locid     = dest.readInt();
+	    dir       = dest.readInt();
+	    shortSign = dest.readString();
+	    fullSign  = dest.readString();
+	    estimated = dest.readLong();
+	    scheduled = dest.readLong();
+	    block     = dest.readInt();
+	    piece     = dest.readString();
+	    departed  = Boolean.parseBoolean(dest.readString());
+	    detour    = Boolean.parseBoolean(dest.readString());
+	    status    = dest.readString();
+	}
 }

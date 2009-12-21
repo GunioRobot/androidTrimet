@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for routeStatusType complex type.
  * 
@@ -18,7 +21,7 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
  * 
  * 
  */
-public class RouteStatusType {
+public class RouteStatusType implements Parcelable {
 
     protected int route;
     protected String status;
@@ -63,4 +66,38 @@ public class RouteStatusType {
         this.status = value;
     }
 
+
+
+
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(route);
+		dest.writeString(status);
+	}
+
+	public static final Parcelable.Creator<RouteStatusType> CREATOR = new Parcelable.Creator<RouteStatusType>() {
+		public RouteStatusType createFromParcel(Parcel in) {
+			return new RouteStatusType(in);
+		}
+
+		public RouteStatusType[] newArray(int size) {
+			return new RouteStatusType[size];
+		}
+	};
+	
+	private RouteStatusType(Parcel dest) {
+		route  = dest.readInt();
+	    status = dest.readString();
+	}
 }

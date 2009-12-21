@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /**
  * <p>Java class for layoverType complex type.
@@ -22,7 +25,7 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
  * 
  * 
  */
-public class LayoverType {
+public class LayoverType implements Parcelable {
 
     protected LocationType location;
     protected long start;
@@ -84,4 +87,37 @@ public class LayoverType {
         this.end = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(location, flags);
+	    dest.writeLong(start);
+	    dest.writeLong(end  );
+	}
+
+	public static final Parcelable.Creator<LayoverType> CREATOR = new Parcelable.Creator<LayoverType>() {
+		public LayoverType createFromParcel(Parcel in) {
+			return new LayoverType(in);
+		}
+
+		public LayoverType[] newArray(int size) {
+			return new LayoverType[size];
+		}
+	};
+	
+	private LayoverType(Parcel dest) {
+		location = (LocationType) dest.readParcelable(null);
+	    start = dest.readLong();
+	    end   = dest.readLong();
+	}
 }

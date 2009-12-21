@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for locationType complex type.
  * 
@@ -21,7 +24,7 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
  * 
  * 
  */
-public class LocationType {
+public class LocationType implements Parcelable {
 
     protected int locid;
     protected String desc;
@@ -125,4 +128,42 @@ public class LocationType {
         this.lng = value;
     }
 
+
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt   (locid);
+	    dest.writeString(desc );
+	    dest.writeString(dir  );
+	    dest.writeDouble(lat  );
+	    dest.writeDouble(lng  );
+	}
+
+	public static final Parcelable.Creator<LocationType> CREATOR = new Parcelable.Creator<LocationType>() {
+		public LocationType createFromParcel(Parcel in) {
+			return new LocationType(in);
+		}
+
+		public LocationType[] newArray(int size) {
+			return new LocationType[size];
+		}
+	};
+	
+	private LocationType(Parcel dest) {
+		locid = dest.readInt   ();
+	    desc  = dest.readString();
+	    dir   = dest.readString();
+	    lat   = dest.readDouble();
+	    lng   = dest.readDouble();
+	}
 }
