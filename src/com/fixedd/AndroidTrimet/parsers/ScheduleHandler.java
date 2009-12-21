@@ -17,6 +17,7 @@ public class ScheduleHandler extends DefaultHandler {
 	private   RouteType          mCurrentRoute     = null;
 	private   RouteDirectionType mCurrentDirection = null;
 	private   DetourType         mCurrentDetour    = null;
+	private   Boolean            mInError          = false;
 	
 	/* (non-Javadoc)
 	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
@@ -25,8 +26,6 @@ public class ScheduleHandler extends DefaultHandler {
 	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {
 		if (qualifiedName.equalsIgnoreCase("resultSet")) {
 			mResultSet = new ResultSet();
-			if (attributes.getValue("errorMessage") != null)
-				mResultSet.setErrorMessage(attributes.getValue("errorMessage"));
 		} else if (qualifiedName.equalsIgnoreCase("route")) {
 			mCurrentRoute = new RouteType();
 			// required
@@ -56,6 +55,8 @@ public class ScheduleHandler extends DefaultHandler {
 			mCurrentDetour.setId      (attributes.getValue("id"      ));
 			mCurrentDetour.setDesc    (attributes.getValue("desc"    ));
 			mCurrentDetour.setPhonetic(attributes.getValue("phonetic"));
+		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+			mInError = true;
 		} else {
 			Log.d(getClass().getSimpleName(), "There was an unknown XML element encountered: " + qualifiedName);
 		}
@@ -79,11 +80,24 @@ public class ScheduleHandler extends DefaultHandler {
 		} else if (qualifiedName.equalsIgnoreCase("detour")) {
 			mResultSet.getDetour().add(mCurrentDetour);
 			mCurrentDetour = null;
-		} else if (qualifiedName.equalsIgnoreCase("stop")) {
-			
+		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+			mInError = false;
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
+	 */
+	@Override
+	public void characters(char[] chars, int startIndex, int length) throws SAXException {
+		String dataString = new String(chars, startIndex, length).trim();
+		
+		if (mInError) {
+			mResultSet.setErrorMessage(dataString);
+		} else {
+			super.characters(chars, startIndex, length);
+		}
+	}
 	
 	/*
 	 * 

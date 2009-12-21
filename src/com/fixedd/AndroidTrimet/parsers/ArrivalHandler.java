@@ -4,8 +4,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import android.util.Log;
-
 import com.fixedd.AndroidTrimet.schemas.Arrivals.ArrivalType;
 import com.fixedd.AndroidTrimet.schemas.Arrivals.BlockPositionType;
 import com.fixedd.AndroidTrimet.schemas.Arrivals.LayoverType;
@@ -20,6 +18,7 @@ public class ArrivalHandler extends DefaultHandler {
 	private  ArrivalType       mCurrentArrival       = null;
 	private  BlockPositionType mCurrentBlockPosition = null;
 	private  LayoverType       mCurrentLayover       = null;
+	private  Boolean           mInError              = false;
 	
 	/* (non-Javadoc)
 	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
@@ -30,8 +29,6 @@ public class ArrivalHandler extends DefaultHandler {
 		
 		if (qualifiedName.equalsIgnoreCase("resultSet")) {
 			mResultSet = new ResultSet();
-			if (attributes.getValue("errorMessage") != null)
-				mResultSet.setErrorMessage(attributes.getValue("errorMessage"));
 			if (attributes.getValue("queryTime") != null)
 				mResultSet.setQueryTime(Long.parseLong(attributes.getValue("queryTime")));
 		} else if (qualifiedName.equalsIgnoreCase("location")) {
@@ -87,8 +84,10 @@ public class ArrivalHandler extends DefaultHandler {
 			routeStatus.setRoute(Integer.parseInt(attributes.getValue("route")));
 			routeStatus.setStatus(attributes.getValue("status"));
 			mResultSet.getRouteStatus().add(routeStatus);
+		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+			mInError = true;
 		} else {
-			Log.d(getClass().getSimpleName(), "There was an unknown XML element encountered: " + qualifiedName);
+			System.out.println("There was an unknown XML element encountered: " + qualifiedName);
 		}
 		
 	}
@@ -114,11 +113,25 @@ public class ArrivalHandler extends DefaultHandler {
 		} else if (qualifiedName.equalsIgnoreCase("layover")) {
 			mCurrentBlockPosition.getLayover().add(mCurrentLayover);
 			mCurrentLayover = null;
+		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+			mInError = false;
 		}
 	}
 	
-	
-	
+	/* (non-Javadoc)
+	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
+	 */
+	@Override
+	public void characters(char[] chars, int startIndex, int length) throws SAXException {
+		String dataString = new String(chars, startIndex, length).trim();
+		
+		if (mInError) {
+			mResultSet.setErrorMessage(dataString);
+		} else {
+			super.characters(chars, startIndex, length);
+		}
+	}
+
 	/*
 	 * 
 	 */
