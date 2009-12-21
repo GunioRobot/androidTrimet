@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Schedule;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /**
  * <p>Java class for routeDirectionType complex type.
@@ -25,7 +28,7 @@ import java.util.List;
  * 
  * 
  */
-public class RouteDirectionType {
+public class RouteDirectionType implements Parcelable {
 
     protected List<StopType> stop;
     protected int dir;
@@ -100,4 +103,37 @@ public class RouteDirectionType {
         this.desc = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(stop);
+	    dest.writeInt      (dir );
+	    dest.writeString   (desc);
+	}
+
+	public static final Parcelable.Creator<RouteDirectionType> CREATOR = new Parcelable.Creator<RouteDirectionType>() {
+		public RouteDirectionType createFromParcel(Parcel in) {
+			return new RouteDirectionType(in);
+		}
+
+		public RouteDirectionType[] newArray(int size) {
+			return new RouteDirectionType[size];
+		}
+	};
+	
+	private RouteDirectionType(Parcel dest) {
+		dest.readTypedList(stop, StopType.CREATOR);
+	    dir  = dest.readInt   ();
+	    desc = dest.readString();
+	}
 }

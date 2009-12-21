@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Schedule;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for detourType complex type.
  * 
@@ -27,7 +30,7 @@ import java.util.List;
  * 
  * 
  */
-public class DetourType {
+public class DetourType implements Parcelable {
 
     protected List<RouteType> route;
     protected long begin;
@@ -169,4 +172,43 @@ public class DetourType {
         this.phonetic = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(route);
+	    dest.writeLong  (begin   );
+	    dest.writeLong  (end     );
+	    dest.writeString(id      );
+	    dest.writeString(desc    );
+	    dest.writeString(phonetic);
+	}
+
+	public static final Parcelable.Creator<DetourType> CREATOR = new Parcelable.Creator<DetourType>() {
+		public DetourType createFromParcel(Parcel in) {
+			return new DetourType(in);
+		}
+
+		public DetourType[] newArray(int size) {
+			return new DetourType[size];
+		}
+	};
+	
+	private DetourType(Parcel dest) {
+		dest.readTypedList(route, RouteType.CREATOR);
+	    begin    = dest.readLong  ();
+	    end      = dest.readLong  ();
+	    id       = dest.readString();
+	    desc     = dest.readString();
+	    phonetic = dest.readString();
+	}
 }

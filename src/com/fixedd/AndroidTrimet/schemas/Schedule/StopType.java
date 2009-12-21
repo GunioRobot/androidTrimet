@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.Schedule;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for stopType complex type.
  * 
@@ -22,7 +25,7 @@ package com.fixedd.AndroidTrimet.schemas.Schedule;
  * 
  * 
  */
-public class StopType {
+public class StopType implements Parcelable {
 
     protected String desc;
     protected int locid;
@@ -135,4 +138,43 @@ public class StopType {
         this.tp = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(desc );
+	    dest.writeInt   (locid);
+	    dest.writeDouble(lat  );
+	    dest.writeDouble(lng  );
+	    dest.writeInt   (seq  );
+	    dest.writeString(Boolean.toString(tp));
+	}
+
+	public static final Parcelable.Creator<StopType> CREATOR = new Parcelable.Creator<StopType>() {
+		public StopType createFromParcel(Parcel in) {
+			return new StopType(in);
+		}
+
+		public StopType[] newArray(int size) {
+			return new StopType[size];
+		}
+	};
+	
+	private StopType(Parcel dest) {
+		desc  = dest.readString();
+	    locid = dest.readInt   ();
+	    lat   = dest.readDouble();
+	    lng   = dest.readDouble();
+	    seq   = dest.readInt   ();
+	    tp    = Boolean.parseBoolean(dest.readString());
+	}
 }

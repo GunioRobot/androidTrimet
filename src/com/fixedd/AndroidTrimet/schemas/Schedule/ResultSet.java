@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Schedule;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /**
  * <p>Java class for resultSet complex type.
@@ -25,7 +28,7 @@ import java.util.List;
  * 
  * 
  */
-public class ResultSet {
+public class ResultSet implements Parcelable {
 
     protected String errorMessage;
     protected List<RouteType> route;
@@ -113,4 +116,37 @@ public class ResultSet {
         return this.detour;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString   (errorMessage);
+	    dest.writeTypedList(route       );
+	    dest.writeTypedList(detour      );
+	}
+
+	public static final Parcelable.Creator<ResultSet> CREATOR = new Parcelable.Creator<ResultSet>() {
+		public ResultSet createFromParcel(Parcel in) {
+			return new ResultSet(in);
+		}
+
+		public ResultSet[] newArray(int size) {
+			return new ResultSet[size];
+		}
+	};
+	
+	private ResultSet(Parcel dest) {
+		errorMessage = dest.readString();
+	    dest.readTypedList(route , RouteType .CREATOR);
+	    dest.readTypedList(detour, DetourType.CREATOR);
+	}
 }
