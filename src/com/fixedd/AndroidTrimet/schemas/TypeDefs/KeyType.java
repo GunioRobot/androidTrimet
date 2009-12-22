@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+
 /**
  * <p>Java class for KeyType.
  * 
@@ -44,5 +45,4 @@ public enum KeyType {
         }
         throw new IllegalArgumentException(v);
     }
-
 }

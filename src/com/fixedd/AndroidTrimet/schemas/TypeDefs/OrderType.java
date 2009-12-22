@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+
 /**
  * <p>Java class for OrderType.
  * 
@@ -42,5 +43,4 @@ public enum OrderType {
         }
         throw new IllegalArgumentException(v);
     }
-
 }

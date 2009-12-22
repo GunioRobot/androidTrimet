@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for GeoRouteType complex type.
  * 
@@ -23,7 +26,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class GeoRouteType {
+public class GeoRouteType implements Parcelable {
 
     protected String domain;
     protected String typeName;
@@ -151,4 +154,41 @@ public class GeoRouteType {
         this.wmsUrl = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(domain   );
+		dest.writeString(typeName );
+		dest.writeString(ogcFilter);
+		dest.writeString(wfsUrl   );
+		dest.writeString(wmsUrl   );
+	}
+
+	public static final Parcelable.Creator<GeoRouteType> CREATOR = new Parcelable.Creator<GeoRouteType>() {
+		public GeoRouteType createFromParcel(Parcel in) {
+			return new GeoRouteType(in);
+		}
+
+		public GeoRouteType[] newArray(int size) {
+			return new GeoRouteType[size];
+		}
+	};
+	
+	private GeoRouteType(Parcel dest) {
+		domain    = dest.readString();
+	    typeName  = dest.readString();
+	    ogcFilter = dest.readString();
+	    wfsUrl    = dest.readString();
+	    wmsUrl    = dest.readString();
+	}
 }

@@ -1,4 +1,7 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
+
+import android.os.Parcelable;
+
 /**
  * <p>Java class for LegType complex type.
  * 
@@ -24,7 +27,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public abstract class LegType {
+public abstract class LegType implements Parcelable {
 
     protected TimeDistanceType timeDistance;
     protected GeoURLType lineURL;
@@ -202,4 +205,7 @@ public abstract class LegType {
         this.order = value;
     }
 
+    
+    // this is for Parcelable. It (FOR SERIOUSLY!!!) must be reassigned to something meaningful by subclasses.
+    public static Parcelable.Creator<LegType> CREATOR;
 }

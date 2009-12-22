@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for AlertType complex type.
  * 
@@ -22,7 +25,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class AlertType {
+public class AlertType implements Parcelable {
 
     protected String description;
     protected String begin;
@@ -125,4 +128,41 @@ public class AlertType {
         this.status = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(description   );
+	    dest.writeString(begin         );
+	    dest.writeString(end           );
+	    dest.writeString(status.value());
+	    
+	    
+	}
+
+	public static final Parcelable.Creator<AlertType> CREATOR = new Parcelable.Creator<AlertType>() {
+		public AlertType createFromParcel(Parcel in) {
+			return new AlertType(in);
+		}
+
+		public AlertType[] newArray(int size) {
+			return new AlertType[size];
+		}
+	};
+	
+	private AlertType(Parcel dest) {
+		description = dest.readString();
+	    begin       = dest.readString();
+	    end         = dest.readString();
+	    status      = StatusType.fromValue(dest.readString());
+	}
 }

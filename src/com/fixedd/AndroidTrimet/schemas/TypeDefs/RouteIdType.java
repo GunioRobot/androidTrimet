@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for RouteIdType complex type.
  * 
@@ -21,7 +24,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class RouteIdType {
+public class RouteIdType implements Parcelable {
 
     protected String number;
     protected String internalNumber;
@@ -99,4 +102,37 @@ public class RouteIdType {
         this.direction = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(number        );
+	    dest.writeString(internalNumber);
+		dest.writeString(direction     );
+	}
+
+	public static final Parcelable.Creator<RouteIdType> CREATOR = new Parcelable.Creator<RouteIdType>() {
+		public RouteIdType createFromParcel(Parcel in) {
+			return new RouteIdType(in);
+		}
+
+		public RouteIdType[] newArray(int size) {
+			return new RouteIdType[size];
+		}
+	};
+	
+	private RouteIdType(Parcel dest) {
+		number         = dest.readString();
+	    internalNumber = dest.readString();
+	    direction      = dest.readString();
+	}
 }

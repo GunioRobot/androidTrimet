@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+
 /**
  * <p>Java class for StatusType.
  * 
@@ -41,5 +42,4 @@ public enum StatusType {
         }
         throw new IllegalArgumentException(v);
     }
-
 }

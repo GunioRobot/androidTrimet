@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for ErrorType complex type.
  * 
@@ -20,7 +23,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class ErrorType {
+public class ErrorType implements Parcelable {
 
     protected String message;
     protected String code;
@@ -73,4 +76,35 @@ public class ErrorType {
         this.code = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(message);
+		dest.writeString(code   );
+	}
+
+	public static final Parcelable.Creator<ErrorType> CREATOR = new Parcelable.Creator<ErrorType>() {
+		public ErrorType createFromParcel(Parcel in) {
+			return new ErrorType(in);
+		}
+
+		public ErrorType[] newArray(int size) {
+			return new ErrorType[size];
+		}
+	};
+	
+	private ErrorType(Parcel dest) {
+		message = dest.readString();
+		code    = dest.readString();
+	}
 }

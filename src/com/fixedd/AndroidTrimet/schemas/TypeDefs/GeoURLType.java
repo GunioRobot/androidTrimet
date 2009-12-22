@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for GeoURLType complex type.
  * 
@@ -20,7 +23,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class GeoURLType {
+public class GeoURLType implements Parcelable {
     protected String url;
     protected String param;
 
@@ -72,4 +75,35 @@ public class GeoURLType {
         this.param = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(url  );
+		dest.writeString(param);
+	}
+
+	public static final Parcelable.Creator<GeoURLType> CREATOR = new Parcelable.Creator<GeoURLType>() {
+		public GeoURLType createFromParcel(Parcel in) {
+			return new GeoURLType(in);
+		}
+
+		public GeoURLType[] newArray(int size) {
+			return new GeoURLType[size];
+		}
+	};
+	
+	private GeoURLType(Parcel dest) {
+		url   = dest.readString();
+		param = dest.readString();
+	}
 }

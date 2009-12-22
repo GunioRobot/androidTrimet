@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for RequestType complex type.
  * 
@@ -31,7 +34,7 @@ import java.util.List;
  * 
  * 
  */
-public class RequestType {
+public class RequestType implements Parcelable {
 
     protected String url;
     protected List<RequestType.Param> param;
@@ -107,7 +110,7 @@ public class RequestType {
      * 
      * 
      */
-    public static class Param {
+    public static class Param implements Parcelable {
 
         protected String value;
         protected String name;
@@ -160,6 +163,69 @@ public class RequestType {
             this.name = value;
         }
 
+
+
+        // **********************************************
+        //  for implementing Parcelable
+        // **********************************************
+        
+        
+    	@Override
+    	public int describeContents() {
+    		return 0;
+    	}
+
+    	@Override
+    	public void writeToParcel(Parcel dest, int flags) {
+    		dest.writeString(value);
+    		dest.writeString(name);
+    	}
+
+    	public static final Parcelable.Creator<Param> CREATOR = new Parcelable.Creator<Param>() {
+    		public Param createFromParcel(Parcel in) {
+    			return new Param(in);
+    		}
+
+    		public Param[] newArray(int size) {
+    			return new Param[size];
+    		}
+    	};
+    	
+    	private Param(Parcel dest) {
+    		value = dest.readString();
+    		name  = dest.readString();
+    	}
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(url);
+	    dest.writeTypedList(param);
+	}
+
+	public static final Parcelable.Creator<RequestType> CREATOR = new Parcelable.Creator<RequestType>() {
+		public RequestType createFromParcel(Parcel in) {
+			return new RequestType(in);
+		}
+
+		public RequestType[] newArray(int size) {
+			return new RequestType[size];
+		}
+	};
+	
+	private RequestType(Parcel dest) {
+		url = dest.readString();
+	    dest.readTypedList(param, RequestType.Param.CREATOR);
+	}
 }

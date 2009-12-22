@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for FareType complex type.
  * 
@@ -24,7 +27,7 @@ import java.util.List;
  * 
  * 
  */
-public class FareType {
+public class FareType implements Parcelable {
     protected String regular;
     protected List<SpecialFareType> special;
     protected String provider;
@@ -106,4 +109,37 @@ public class FareType {
         this.provider = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString   (regular );
+	    dest.writeTypedList(special );
+	    dest.writeString   (provider);
+	}
+
+	public static final Parcelable.Creator<FareType> CREATOR = new Parcelable.Creator<FareType>() {
+		public FareType createFromParcel(Parcel in) {
+			return new FareType(in);
+		}
+
+		public FareType[] newArray(int size) {
+			return new FareType[size];
+		}
+	};
+	
+	private FareType(Parcel dest) {
+		regular = dest.readString();
+	    dest.readTypedList(special, SpecialFareType.CREATOR);
+	    provider = dest.readString();
+	}
 }

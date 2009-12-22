@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /**
  * <p>Java class for RouteSummaryType complex type.
@@ -23,7 +26,7 @@ import java.util.List;
  * 
  * 
  */
-public class RouteSummaryType {
+public class RouteSummaryType implements Parcelable {
 
     protected List<RouteIdType> route;
 
@@ -56,4 +59,33 @@ public class RouteSummaryType {
         return this.route;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(route);
+	}
+
+	public static final Parcelable.Creator<RouteSummaryType> CREATOR = new Parcelable.Creator<RouteSummaryType>() {
+		public RouteSummaryType createFromParcel(Parcel in) {
+			return new RouteSummaryType(in);
+		}
+
+		public RouteSummaryType[] newArray(int size) {
+			return new RouteSummaryType[size];
+		}
+	};
+	
+	private RouteSummaryType(Parcel dest) {
+		dest.readTypedList(route, RouteIdType.CREATOR);
+	}
 }

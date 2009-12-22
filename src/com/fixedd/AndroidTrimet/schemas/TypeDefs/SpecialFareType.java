@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for SpecialFareType complex type.
  * 
@@ -17,7 +20,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class SpecialFareType {
+public class SpecialFareType implements Parcelable {
 
     protected String value;
     protected String id;
@@ -70,4 +73,35 @@ public class SpecialFareType {
         this.id = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(value);
+		dest.writeString(id   );
+	}
+
+	public static final Parcelable.Creator<SpecialFareType> CREATOR = new Parcelable.Creator<SpecialFareType>() {
+		public SpecialFareType createFromParcel(Parcel in) {
+			return new SpecialFareType(in);
+		}
+
+		public SpecialFareType[] newArray(int size) {
+			return new SpecialFareType[size];
+		}
+	};
+	
+	private SpecialFareType(Parcel dest) {
+		value = dest.readString();
+		id    = dest.readString();
+	}
 }

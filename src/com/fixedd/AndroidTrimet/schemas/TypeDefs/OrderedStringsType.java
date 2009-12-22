@@ -1,4 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for OrderedStringsType complex type.
  * 
@@ -16,7 +20,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class OrderedStringsType {
+public class OrderedStringsType implements Parcelable {
 
     protected String value;
     protected int id;
@@ -61,4 +65,35 @@ public class OrderedStringsType {
         this.id = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(value);
+		dest.writeInt   (id   );
+	}
+
+	public static final Parcelable.Creator<OrderedStringsType> CREATOR = new Parcelable.Creator<OrderedStringsType>() {
+		public OrderedStringsType createFromParcel(Parcel in) {
+			return new OrderedStringsType(in);
+		}
+
+		public OrderedStringsType[] newArray(int size) {
+			return new OrderedStringsType[size];
+		}
+	};
+	
+	private OrderedStringsType(Parcel dest) {
+		value = dest.readString();
+	    id    = dest.readInt   ();
+	}
 }

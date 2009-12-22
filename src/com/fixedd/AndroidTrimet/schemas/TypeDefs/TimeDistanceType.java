@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for TimeDistanceType complex type.
  * 
@@ -28,7 +31,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class TimeDistanceType {
+public class TimeDistanceType implements Parcelable {
 
     protected String date;
     protected String startTime;
@@ -225,4 +228,51 @@ public class TimeDistanceType {
         this.waitingTime = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(date             );
+		dest.writeString(startTime        );
+		dest.writeString(endTime          );
+		dest.writeInt   (duration         );
+		dest.writeDouble(distance         );
+		dest.writeInt   (numberOfTransfers);
+		dest.writeInt   (numberOfTripLegs );
+		dest.writeInt   (walkingTime      );
+		dest.writeInt   (transitTime      );
+		dest.writeInt   (waitingTime      );
+	}
+
+	public static final Parcelable.Creator<TimeDistanceType> CREATOR = new Parcelable.Creator<TimeDistanceType>() {
+		public TimeDistanceType createFromParcel(Parcel in) {
+			return new TimeDistanceType(in);
+		}
+
+		public TimeDistanceType[] newArray(int size) {
+			return new TimeDistanceType[size];
+		}
+	};
+	
+	private TimeDistanceType(Parcel dest) {
+		date              = dest.readString();
+	    startTime         = dest.readString();
+	    endTime           = dest.readString();
+	    duration          = dest.readInt();
+	    distance          = dest.readDouble();
+	    numberOfTransfers = dest.readInt();
+	    numberOfTripLegs  = dest.readInt();
+	    walkingTime       = dest.readInt();
+	    transitTime       = dest.readInt();
+	    waitingTime       = dest.readInt();
+	}
 }

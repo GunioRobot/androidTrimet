@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for WalkingLegType complex type.
  * 
@@ -19,9 +22,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class WalkingLegType
-    extends LegType
-{
+public class WalkingLegType extends LegType implements Parcelable {
 
     protected String direction;
 
@@ -49,4 +50,47 @@ public class WalkingLegType
         this.direction = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(direction);
+		dest.writeString(id       );
+	    dest.writeString(mode     );
+		dest.writeParcelable(timeDistance, flags);
+		dest.writeParcelable(lineURL     , flags);
+	    dest.writeParcelable(from        , flags);
+	    dest.writeParcelable(to          , flags);
+	    dest.writeString(order.value());
+	}
+
+	public static final Parcelable.Creator<WalkingLegType> CREATOR = new Parcelable.Creator<WalkingLegType>() {
+		public WalkingLegType createFromParcel(Parcel in) {
+			return new WalkingLegType(in);
+		}
+
+		public WalkingLegType[] newArray(int size) {
+			return new WalkingLegType[size];
+		}
+	};
+	
+	private WalkingLegType(Parcel dest) {
+		direction = dest.readString();
+		id        = dest.readString();
+		mode      = dest.readString();
+		timeDistance = (TimeDistanceType) dest.readParcelable(null);
+		lineURL      = (GeoURLType      ) dest.readParcelable(null);
+		from         = (PointType       ) dest.readParcelable(null);
+		to           = (PointType       ) dest.readParcelable(null);
+		order = OrderType.fromValue(dest.readString());
+	}
 }

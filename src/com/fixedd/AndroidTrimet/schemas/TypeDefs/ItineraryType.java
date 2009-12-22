@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for ItineraryType complex type.
  * 
@@ -28,7 +31,7 @@ import java.util.List;
  * 
  * 
  */
-public class ItineraryType {
+public class ItineraryType implements Parcelable {
 
     protected TimeDistanceType timeDistance;
     protected FareType fare;
@@ -216,4 +219,45 @@ public class ItineraryType {
         this.viaRoute = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(timeDistance, flags);
+		dest.writeParcelable(fare        , flags);
+		dest.writeParcelable(routes      , flags);
+		dest.writeTypedList(leg     );
+		dest.writeTypedList(geo     );
+	    dest.writeString   (id      );
+	    dest.writeString   (viaRoute);
+	}
+
+	public static final Parcelable.Creator<ItineraryType> CREATOR = new Parcelable.Creator<ItineraryType>() {
+		public ItineraryType createFromParcel(Parcel in) {
+			return new ItineraryType(in);
+		}
+
+		public ItineraryType[] newArray(int size) {
+			return new ItineraryType[size];
+		}
+	};
+	
+	public ItineraryType(Parcel dest) {
+		timeDistance = (TimeDistanceType) dest.readParcelable(null);
+	    fare         = (FareType        ) dest.readParcelable(null);
+	    routes       = (RouteSummaryType) dest.readParcelable(null);
+	    dest.readTypedList(leg, LegType     .CREATOR);
+	    dest.readTypedList(geo, GeoRouteType.CREATOR);
+	    id       = dest.readString();
+	    viaRoute = dest.readString();
+	}
 }

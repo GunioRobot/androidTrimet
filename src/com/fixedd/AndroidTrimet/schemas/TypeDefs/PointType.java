@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for PointType complex type.
  * 
@@ -23,7 +26,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class PointType {
+public class PointType implements Parcelable {
 
     protected GeoPointType pos;
     protected String description;
@@ -31,6 +34,11 @@ public class PointType {
     protected String areaValue;
     protected String id;
 
+    // unused
+    public PointType() {
+    	
+    }
+    
     /**
      * Gets the value of the pos property.
      * 
@@ -151,4 +159,41 @@ public class PointType {
         this.id = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(pos, flags);
+	    dest.writeString(description);
+	    dest.writeString(areaKey    );
+	    dest.writeString(areaValue  );
+	    dest.writeString(id         );
+	}
+
+	public static final Parcelable.Creator<PointType> CREATOR = new Parcelable.Creator<PointType>() {
+		public PointType createFromParcel(Parcel in) {
+			return new PointType(in);
+		}
+
+		public PointType[] newArray(int size) {
+			return new PointType[size];
+		}
+	};
+	
+	private PointType(Parcel dest) {
+		pos = (GeoPointType) dest.readParcelable(null);
+	    description = dest.readString();
+	    areaKey     = dest.readString();
+	    areaValue   = dest.readString();
+	    id          = dest.readString();
+	}
 }

@@ -3,6 +3,11 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.fixedd.AndroidTrimet.util.ParcelableString;
+
 
 /**
  * <p>Java class for StopPointType complex type.
@@ -28,14 +33,14 @@ import java.util.List;
  * 
  * 
  */
-public class StopPointType extends PointType {
+public class StopPointType extends PointType implements Parcelable {
 
     protected String stopId;
     protected String streetPosition;
     protected String fareZone;
     protected int stopSequence;
     protected double distance;
-    protected List<String> comment;
+    protected List<ParcelableString> comment;
 
     /**
      * Gets the value of the stopId property.
@@ -163,11 +168,62 @@ public class StopPointType extends PointType {
      * 
      * 
      */
-    public List<String> getComment() {
+    public List<ParcelableString> getComment() {
         if (comment == null) {
-            comment = new ArrayList<String>();
+            comment = new ArrayList<ParcelableString>();
         }
         return this.comment;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(stopId        );
+		dest.writeString(streetPosition);
+		dest.writeString(fareZone      );
+		dest.writeInt   (stopSequence  );
+		dest.writeDouble(distance      );
+		dest.writeTypedList(comment);
+		// from PointType
+		dest.writeParcelable(pos, flags);
+	    dest.writeString(description);
+	    dest.writeString(areaKey    );
+	    dest.writeString(areaValue  );
+	    dest.writeString(id         );
+	}
+
+	public static final Parcelable.Creator<StopPointType> CREATOR = new Parcelable.Creator<StopPointType>() {
+		public StopPointType createFromParcel(Parcel in) {
+			return new StopPointType(in);
+		}
+
+		public StopPointType[] newArray(int size) {
+			return new StopPointType[size];
+		}
+	};
+	
+	private StopPointType(Parcel dest) {
+		stopId         = dest.readString();
+		streetPosition = dest.readString();
+		fareZone       = dest.readString();
+		stopSequence   = dest.readInt   ();
+		distance       = dest.readDouble();
+		dest.readTypedList(comment, ParcelableString.CREATOR);
+		// from PointType
+		pos = (GeoPointType) dest.readParcelable(null);
+	    description = dest.readString();
+	    areaKey     = dest.readString();
+	    areaValue   = dest.readString();
+	    id          = dest.readString();
+	}
 }

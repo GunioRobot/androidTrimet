@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for TransitLegType complex type.
  * 
@@ -20,7 +23,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class TransitLegType extends LegType {
+public class TransitLegType extends LegType implements Parcelable {
     protected RouteType route;
     protected FareType fare;
 
@@ -72,4 +75,49 @@ public class TransitLegType extends LegType {
         this.fare = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(route       , flags);
+		dest.writeParcelable(fare        , flags);
+		dest.writeParcelable(timeDistance, flags);
+		dest.writeParcelable(lineURL     , flags);
+		dest.writeParcelable(from        , flags);
+		dest.writeParcelable(to          , flags);
+	    dest.writeString(order.value());
+	    dest.writeString(id           );
+	    dest.writeString(mode         );
+	}
+
+	public static final Parcelable.Creator<TransitLegType> CREATOR = new Parcelable.Creator<TransitLegType>() {
+		public TransitLegType createFromParcel(Parcel in) {
+			return new TransitLegType(in);
+		}
+
+		public TransitLegType[] newArray(int size) {
+			return new TransitLegType[size];
+		}
+	};
+	
+	private TransitLegType(Parcel dest) {
+		route        = (RouteType       ) dest.readParcelable(null);
+	    fare         = (FareType        ) dest.readParcelable(null);
+	    timeDistance = (TimeDistanceType) dest.readParcelable(null);
+	    lineURL      = (GeoURLType      ) dest.readParcelable(null);
+	    from         = (PointType       ) dest.readParcelable(null);
+	    to           = (PointType       ) dest.readParcelable(null);
+	    order = OrderType.fromValue(dest.readString());
+	    id    = dest.readString();
+	    mode  = dest.readString();
+	}
 }

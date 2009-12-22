@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for RouteType complex type.
  * 
@@ -29,7 +32,7 @@ import java.util.List;
  * 
  * 
  */
-public class RouteType {
+public class RouteType implements Parcelable {
 
     protected String number;
     protected String internalNumber;
@@ -237,4 +240,47 @@ public class RouteType {
         return this.alert;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString   (number        );
+		dest.writeString   (internalNumber);
+		dest.writeString   (name          );
+		dest.writeString   (key           );
+		dest.writeString   (direction     );
+		dest.writeString   (block         );
+		dest.writeString   (provider      );
+		dest.writeTypedList(alert         );
+	}
+
+	public static final Parcelable.Creator<RouteType> CREATOR = new Parcelable.Creator<RouteType>() {
+		public RouteType createFromParcel(Parcel in) {
+			return new RouteType(in);
+		}
+
+		public RouteType[] newArray(int size) {
+			return new RouteType[size];
+		}
+	};
+	
+	private RouteType(Parcel dest) {
+		number         = dest.readString();
+	    internalNumber = dest.readString();
+	    name           = dest.readString();
+	    key            = dest.readString();
+	    direction      = dest.readString();
+	    block          = dest.readString();
+	    provider       = dest.readString();
+	    dest.readTypedList(alert, AlertType.CREATOR);
+	}
 }

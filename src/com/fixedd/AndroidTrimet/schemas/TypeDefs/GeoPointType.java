@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * <p>Java class for GeoPointType complex type.
  * 
@@ -24,7 +27,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  * 
  */
-public class GeoPointType {
+public class GeoPointType implements Parcelable {
 
     protected String x;
     protected String y;
@@ -177,4 +180,43 @@ public class GeoPointType {
         this.id = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(x      );
+		dest.writeString(y      );
+		dest.writeString(lat    );
+		dest.writeString(lon    );
+		dest.writeString(srsName);
+		dest.writeString(id     );
+	}
+
+	public static final Parcelable.Creator<GeoPointType> CREATOR = new Parcelable.Creator<GeoPointType>() {
+		public GeoPointType createFromParcel(Parcel in) {
+			return new GeoPointType(in);
+		}
+
+		public GeoPointType[] newArray(int size) {
+			return new GeoPointType[size];
+		}
+	};
+	
+	private GeoPointType(Parcel dest) {
+		x       = dest.readString();
+	    y       = dest.readString();
+	    lat     = dest.readString();
+	    lon     = dest.readString();
+	    srsName = dest.readString();
+	    id      = dest.readString();
+	}
 }
