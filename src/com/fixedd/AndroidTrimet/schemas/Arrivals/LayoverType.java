@@ -31,6 +31,8 @@ public class LayoverType implements Parcelable {
     protected long start;
     protected long end;
 
+    public LayoverType() {}
+    
     /**
      * Gets the value of the location property.
      * 

@@ -26,6 +26,8 @@ public class RouteStatusType implements Parcelable {
     protected int route;
     protected String status;
 
+    public RouteStatusType() {}
+    
     /**
      * Gets the value of the route property.
      * 

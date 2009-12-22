@@ -32,6 +32,9 @@ public class LocationType implements Parcelable {
     protected double lat;
     protected double lng;
 
+    
+    public LocationType() {}
+    
     /**
      * Gets the value of the locid property.
      * 

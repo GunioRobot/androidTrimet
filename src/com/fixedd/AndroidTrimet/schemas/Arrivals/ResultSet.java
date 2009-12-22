@@ -38,6 +38,8 @@ public class ResultSet implements Parcelable {
     protected List<RouteStatusType> routeStatus;
     protected Long queryTime;
 
+    public ResultSet() {}
+    
     /**
      * Gets the value of the errorMessage property.
      * 

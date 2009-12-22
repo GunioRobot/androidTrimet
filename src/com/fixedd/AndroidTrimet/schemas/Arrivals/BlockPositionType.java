@@ -42,6 +42,8 @@ public class BlockPositionType implements Parcelable {
     protected Integer heading;
     protected int feet;
 
+    public BlockPositionType() {}
+    
     /**
      * Gets the value of the trip property.
      * 

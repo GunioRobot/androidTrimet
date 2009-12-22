@@ -53,6 +53,8 @@ public class ArrivalType implements Parcelable {
     protected Boolean detour;
     protected String status;
 
+    public ArrivalType() {}
+    
     /**
      * Gets the value of the blockPosition property.
      * 

@@ -36,6 +36,8 @@ public class TripType implements Parcelable {
     protected int pattern;
     protected String desc;
 
+    public TripType() {}
+    
     /**
      * Gets the value of the progress property.
      * 
@@ -156,7 +158,7 @@ public class TripType implements Parcelable {
         this.desc = value;
     }
 
-    
+
 
     // **********************************************
     //  for implementing Parcelable
