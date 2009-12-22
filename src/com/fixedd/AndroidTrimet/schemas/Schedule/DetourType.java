@@ -39,6 +39,8 @@ public class DetourType implements Parcelable {
     protected String desc;
     protected String phonetic;
 
+    public DetourType() {}
+    
     /**
      * Gets the value of the route property.
      * 

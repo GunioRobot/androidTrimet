@@ -34,6 +34,8 @@ public class ResultSet implements Parcelable {
     protected List<RouteType> route;
     protected List<DetourType> detour;
 
+    public ResultSet() {}
+    
     /**
      * Gets the value of the errorMessage property.
      * 

@@ -37,6 +37,9 @@ public class RouteType implements Parcelable {
     protected Boolean detour;
     protected String type;
 
+    
+    public RouteType() {} 
+    
     /**
      * Gets the value of the dir property.
      * 

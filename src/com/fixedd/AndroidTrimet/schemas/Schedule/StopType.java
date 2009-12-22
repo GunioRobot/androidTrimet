@@ -34,6 +34,8 @@ public class StopType implements Parcelable {
     protected int seq;
     protected boolean tp;
 
+    public StopType() {}
+    
     /**
      * Gets the value of the desc property.
      * 

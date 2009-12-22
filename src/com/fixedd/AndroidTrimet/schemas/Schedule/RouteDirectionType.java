@@ -34,6 +34,8 @@ public class RouteDirectionType implements Parcelable {
     protected int dir;
     protected String desc;
 
+    public RouteDirectionType() {}
+    
     /**
      * Gets the value of the stop property.
      * 
