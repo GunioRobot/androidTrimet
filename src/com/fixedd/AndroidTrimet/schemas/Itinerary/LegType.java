@@ -1,5 +1,7 @@
 package com.fixedd.AndroidTrimet.schemas.Itinerary;
 
+import android.os.Parcelable;
+
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.GeoURLType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.OrderType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.PointType;
@@ -30,7 +32,7 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.TimeDistanceType;
  * 
  * 
  */
-public abstract class LegType {
+public abstract class LegType implements Parcelable {
 
     protected TimeDistanceType timeDistance;
     protected GeoURLType lineURL;

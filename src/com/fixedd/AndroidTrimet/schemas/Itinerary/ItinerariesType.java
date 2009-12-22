@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Itinerary;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.ItineraryType;
 
 
@@ -26,7 +29,7 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.ItineraryType;
  * 
  * 
  */
-public class ItinerariesType {
+public class ItinerariesType implements Parcelable {
 
     protected List<ItineraryType> itinerary;
     protected Integer count;
@@ -84,4 +87,35 @@ public class ItinerariesType {
         this.count = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(itinerary);
+	    dest.writeInt      (count    );
+	}
+
+	public static final Parcelable.Creator<ItinerariesType> CREATOR = new Parcelable.Creator<ItinerariesType>() {
+		public ItinerariesType createFromParcel(Parcel in) {
+			return new ItinerariesType(in);
+		}
+
+		public ItinerariesType[] newArray(int size) {
+			return new ItinerariesType[size];
+		}
+	};
+	
+	private ItinerariesType(Parcel dest) {
+		dest.readTypedList(itinerary, ItineraryType.CREATOR);
+	    count = dest.readInt();
+	}
 }

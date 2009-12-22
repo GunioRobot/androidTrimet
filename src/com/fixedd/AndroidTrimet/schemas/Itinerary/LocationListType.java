@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Itinerary;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.PointType;
 
 
@@ -27,7 +30,7 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.PointType;
  * 
  * 
  */
-public class LocationListType {
+public class LocationListType implements Parcelable {
 
     protected String query;
     protected List<PointType> location;
@@ -110,4 +113,37 @@ public class LocationListType {
         this.count = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString   (query   );
+	    dest.writeTypedList(location);
+	    dest.writeInt      (count   );
+	}
+
+	public static final Parcelable.Creator<LocationListType> CREATOR = new Parcelable.Creator<LocationListType>() {
+		public LocationListType createFromParcel(Parcel in) {
+			return new LocationListType(in);
+		}
+
+		public LocationListType[] newArray(int size) {
+			return new LocationListType[size];
+		}
+	};
+	
+	private LocationListType(Parcel dest) {
+		query = dest.readString();
+	    dest.readTypedList(location, PointType.CREATOR);
+	    count = dest.readInt();
+	}
 }

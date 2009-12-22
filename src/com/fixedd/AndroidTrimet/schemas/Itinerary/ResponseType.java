@@ -1,5 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.Itinerary;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.ErrorType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.PointType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.RequestType;
@@ -34,7 +37,7 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.RequestType;
  * 
  * 
  */
-public class ResponseType {
+public class ResponseType implements Parcelable {
 
     protected String date;
     protected String time;
@@ -337,4 +340,55 @@ public class ResponseType {
         this.success = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(date);
+		dest.writeString(time);
+	    dest.writeParcelable(request          , flags);
+	    dest.writeParcelable(from             , flags);
+	    dest.writeParcelable(to               , flags);
+	    dest.writeParcelable(itineraries      , flags);
+	    dest.writeParcelable(locations        , flags);
+	    dest.writeParcelable(fromList         , flags);
+	    dest.writeParcelable(toList           , flags);
+	    dest.writeParcelable(walkingDirections, flags);
+	    dest.writeParcelable(error            , flags);
+	    dest.writeString(Boolean.toString(success));
+	}
+
+	public static final Parcelable.Creator<ResponseType> CREATOR = new Parcelable.Creator<ResponseType>() {
+		public ResponseType createFromParcel(Parcel in) {
+			return new ResponseType(in);
+		}
+
+		public ResponseType[] newArray(int size) {
+			return new ResponseType[size];
+		}
+	};
+	
+	private ResponseType(Parcel dest) {
+		date = dest.readString();
+	    time = dest.readString();
+	    request           = (RequestType          ) dest.readParcelable(null);
+	    from              = (PointType            ) dest.readParcelable(null);
+	    to                = (PointType            ) dest.readParcelable(null);
+	    itineraries       = (ItinerariesType      ) dest.readParcelable(null);
+	    locations         = (LocationListType     ) dest.readParcelable(null);
+	    fromList          = (LocationListType     ) dest.readParcelable(null);
+	    toList            = (LocationListType     ) dest.readParcelable(null);
+	    walkingDirections = (WalkingDirectionsType) dest.readParcelable(null);
+	    error             = (ErrorType            ) dest.readParcelable(null);
+	    success = Boolean.parseBoolean(dest.readString());
+	}
 }

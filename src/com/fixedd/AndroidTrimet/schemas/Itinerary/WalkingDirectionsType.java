@@ -3,6 +3,9 @@ package com.fixedd.AndroidTrimet.schemas.Itinerary;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.OrderedStringsType;
 
 
@@ -27,7 +30,7 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.OrderedStringsType;
  * 
  * 
  */
-public class WalkingDirectionsType {
+public class WalkingDirectionsType implements Parcelable {
 
     protected List<OrderedStringsType> turn;
     protected double distance;
@@ -102,4 +105,37 @@ public class WalkingDirectionsType {
         this.count = value;
     }
 
+
+    // **********************************************
+    //  for implementing Parcelable
+    // **********************************************
+    
+    
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(turn    );
+	    dest.writeDouble   (distance);
+	    dest.writeInt      (count   );
+	}
+
+	public static final Parcelable.Creator<WalkingDirectionsType> CREATOR = new Parcelable.Creator<WalkingDirectionsType>() {
+		public WalkingDirectionsType createFromParcel(Parcel in) {
+			return new WalkingDirectionsType(in);
+		}
+
+		public WalkingDirectionsType[] newArray(int size) {
+			return new WalkingDirectionsType[size];
+		}
+	};
+	
+	private WalkingDirectionsType(Parcel dest) {
+		dest.readTypedList(turn, OrderedStringsType.CREATOR);
+		distance = dest.readDouble();
+		count    = dest.readInt();
+	}
 }
