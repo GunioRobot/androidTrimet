@@ -78,12 +78,12 @@ public class ScheduleTask extends AsyncTask<HttpUriRequest, Integer, ResultSet> 
     	mCaller.handleProgress(progress[0]);
     }
 
-    protected void onPostExecute(HttpResponse response) {
-    	mCaller.handleResponse(response);
+    protected void onPostExecute(ResultSet results) {
+    	mCaller.handleResponse(results);
     }
     
     public interface ScheduleTaskCaller {
-    	void handleResponse(HttpResponse response);
+    	void handleResponse(ResultSet results);
     	void handleProgress(Integer progress);
     	void handleError(Exception exception);
     }
