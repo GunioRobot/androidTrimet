@@ -18,9 +18,9 @@ public class ScheduleHandler extends DefaultHandler {
 	 */
 	@Override
 	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {
-		if (qualifiedName.equalsIgnoreCase("resultSet")) {
+		if ((qualifiedName.equalsIgnoreCase("resultSet")) || localName.equalsIgnoreCase("resultSet")) {
 			mResultSet = new ResultSet();
-		} else if (qualifiedName.equalsIgnoreCase("route")) {
+		} else if ((qualifiedName.equalsIgnoreCase("route")) || localName.equalsIgnoreCase("route")) {
 			mCurrentRoute = new RouteType();
 			// required
 			mCurrentRoute.setRoute(Integer.parseInt(attributes.getValue("route")));
@@ -29,11 +29,11 @@ public class ScheduleHandler extends DefaultHandler {
 			// optional
 			if (attributes.getValue("detour") != null)
 				mCurrentRoute.setDetour(Boolean.parseBoolean(attributes.getValue("detour")));
-		} else if (qualifiedName.equalsIgnoreCase("dir")) {
+		} else if ((qualifiedName.equalsIgnoreCase("dir")) || localName.equalsIgnoreCase("dir")) {
 			mCurrentDirection = new RouteDirectionType();
 			mCurrentDirection.setDir(Integer.parseInt(attributes.getValue("dir")));
 			mCurrentDirection.setDesc(attributes.getValue("desc"));
-		} else if (qualifiedName.equalsIgnoreCase("stop")) {
+		} else if ((qualifiedName.equalsIgnoreCase("stop")) || localName.equalsIgnoreCase("stop")) {
 			StopType stop = new StopType();
 			stop.setDesc (attributes.getValue("desc"));
 			stop.setLocid(Integer.parseInt    (attributes.getValue("locid")));
@@ -42,14 +42,14 @@ public class ScheduleHandler extends DefaultHandler {
 			stop.setSeq  (Integer.parseInt    (attributes.getValue("seq"  )));
 			stop.setTp   (Boolean.parseBoolean(attributes.getValue("tp"   )));
 			mCurrentDirection.getStop().add(stop);
-		} else if (qualifiedName.equalsIgnoreCase("detour")) {
+		} else if ((qualifiedName.equalsIgnoreCase("detour")) || localName.equalsIgnoreCase("detour")) {
 			mCurrentDetour = new DetourType();
 			mCurrentDetour.setBegin(Long.parseLong(attributes.getValue("begin")));
 			mCurrentDetour.setEnd  (Long.parseLong(attributes.getValue("end"  )));
 			mCurrentDetour.setId      (attributes.getValue("id"      ));
 			mCurrentDetour.setDesc    (attributes.getValue("desc"    ));
 			mCurrentDetour.setPhonetic(attributes.getValue("phonetic"));
-		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || localName.equalsIgnoreCase("errorMessage")) {
 			mInError = true;
 		} else {
 			Log.d(getClass().getSimpleName(), "There was an unknown XML element encountered: " + qualifiedName);
@@ -61,20 +61,20 @@ public class ScheduleHandler extends DefaultHandler {
 	 */
 	@Override
 	public void endElement(String namespaceUri, String localName, String qualifiedName) throws SAXException {
-		if (qualifiedName.equalsIgnoreCase("route")) {
+		if ((qualifiedName.equalsIgnoreCase("route")) || localName.equalsIgnoreCase("route")) {
 			// a route can belong to a resultSet or a detour
 			if (mCurrentDetour != null) 
 				mCurrentDetour.getRoute().add(mCurrentRoute);
 			else
 				mResultSet.getRoute().add(mCurrentRoute);
 			mCurrentRoute = null;
-		} else if (qualifiedName.equalsIgnoreCase("dir")) {
+		} else if ((qualifiedName.equalsIgnoreCase("dir")) || localName.equalsIgnoreCase("dir")) {
 			mCurrentRoute.getDir().add(mCurrentDirection);
 			mCurrentDirection = null;
-		} else if (qualifiedName.equalsIgnoreCase("detour")) {
+		} else if ((qualifiedName.equalsIgnoreCase("detour")) || localName.equalsIgnoreCase("detour")) {
 			mResultSet.getDetour().add(mCurrentDetour);
 			mCurrentDetour = null;
-		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || localName.equalsIgnoreCase("errorMessage")) {
 			mInError = false;
 		}
 	}
