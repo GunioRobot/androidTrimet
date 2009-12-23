@@ -20,18 +20,18 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 /**
- * A class for making asynchronous HTTP requests.
+ * A class for making Arrivals lookups and parsing the results asynchronously.
  * @author Jeremy Logan
  *
  */
 public class ArrivalsTask extends AsyncTask<HttpUriRequest, Integer, ResultSet> {
-	private ArrivalTaskCaller mCaller;
+	private ArrivalsTaskCaller mCaller;
 	
 	/**
 	 * Class constructor
 	 * @param caller Something that implements ArrivalsTaskCaller for the task to "call" back to.
 	 */
-	public ArrivalsTask(ArrivalTaskCaller caller) {
+	public ArrivalsTask(ArrivalsTaskCaller caller) {
 		this.mCaller = caller;
 	}
 	
@@ -51,11 +51,11 @@ public class ArrivalsTask extends AsyncTask<HttpUriRequest, Integer, ResultSet> 
     		
     		Log.i(getClass().getSimpleName(), "Starting XML parser");
     		SAXParserFactory saxFactory = SAXParserFactory.newInstance();
-    		ArrivalHandler arrHandler = new ArrivalHandler();
+    		ArrivalHandler handler = new ArrivalHandler();
     		SAXParser parser = saxFactory.newSAXParser();
-			parser.parse(resp.getEntity().getContent(), arrHandler);
+			parser.parse(resp.getEntity().getContent(), handler);
 			
-			return arrHandler.getResultSet();
+			return handler.getResultSet();
 		} catch (ClientProtocolException e) {
 			Log.e(getClass().getSimpleName(), "HTTP protocol error", e);
 			mCaller.handleError(e);
@@ -82,7 +82,7 @@ public class ArrivalsTask extends AsyncTask<HttpUriRequest, Integer, ResultSet> 
     	mCaller.handleResponse(response);
     }
     
-    public interface ArrivalTaskCaller {
+    public interface ArrivalsTaskCaller {
     	void handleResponse(HttpResponse response);
     	void handleProgress(Integer progress);
     	void handleError(Exception exception);
