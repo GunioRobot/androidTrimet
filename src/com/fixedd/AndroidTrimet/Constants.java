@@ -1,6 +1,6 @@
 package com.fixedd.AndroidTrimet;
 
-public class Constants {
+public final class Constants {
 
 	// Trimet API URLs
 	public static final String URL_BASE_ARRIVALS    = "http://developer.trimet.org/ws/V1/arrivals/appID/%s";
