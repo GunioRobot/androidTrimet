@@ -20,18 +20,18 @@ public class ArrivalHandler extends DefaultHandler {
 	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {
 		//super.startElement(namespaceUri, localName, qualifiedName, attributes);
 		
-		if (qualifiedName.equalsIgnoreCase("resultSet")) {
+		if ((qualifiedName.equalsIgnoreCase("resultSet")) || (localName.equalsIgnoreCase("resultSet"))) {
 			mResultSet = new ResultSet();
 			if (attributes.getValue("queryTime") != null)
 				mResultSet.setQueryTime(Long.parseLong(attributes.getValue("queryTime")));
-		} else if (qualifiedName.equalsIgnoreCase("location")) {
+		} else if ((qualifiedName.equalsIgnoreCase("location")) || (localName.equalsIgnoreCase("location"))) {
 			mCurrentLocation = new LocationType();
 			mCurrentLocation.setLocid(Integer.parseInt(attributes.getValue("locid")));
 			mCurrentLocation.setDesc(attributes.getValue("desc"));
 			mCurrentLocation.setDir(attributes.getValue("dir"));
 			mCurrentLocation.setLat(Double.parseDouble(attributes.getValue("lat")));
 			mCurrentLocation.setLng(Double.parseDouble(attributes.getValue("lng")));
-		} else if (qualifiedName.equalsIgnoreCase("arrival")) {
+		} else if ((qualifiedName.equalsIgnoreCase("arrival")) || (localName.equalsIgnoreCase("arrival"))) {
 			mCurrentArrival = new ArrivalType();
 			// required
 			mCurrentArrival.setRoute(Integer.parseInt(attributes.getValue("route")));
@@ -49,7 +49,7 @@ public class ArrivalHandler extends DefaultHandler {
 				mCurrentArrival.setEstimated(Long.parseLong(attributes.getValue("estimated")));
 			if (attributes.getValue("detour") != null)
 				mCurrentArrival.setDetour(Boolean.parseBoolean(attributes.getValue("detour")));			
-		} else if (qualifiedName.equalsIgnoreCase("blockPosition")) {
+		} else if ((qualifiedName.equalsIgnoreCase("blockPosition")) || (localName.equalsIgnoreCase("blockPosition"))) {
 			mCurrentBlockPosition = new BlockPositionType();
 			// required
 			mCurrentBlockPosition.setAt(Long.parseLong(attributes.getValue("at")));
@@ -58,11 +58,11 @@ public class ArrivalHandler extends DefaultHandler {
 			mCurrentBlockPosition.setLat(Double.parseDouble(attributes.getValue("lat")));
 			mCurrentBlockPosition.setLng(Double.parseDouble(attributes.getValue("lng")));
 			mCurrentBlockPosition.setHeading(Integer.parseInt(attributes.getValue("heading")));
-		} else if (qualifiedName.equalsIgnoreCase("layover")) {
+		} else if ((qualifiedName.equalsIgnoreCase("layover")) || (localName.equalsIgnoreCase("layover"))) {
 			mCurrentLayover = new LayoverType();
 			mCurrentLayover.setStart(Long.parseLong(attributes.getValue("start")));
 			mCurrentLayover.setEnd(Long.parseLong(attributes.getValue("end")));
-		} else if (qualifiedName.equalsIgnoreCase("trip")) {
+		} else if ((qualifiedName.equalsIgnoreCase("trip")) || (localName.equalsIgnoreCase("trip"))) {
 			TripType trip = new TripType();
 			trip.setProgress(Integer.parseInt(attributes.getValue("progress")));
 			trip.setDestDist(Integer.parseInt(attributes.getValue("destDist")));
@@ -72,15 +72,18 @@ public class ArrivalHandler extends DefaultHandler {
 			trip.setPattern (Integer.parseInt(attributes.getValue("pattern" )));
 			trip.setDesc    (attributes.getValue("desc"));
 			mCurrentBlockPosition.getTrip().add(trip);
-		} else if (qualifiedName.equalsIgnoreCase("trip")) {
+		} else if ((qualifiedName.equalsIgnoreCase("routeStatus")) || (localName.equalsIgnoreCase("routeStatus"))) {
 			RouteStatusType routeStatus = new RouteStatusType();
 			routeStatus.setRoute(Integer.parseInt(attributes.getValue("route")));
 			routeStatus.setStatus(attributes.getValue("status"));
 			mResultSet.getRouteStatus().add(routeStatus);
-		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || (localName.equalsIgnoreCase("errorMessage"))) {
 			mInError = true;
 		} else {
-			System.out.println("There was an unknown XML element encountered: " + qualifiedName);
+			System.out.println("There was an unknown XML element encountered.");
+			System.out.println("    qualifiedName: " + qualifiedName);
+			System.out.println("    localName:     " + localName);
+			System.out.println("    namespaceUri:  " + namespaceUri);
 		}
 		
 	}
@@ -90,23 +93,23 @@ public class ArrivalHandler extends DefaultHandler {
 	 */
 	@Override
 	public void endElement(String namespaceUri, String localName, String qualifiedName) throws SAXException {
-		if (qualifiedName.equalsIgnoreCase("location")) {
+		if ((qualifiedName.equalsIgnoreCase("location")) || (localName.equalsIgnoreCase("location"))) {
 			// a location can be inside a layover or the resultset
 			if (mCurrentLayover != null)
 				mCurrentLayover.setLocation(mCurrentLocation);
 			else
 				mResultSet.getLocation().add(mCurrentLocation);
 			mCurrentLocation = null;
-		} else if (qualifiedName.equalsIgnoreCase("arrival")) {
+		} else if ((qualifiedName.equalsIgnoreCase("arrival"))  || (localName.equalsIgnoreCase("arrival"))) {
 			mResultSet.getArrival().add(mCurrentArrival);
 			mCurrentArrival = null;
-		} else if (qualifiedName.equalsIgnoreCase("blockPosition")) {
+		} else if ((qualifiedName.equalsIgnoreCase("blockPosition")) || (localName.equalsIgnoreCase("blockPosition"))) {
 			mCurrentArrival.getBlockPosition().add(mCurrentBlockPosition);
 			mCurrentBlockPosition = null;
-		} else if (qualifiedName.equalsIgnoreCase("layover")) {
+		} else if ((qualifiedName.equalsIgnoreCase("layover")) || (localName.equalsIgnoreCase("layover"))) {
 			mCurrentBlockPosition.getLayover().add(mCurrentLayover);
 			mCurrentLayover = null;
-		} else if (qualifiedName.equalsIgnoreCase("errorMessage")) {
+		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || (localName.equalsIgnoreCase("errorMessage"))) {
 			mInError = false;
 		}
 	}
