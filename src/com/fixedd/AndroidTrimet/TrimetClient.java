@@ -1,21 +1,28 @@
 package com.fixedd.AndroidTrimet;
 
-import java.util.List;
+import org.apache.http.client.methods.HttpGet;
 
 import android.location.Location;
 
+import com.fixedd.AndroidTrimet.tasks.ArrivalsTask;
+import com.fixedd.AndroidTrimet.tasks.ScheduleTask;
+import com.fixedd.AndroidTrimet.tasks.ArrivalsTask.ArrivalsTaskCaller;
+import com.fixedd.AndroidTrimet.tasks.ScheduleTask.ScheduleTaskCaller;
+import com.fixedd.AndroidTrimet.tasks.TripTask.TripTaskCaller;
 import com.fixedd.AndroidTrimet.util.Util;
 
 /**
  * Base client class for talking to the Trimet API. Instantiate a copy of the class then call one of the public methods to query the API. 
  * @author Jeremy Logan
+ * @version 1
  *
  */
 public class TrimetClient {
 	private String mAppId;
 
 	/**
-	 * Class constructor  
+	 * Class constructor
+	 * @since 1  
 	 * @param appId The application ID assigned to your application by Trimet. This can be procured from <a href="http://developer.trimet.org/registration/">http://developer.trimet.org/registration/</a>
 	 */
 	public TrimetClient(String appId) {
@@ -23,92 +30,32 @@ public class TrimetClient {
 	}
 
 	
+	
+	
 	/**
-	 * Reports next arrivals at a stop identified by location ID.
-	 * @param locationIDs The list of location IDs you want arrival info for.
+	 * Reports next arrivals at stops identified by location ID.
+	 * @since 1
+	 * @param caller The ArrivalsTaskCaller that the task should report back to.
+	 * @param locationIDs The array of location IDs you want arrival info for.
 	 */
-	public com.fixedd.AndroidTrimet.schemas.Arrivals.ResultSet fetchArrivals(List<Integer> locationIDs) {
+	public void fetchArrivals(ArrivalsTaskCaller caller, int... locationIDs) {
 		String url = String.format(Constants.URL_BASE_ARRIVALS, mAppId);
-		url += "/locIDs/" + Util.listIntegersToString(locationIDs);
-		return doArrivals(url);
-	}
-	
-	/**
-	 * Reports next arrivals at a stop identified by location ID.
-	 * @param locationIDs The location ID you want arrival info for.
-	 */
-	public com.fixedd.AndroidTrimet.schemas.Arrivals.ResultSet fetchArrival(int locationID) {
-		String url = String.format(Constants.URL_BASE_ARRIVALS, mAppId);
-		url += "/locIDs/" + Integer.toString(locationID);
-		return doArrivals(url);
-	}
-	
-	private com.fixedd.AndroidTrimet.schemas.Arrivals.ResultSet doArrivals(String url) {
-		// TODO make and parse request
-		return null;
-	}
-	
-	
-	
-	/**
-	 * Retrieves a list of detours currently in effect by route.
-	 * @param routes The list of route IDs you want detour info for.
-	 */
-	public com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet findDetours(List<Integer> routes) {
-		String url = String.format(Constants.URL_BASE_DETOURS, mAppId);
-		url += "/routes/" + Util.listIntegersToString(routes);
-		return doDetours(url);
-	}
-	
-	/**
-	 * Retrieves a list of detours currently in effect by route.
-	 * @param routes The route ID you want detour info for.
-	 */
-	public com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet findDetour(int route) {
-		String url = String.format(Constants.URL_BASE_DETOURS, mAppId);
-		url += "/routes/" + Integer.toString(route);
-		return doDetours(url);
-	}
-	
-	private com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet doDetours(String url) {
-		// TODO make and parse request
-		return null;
-	}
-	
-	
-	
-	/**
-	 * Find stops near the specified location. Note: a maximum of 15 stops will be returned.
-	 * @param latitude The latitude in decimal format to center the search on (example: 45.523232d).
-	 * @param longitude The longitude in decimal format to center the search on (example: -122.671452d).
-	 * @param distanceInMeters The radius in which to search for stops (in meters). If the radius is less than 10 then the default of 400 will be used.
-	 */
-	public void findNearbyStops(double latitude, double longitude, int distanceInMeters) {
-		if (distanceInMeters < 10)
-			distanceInMeters = 400;
+		url += "/locIDs/" + Util.arrayIntsToString(locationIDs);
 		
-		String url = String.format(Constants.URL_BASE_NEARBY, mAppId);
-		url += "/ll/" + Double.toString(longitude) + "," + Double.toString(latitude);
-		url += "/meters/" + Integer.toString(distanceInMeters);
-		
-		// TODO make and parse request
+		HttpGet getReq = new HttpGet(url); 
+		ArrivalsTask task = new ArrivalsTask(caller);
+		task.execute(getReq);
 	}
 	
-	/**
-	 * Find stops near the specified location.
-	 * @param location The location to center the search on.
-	 * @param distanceInMeters The radius in which to search for stops (in meters). If the radius is less than 10 then the default of 400 will be used.
-	 */
-	public void findNearbyStops(Location location, int distanceInMeters) {
-		this.findNearbyStops(location.getLatitude(), location.getLongitude(), distanceInMeters);
-	}
 	
-
+	
 	/**
-	 * This will return a list of all routes.
+	 * Looks up information on routes.
+	 * @since 1
+	 * @param caller The SchedulesTaskCaller that the task should report back to.
 	 * @param options The options you want to search by.
 	 */
-	public com.fixedd.AndroidTrimet.schemas.Schedule.ResultSet fetchRoutes(RouteConfigOptions options) {
+	public void fetchRoutes(ScheduleTaskCaller caller, RouteConfigOptions options) {
 		String url = String.format(Constants.URL_BASE_ROUTECONFIG, mAppId);
 		
 		if (options.getRoutes()        != null) url += "/routes/"   + options.getRoutes()       ;
@@ -117,31 +64,99 @@ public class TrimetClient {
 		if (options.getTP()            != null) url += "/tp/"       + options.getTP()           ;
 		if (options.getStartSequence() != null) url += "/startSeq/" + options.getStartSequence();
 		if (options.getEndSequence()   != null) url += "/endSeq/"   + options.getEndSequence()  ;
-		// TODO make and parse request
 		
-		return null;
+		HttpGet getReq = new HttpGet(url); 
+		ScheduleTask task = new ScheduleTask(caller);
+		task.execute(getReq);
 	}
 	
 	
+	
+	
+	
 	/**
-	 * This will let you plan trips 
-	 * @param options The options you want to search by.
+	 * Retrieves a list of detours currently in effect by route.
+	 * @since 1
+	 * @param caller The SchedulesTaskCaller that the task should report back to.
+	 * @param routes The list of route IDs you want detour info for. If it's empty then all detours (for all routes) will be requested. 
 	 */
-	public void fetchTripPlanner(TripPlannerOptions options) {
-		String url = String.format(Constants.URL_BASE_TRIPPLANNER, mAppId);
+	public void findDetours(ScheduleTaskCaller caller, int... routes) {
+		String url = String.format(Constants.URL_BASE_DETOURS, mAppId);
 		
-		if (options.getFromPlace()       != null) url += "/fromPlace/"       + options.getFromPlace()      ;
-		if (options.getFromCoord()       != null) url += "/fromCoord/"       + options.getFromCoord()      ;
-		if (options.getToPlace()         != null) url += "/toPlace/"         + options.getToPlace()        ;
-		if (options.getToCoord()         != null) url += "/toCoord/"         + options.getToCoord()        ;
-		if (options.getDate()            != null) url += "/Date/"            + options.getDate()           ;
-		if (options.getTime()            != null) url += "/Time/"            + options.getTime()           ;
-		if (options.getArriveDepart()    != null) url += "/Arr/"             + options.getArriveDepart()   ;
-		if (options.getMaxWalk()         != null) url += "/Walk/"            + options.getMaxWalk()        ;
-		if (options.getMode()            != null) url += "/Mode/"            + options.getMode()           ;
-		if (options.getMaxIntineraries() != null) url += "/MaxIntineraries/" + options.getMaxIntineraries();
+		// routes are not required... if it's empty we'll just fetch all
+		if (routes.length > 0)
+			url += "/routes/" + Util.arrayIntsToString(routes);
 		
-		// TODO make and parse request
+		HttpGet getReq = new HttpGet(url); 
+		ScheduleTask task = new ScheduleTask(caller);
+		task.execute(getReq);
+	}
+	
+	
+	
+	
+	
+	/**
+	 * Find stops near the specified location.
+	 * @since 1
+	 * @param caller The ArrivalsTaskCaller that the task should report back to.
+	 * @param latitude The latitude in decimal format to center the search on (example: 45.523232d).
+	 * @param longitude The longitude in decimal format to center the search on (example: -122.671452d).
+	 * @param distanceInMeters The radius in which to search for stops (in meters). If the radius is less than 10 then the default of 400 will be used.
+	 */
+	public void findNearbyStops(ArrivalsTaskCaller caller, double latitude, double longitude, int distanceInMeters) {
+		if (distanceInMeters < 10)
+			distanceInMeters = 400;
+		
+		String url = String.format(Constants.URL_BASE_NEARBY, mAppId);
+		url += "/ll/" + Double.toString(longitude) + "," + Double.toString(latitude);
+		url += "/meters/" + Integer.toString(distanceInMeters);
+		
+		HttpGet getReq = new HttpGet(url); 
+		ArrivalsTask task = new ArrivalsTask(caller);
+		task.execute(getReq);
+	}
+	
+	/**
+	 * Find stops near the specified location.
+	 * @since 1
+	 * @param caller The ArrivalsTaskCaller that the task should report back to.
+	 * @param location The location to center the search on.
+	 * @param distanceInMeters The radius in which to search for stops (in meters). If the radius is less than 10 then the default of 400 will be used.
+	 */
+	public void findNearbyStops(ArrivalsTaskCaller caller, Location location, int distanceInMeters) {
+		findNearbyStops(caller, location.getLatitude(), location.getLongitude(), distanceInMeters);
+	}
+	
+	
+	
+		
+	/**
+	 * Plan trips between two locations programmatically.
+	 * <p><b>WARNING:</b> This is not yet implemented and will throw a RuntimeException!</p>
+	 * @since 1
+	 * @param caller The TripTaskCaller that the task should report back to. 
+	 * @param options The options you want to plan by.
+	 */
+	public void planTrip(TripTaskCaller caller, TripPlannerOptions options) {
+		throw new RuntimeException("This method is not yet implemented.");
+		
+//		String url = String.format(Constants.URL_BASE_TRIPPLANNER, mAppId);
+//		
+//		if (options.getFromPlace()       != null) url += "/fromPlace/"       + options.getFromPlace()      ;
+//		if (options.getFromCoord()       != null) url += "/fromCoord/"       + options.getFromCoord()      ;
+//		if (options.getToPlace()         != null) url += "/toPlace/"         + options.getToPlace()        ;
+//		if (options.getToCoord()         != null) url += "/toCoord/"         + options.getToCoord()        ;
+//		if (options.getDate()            != null) url += "/Date/"            + options.getDate()           ;
+//		if (options.getTime()            != null) url += "/Time/"            + options.getTime()           ;
+//		if (options.getArriveDepart()    != null) url += "/Arr/"             + options.getArriveDepart()   ;
+//		if (options.getMaxWalk()         != null) url += "/Walk/"            + options.getMaxWalk()        ;
+//		if (options.getMode()            != null) url += "/Mode/"            + options.getMode()           ;
+//		if (options.getMaxIntineraries() != null) url += "/MaxIntineraries/" + options.getMaxIntineraries();
+//		
+//		HttpGet getReq = new HttpGet(url); 
+//		TripTask task = new TripTask(caller);
+//		task.execute(getReq);
 	}
 	
 	
@@ -149,6 +164,7 @@ public class TrimetClient {
 	/**
 	 * This allows for the configuration of a Route request. All fields are optional.
 	 * @author Jeremy Logan
+	 * @since 1
 	 *
 	 */
 	public static class RouteConfigOptions {
@@ -170,10 +186,13 @@ public class TrimetClient {
 
 		/**
 		 * Set the routes to look up info for.
-		 * @param routes A list of routes to query for.
+		 * @param routes An array of route ids to query for.
 		 */
-		public void setRoutes(List<Integer> routes) {
-			this.mRoutes = Util.listIntegersToString(routes);
+		public void setRoutes(int... routes) {
+			if (routes.length < 1)
+				throw new RuntimeException("routes can not be empty.");
+			
+			mRoutes = Util.arrayIntsToString(routes);
 		}
 
 		/**
@@ -183,33 +202,33 @@ public class TrimetClient {
 		public void setDirection(RouteDirection direction) {
 			switch (direction) {
 				case INBOUND:
-					this.mDir = "1";
+					mDir = "1";
 					break;
 				case OUTBOUND:
-					this.mDir = "0";
+					mDir = "0";
 					break;
 				case ALL:
-					this.mDir = "yes";
+					mDir = "yes";
 					break;
 			}
 		}
 
 		/**
 		 * Set whether to return stops for the routes.
-		 * @param stops whether to include stops in the listing
+		 * @param stops Whether to include stops in the listing.
 		 */
 		public void setStops(boolean stops) {
 			if (stops)
-				this.mStops = "true";
+				mStops = "true";
 		}
 
 		/**
 		 * Set whether to return time-point stops for the routes (if this is set to true then setStops() doesn't need to be set).
-		 * @param tp whether to include time point stops in the listing
+		 * @param tp Whether to include time point stops in the listing.
 		 */
 		public void setTimePoint(boolean tp) {
 			if (tp)
-				this.mTP = "true";
+				mTP = "true";
 		}
 
 		/**
@@ -217,7 +236,7 @@ public class TrimetClient {
 		 * @param startSeq StopID to filter before.
 		 */
 		public void setStartSequence(int startSeq) {
-			this.mStartSeq = Integer.toString(startSeq);
+			mStartSeq = Integer.toString(startSeq);
 		}
 
 		/**
@@ -225,7 +244,7 @@ public class TrimetClient {
 		 * @param endSeq StopID to filter after.
 		 */
 		public void setEndSequence(int endSeq) {
-			this.mEndSeq = Integer.toString(endSeq);
+			mEndSeq = Integer.toString(endSeq);
 		}		
 	}
 	
@@ -240,10 +259,10 @@ public class TrimetClient {
 	 * </ul>
 	 * <p>
 	 * Also note that coords (ToCoord, FromCoord) are always given preference over places (ToPlace, FromPlace).
+	 * @since 1
 	 * @author Jeremy Logan
 	 *
 	 */
-	
 	public static class TripPlannerOptions {
 		private String mFromPlace;
 		private String mToPlace;
@@ -281,7 +300,7 @@ public class TrimetClient {
 		 * @param fromPlace A textual representation of a location. For example, an address or a landmark (like 'zoo').
 		 */
 		public void setFromPlace(String fromPlace) { 
-			this.mFromPlace = fromPlace; 
+			mFromPlace = fromPlace; 
 		}
 		
 		/**
@@ -289,7 +308,7 @@ public class TrimetClient {
 		 * @param toPlace A textual representation of a location. For example, an address or a landmark (like 'zoo').
 		 */
 		public void setToPlace(String toPlace) { 
-			this.mToPlace = toPlace; 
+			mToPlace = toPlace; 
 		}
 		
 		/**
@@ -297,7 +316,7 @@ public class TrimetClient {
 		 * @param location GPS representation of a location.
 		 */
 		public void setFromCoord(Location location) { 
-			this.mFromCoord = Double.toString(location.getLongitude()) + "," + Double.toString(location.getLatitude());
+			mFromCoord = Double.toString(location.getLongitude()) + "," + Double.toString(location.getLatitude());
 		}
 		
 		/**
@@ -305,7 +324,7 @@ public class TrimetClient {
 		 * @param location GPS representation of a location.
 		 */
 		public void setToCoord(Location location) {
-			this.mToCoord = Double.toString(location.getLongitude()) + "," + Double.toString(location.getLatitude());;
+			mToCoord = Double.toString(location.getLongitude()) + "," + Double.toString(location.getLatitude());;
 		}
 		
 		/**
@@ -313,15 +332,15 @@ public class TrimetClient {
 		 * @param year The year to begin/end trip.
 		 * @param monthOfYear The month of the year to begin/end trip.
 		 * @param dayOfMonth The day of the month to begin/end trip.
-		 * @param hour The hour of the day to begin/end trip (must be in zero-based 24 hour format). 
+		 * @param hourOfDay The hour of the day to begin/end trip (must be in zero-based 24 hour format). 
 		 * @param minuteOfHour The minute of the hour to begin/end trip.
 		 */
 		public void setDateTime(int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minuteOfHour) {
-			this.mDate = monthOfYear + "-" + dayOfMonth + "-" + year;
+			mDate = monthOfYear + "-" + dayOfMonth + "-" + year;
 			if (minuteOfHour > 11)
-				this.mTime = hourOfDay + ":" + minuteOfHour + "%20AM";
+				mTime = hourOfDay + ":" + minuteOfHour + "%20AM";
 			else
-				this.mTime = hourOfDay + ":" + minuteOfHour + "%20PM";
+				mTime = hourOfDay + ":" + minuteOfHour + "%20PM";
 		}
 		
 		/**
@@ -331,10 +350,10 @@ public class TrimetClient {
 		public void setArriveDepart(ArriveDepart arriveDepart) {
 			switch (arriveDepart) {
 				case ARRIVE_BY:
-					this.mArriveDepart = "A";
+					mArriveDepart = "A";
 					break;
 				case DEPART_AFTER:
-					this.mArriveDepart = "D";
+					mArriveDepart = "D";
 					break;
 			}
 		}
@@ -348,7 +367,7 @@ public class TrimetClient {
 			if ((maxWalk < 0.01) || (maxWalk > 0.999))
 				throw new Exception("maxWalk out of range.");
 			
-			this.mMaxWalk = Float.toString(maxWalk);
+			mMaxWalk = Float.toString(maxWalk);
 		}
 		
 		/**
@@ -358,13 +377,13 @@ public class TrimetClient {
 		public void setMode(TransitMode mode) {
 			switch (mode) {
 				case ALL_MODES:
-					this.mMode = "A";
+					mMode = "A";
 					break;
 				case BUS_ONLY:
-					this.mMode = "B";
+					mMode = "B";
 					break;
 				case TRAIN_ONLY:
-					this.mMode = "T";
+					mMode = "T";
 					break;
 			}
 		}
@@ -374,7 +393,7 @@ public class TrimetClient {
 		 * @param maxIntineraries Max number of itinereries.
 		 */
 		public void setMaxIntineraries(int maxIntineraries) {
-			this.mMaxIntineraries = Integer.toString(maxIntineraries);
+			mMaxIntineraries = Integer.toString(maxIntineraries);
 		}
 		
 		
