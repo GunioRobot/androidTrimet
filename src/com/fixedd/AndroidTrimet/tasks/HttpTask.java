@@ -27,6 +27,7 @@ public class HttpTask extends AsyncTask<HttpUriRequest, Integer, HttpResponse> {
 		this.mCaller = caller;
 	}
 	
+	
 	/**
 	 * Make the HTTP request on a background thread.
 	 * @param request a pre-built request object that is to be run on the background thread. 
@@ -44,8 +45,7 @@ public class HttpTask extends AsyncTask<HttpUriRequest, Integer, HttpResponse> {
 			Log.e(getClass().getSimpleName(), "Communication error", e);
 		}
 		Log.i(getClass().getSimpleName(), "Ending HTTP Request");
-		
-		
+				
     	return resp;
 	}
 	
