@@ -41,6 +41,24 @@ public class ResultSet implements Parcelable {
     public ResultSet() {}
     
     /**
+     * Gets all of the Arrivals which belong to a certain Location.
+     * @param locationId The location id you want arrivals for. This is usually a stop id.
+     * @return all of the arrivals for a location.
+     */
+    public List<ArrivalType> getArrivalsForLocation(int locationId) {
+    	ArrayList<ArrivalType> toReturn = new ArrayList<ArrivalType>();
+    	
+    	int len = arrival.size();
+    	for (int i=0; i<len; i++) {
+    		ArrivalType arr = arrival.get(i);
+    		if (arr.locid == locationId)
+    			toReturn.add(arr);
+    	}
+    	
+    	return toReturn;
+    }
+    
+    /**
      * Gets the value of the errorMessage property.
      * 
      * @return
