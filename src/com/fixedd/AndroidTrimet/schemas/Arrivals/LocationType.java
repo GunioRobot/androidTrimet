@@ -3,132 +3,97 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * <p>Java class for locationType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="locationType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="locid" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="desc" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="dir" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="lat" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="lng" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+/** 
+ * <p>This class holds information on a Location.
  */
 public class LocationType implements Parcelable {
 
-    protected int locid;
-    protected String desc;
-    protected String dir;
-    protected double lat;
-    protected double lng;
-
-    
+    protected int    mLocid = -2147483648;
+    protected String mDesc;
+    protected String mDir;
+    protected double mLat   = -2147483648;
+    protected double mLng   = -2147483648;
+ 
     public LocationType() {}
     
     /**
      * Gets the value of the locid property.
-     * 
+     * returns The location id (usually a stop id) for the location or -2147483648 if it wasn't set properly.
      */
     public int getLocid() {
-        return locid;
+        return mLocid;
     }
 
     /**
-     * Sets the value of the locid property.
-     * 
+     * Sets the location id for this LocationType.
+     * @param locationId The location id for the location.
      */
-    public void setLocid(int value) {
-        this.locid = value;
+    public void setLocid(int locationId) {
+        mLocid = locationId;
     }
 
     /**
-     * Gets the value of the desc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Gets the description for this location.
+     * @return {@link String} with the description of the location. null will be returned if the direction wasn't set properly.
      */
     public String getDesc() {
-        return desc;
+        return mDesc;
     }
 
     /**
-     * Sets the value of the desc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Sets the description for this location.
+     * @param description A {@link String} indicating the description for the location.
      */
-    public void setDesc(String value) {
-        this.desc = value;
+    public void setDesc(String description) {
+        mDesc = description;
     }
 
     /**
-     * Gets the value of the dir property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Gets the direction for the stop.
+     * @return A {@link String} indicating the direction the location is headed. null will be returned if the direction wasn't set properly.
      */
     public String getDir() {
-        return dir;
+        return mDir;
     }
 
     /**
-     * Sets the value of the dir property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Sets the direction for the stop
+     * @param direction A {@link String} indicating the direction the location is headed. 
      */
-    public void setDir(String value) {
-        this.dir = value;
+    public void setDir(String direction) {
+        mDir = direction;
     }
 
     /**
-     * Gets the value of the lat property.
-     * 
+     * Gets the value of the latitude for the location.
+     * @return the latitude for the location or -2147483648 if it wasn't set correctly.
      */
     public double getLat() {
-        return lat;
+        return mLat;
     }
 
     /**
-     * Sets the value of the lat property.
-     * 
+     * Sets the latitude for the location.
+     * @param latitude The latitude for the location.
      */
-    public void setLat(double value) {
-        this.lat = value;
+    public void setLat(double latitude) {
+        mLat = latitude;
     }
 
     /**
-     * Gets the value of the lng property.
-     * 
+     * Gets the value of the longitude for the location.
+     * @return the longitude for the location or -2147483648 if it wasn't set correctly.
      */
     public double getLng() {
-        return lng;
+        return mLng;
     }
 
     /**
-     * Sets the value of the lng property.
-     * 
+     * Sets the longitude for the location.
+     * @param longitude The longitude for the location.
      */
-    public void setLng(double value) {
-        this.lng = value;
+    public void setLng(double longitude) {
+        mLng = longitude;
     }
 
 
@@ -145,11 +110,22 @@ public class LocationType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt   (locid);
-	    dest.writeString(desc );
-	    dest.writeString(dir  );
-	    dest.writeDouble(lat  );
-	    dest.writeDouble(lng  );
+		dest.writeInt   (mLocid);
+		if (mDesc == null) {
+			dest.writeInt(0);
+		} else {
+			dest.writeInt(1);
+			dest.writeString(mDesc );
+		}
+		if (mDir == null) {
+			dest.writeInt(0);
+		} else {
+			dest.writeInt(1);
+			dest.writeString(mDir  );
+		}
+			
+	    dest.writeDouble(mLat  );
+	    dest.writeDouble(mLng  );
 	}
 
 	public static final Parcelable.Creator<LocationType> CREATOR = new Parcelable.Creator<LocationType>() {
@@ -163,10 +139,12 @@ public class LocationType implements Parcelable {
 	};
 	
 	private LocationType(Parcel dest) {
-		locid = dest.readInt   ();
-	    desc  = dest.readString();
-	    dir   = dest.readString();
-	    lat   = dest.readDouble();
-	    lng   = dest.readDouble();
+		mLocid = dest.readInt   ();
+		if (dest.readInt() == 1)
+			mDesc  = dest.readString();
+		if (dest.readInt() == 1)
+			mDir   = dest.readString();
+	    mLat   = dest.readDouble();
+	    mLng   = dest.readDouble();
 	}
 }
