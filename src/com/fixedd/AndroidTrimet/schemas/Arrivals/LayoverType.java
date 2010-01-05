@@ -3,90 +3,63 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
-/**
- * <p>Java class for layoverType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="layoverType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="location" type="{urn:trimet:arrivals}locationType"/>
- *       &lt;/sequence>
- *       &lt;attribute name="start" use="required" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="end" use="required" type="{http://www.w3.org/2001/XMLSchema}long" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+/** 
+ * <p>This class indicates a layover is taking place for a LocationType and gives information on the start/end times for said layover.
  */
 public class LayoverType implements Parcelable {
 
-    protected LocationType location;
-    protected long start;
-    protected long end;
+    protected LocationType mLocation;
+    protected long mStart = -9223372036854775808l;
+    protected long mEnd   = -9223372036854775808l;
 
     public LayoverType() {}
     
     /**
      * Gets the value of the location property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocationType }
-     *     
+     * @return Returns a {@link LocationType } or null (it it wasn't set properly).
      */
     public LocationType getLocation() {
-        return location;
+        return mLocation;
     }
 
     /**
      * Sets the value of the location property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocationType }
-     *     
+     * @param location Allowed object is {@link LocationType }
      */
-    public void setLocation(LocationType value) {
-        this.location = value;
+    public void setLocation(LocationType location) {
+        mLocation = location;
     }
 
     /**
-     * Gets the value of the start property.
-     * 
+     * Gets the time that the layover starts. 
+     * @return Returns the time that the layover starts or -9223372036854775808l if the time was not set properly.
      */
     public long getStart() {
-        return start;
+        return mStart;
     }
 
     /**
-     * Sets the value of the start property.
-     * 
+     * Sets the start time for the layover.
+     * @param time The time (in sec since epoch) that the layover starts. 
      */
-    public void setStart(long value) {
-        this.start = value;
+    public void setStart(long time) {
+        mStart = time;
     }
 
     /**
-     * Gets the value of the end property.
-     * 
+     * Gets the time that the layover ends. 
+     * @return Returns the time that the layover ends or -9223372036854775808l if the time was not set properly.
      */
     public long getEnd() {
-        return end;
+        return mEnd;
     }
 
     /**
-     * Sets the value of the end property.
-     * 
+     * Sets the end time for the layover.
+     * @param time The time (in sec since epoch) that the layover ends.
      */
-    public void setEnd(long value) {
-        this.end = value;
+    public void setEnd(long time) {
+        mEnd = time;
     }
 
 
@@ -102,9 +75,15 @@ public class LayoverType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeParcelable(location, flags);
-	    dest.writeLong(start);
-	    dest.writeLong(end  );
+		if (mLocation == null) {
+			dest.writeInt(0);
+		} else {
+			dest.writeInt(1);
+			dest.writeParcelable(mLocation, flags);
+		}
+		
+	    dest.writeLong(mStart);
+	    dest.writeLong(mEnd  );
 	}
 
 	public static final Parcelable.Creator<LayoverType> CREATOR = new Parcelable.Creator<LayoverType>() {
@@ -118,8 +97,10 @@ public class LayoverType implements Parcelable {
 	};
 	
 	private LayoverType(Parcel dest) {
-		location = (LocationType) dest.readParcelable(null);
-	    start = dest.readLong();
-	    end   = dest.readLong();
+		if (dest.readInt() == 1)
+			mLocation = (LocationType) dest.readParcelable(getClass().getClassLoader());
+		
+	    mStart = dest.readLong();
+	    mEnd   = dest.readLong();
 	}
 }
