@@ -26,27 +26,27 @@ public class ArrivalHandler extends DefaultHandler {
 				mResultSet.setQueryTime(Long.parseLong(attributes.getValue("queryTime")));
 		} else if ((qualifiedName.equalsIgnoreCase("location")) || (localName.equalsIgnoreCase("location"))) {
 			mCurrentLocation = new LocationType();
-			mCurrentLocation.setLocid(Integer.parseInt(attributes.getValue("locid")));
-			mCurrentLocation.setDesc(attributes.getValue("desc"));
-			mCurrentLocation.setDir(attributes.getValue("dir"));
-			mCurrentLocation.setLat(Double.parseDouble(attributes.getValue("lat")));
-			mCurrentLocation.setLng(Double.parseDouble(attributes.getValue("lng")));
+			mCurrentLocation.setLocationId(Integer.parseInt(attributes.getValue("locid")));
+			mCurrentLocation.setDescription(attributes.getValue("desc"));
+			mCurrentLocation.setDirection(attributes.getValue("dir"));
+			mCurrentLocation.setLatitude(Double.parseDouble(attributes.getValue("lat")));
+			mCurrentLocation.setLongitude(Double.parseDouble(attributes.getValue("lng")));
 		} else if ((qualifiedName.equalsIgnoreCase("arrival")) || (localName.equalsIgnoreCase("arrival"))) {
 			mCurrentArrival = new ArrivalType();
 			// required
-			mCurrentArrival.setRoute(Integer.parseInt(attributes.getValue("route")));
-			mCurrentArrival.setLocid(Integer.parseInt(attributes.getValue("locid")));
-			mCurrentArrival.setDir(Integer.parseInt(attributes.getValue("dir")));
+			mCurrentArrival.setRouteNumber(Integer.parseInt(attributes.getValue("route")));
+			mCurrentArrival.setLocationId(Integer.parseInt(attributes.getValue("locid")));
+			mCurrentArrival.setDirection(Integer.parseInt(attributes.getValue("dir")));
 			mCurrentArrival.setShortSign(attributes.getValue("shortSign"));
 			mCurrentArrival.setFullSign(attributes.getValue("fullSign"));
-			mCurrentArrival.setScheduled(Long.parseLong(attributes.getValue("scheduled")));
+			mCurrentArrival.setScheduledTime(Long.parseLong(attributes.getValue("scheduled")));
 			mCurrentArrival.setBlock(Integer.parseInt(attributes.getValue("block")));
 			mCurrentArrival.setPiece(attributes.getValue("piece"));
 			mCurrentArrival.setDeparted(Boolean.parseBoolean(attributes.getValue("departed")));
 			mCurrentArrival.setStatus(attributes.getValue("status"));
 			// optional
 			if (attributes.getValue("estimated") != null)
-				mCurrentArrival.setEstimated(Long.parseLong(attributes.getValue("estimated")));
+				mCurrentArrival.setEstimatedTime(Long.parseLong(attributes.getValue("estimated")));
 			if (attributes.getValue("detour") != null)
 				mCurrentArrival.setDetour(Boolean.parseBoolean(attributes.getValue("detour")));			
 		} else if ((qualifiedName.equalsIgnoreCase("blockPosition")) || (localName.equalsIgnoreCase("blockPosition"))) {
@@ -55,28 +55,28 @@ public class ArrivalHandler extends DefaultHandler {
 			mCurrentBlockPosition.setAt(Long.parseLong(attributes.getValue("at")));
 			mCurrentBlockPosition.setFeet(Integer.parseInt(attributes.getValue("feet")));
 			// optional
-			mCurrentBlockPosition.setLat(Double.parseDouble(attributes.getValue("lat")));
-			mCurrentBlockPosition.setLng(Double.parseDouble(attributes.getValue("lng")));
+			mCurrentBlockPosition.setLatitude(Double.parseDouble(attributes.getValue("lat")));
+			mCurrentBlockPosition.setLongitude(Double.parseDouble(attributes.getValue("lng")));
 			mCurrentBlockPosition.setHeading(Integer.parseInt(attributes.getValue("heading")));
 		} else if ((qualifiedName.equalsIgnoreCase("layover")) || (localName.equalsIgnoreCase("layover"))) {
 			mCurrentLayover = new LayoverType();
-			mCurrentLayover.setStart(Long.parseLong(attributes.getValue("start")));
-			mCurrentLayover.setEnd(Long.parseLong(attributes.getValue("end")));
+			mCurrentLayover.setStartTime(Long.parseLong(attributes.getValue("start")));
+			mCurrentLayover.setEndTime(Long.parseLong(attributes.getValue("end")));
 		} else if ((qualifiedName.equalsIgnoreCase("trip")) || (localName.equalsIgnoreCase("trip"))) {
 			TripType trip = new TripType();
-			trip.setProgress(Integer.parseInt(attributes.getValue("progress")));
-			trip.setDestDist(Integer.parseInt(attributes.getValue("destDist")));
-			trip.setRoute   (Integer.parseInt(attributes.getValue("route"   )));
-			trip.setDir     (Integer.parseInt(attributes.getValue("dir"     )));
-			trip.setTripNum (Integer.parseInt(attributes.getValue("tripNum" )));
-			trip.setPattern (Integer.parseInt(attributes.getValue("pattern" )));
-			trip.setDesc    (attributes.getValue("desc"));
-			mCurrentBlockPosition.getTrip().add(trip);
+			trip.setProgress           (Integer.parseInt(attributes.getValue("progress")));
+			trip.setDestinationDistance(Integer.parseInt(attributes.getValue("destDist")));
+			trip.setRouteNumber        (Integer.parseInt(attributes.getValue("route"   )));
+			trip.setDirection          (Integer.parseInt(attributes.getValue("dir"     )));
+			trip.setTripNum            (Integer.parseInt(attributes.getValue("tripNum" )));
+			trip.setPattern            (Integer.parseInt(attributes.getValue("pattern" )));
+			trip.setDesc               (attributes.getValue("desc"));
+			mCurrentBlockPosition.getTrips().add(trip);
 		} else if ((qualifiedName.equalsIgnoreCase("routeStatus")) || (localName.equalsIgnoreCase("routeStatus"))) {
 			RouteStatusType routeStatus = new RouteStatusType();
-			routeStatus.setRoute(Integer.parseInt(attributes.getValue("route")));
+			routeStatus.setRouteNumber(Integer.parseInt(attributes.getValue("route")));
 			routeStatus.setStatus(attributes.getValue("status"));
-			mResultSet.getRouteStatus().add(routeStatus);
+			mResultSet.getRouteStatuses().add(routeStatus);
 		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || (localName.equalsIgnoreCase("errorMessage"))) {
 			mInError = true;
 		} else {
@@ -98,16 +98,16 @@ public class ArrivalHandler extends DefaultHandler {
 			if (mCurrentLayover != null)
 				mCurrentLayover.setLocation(mCurrentLocation);
 			else
-				mResultSet.getLocation().add(mCurrentLocation);
+				mResultSet.getLocations().add(mCurrentLocation);
 			mCurrentLocation = null;
 		} else if ((qualifiedName.equalsIgnoreCase("arrival"))  || (localName.equalsIgnoreCase("arrival"))) {
-			mResultSet.getArrival().add(mCurrentArrival);
+			mResultSet.getArrivals().add(mCurrentArrival);
 			mCurrentArrival = null;
 		} else if ((qualifiedName.equalsIgnoreCase("blockPosition")) || (localName.equalsIgnoreCase("blockPosition"))) {
-			mCurrentArrival.getBlockPosition().add(mCurrentBlockPosition);
+			mCurrentArrival.getBlockPositions().add(mCurrentBlockPosition);
 			mCurrentBlockPosition = null;
 		} else if ((qualifiedName.equalsIgnoreCase("layover")) || (localName.equalsIgnoreCase("layover"))) {
-			mCurrentBlockPosition.getLayover().add(mCurrentLayover);
+			mCurrentBlockPosition.getLayovers().add(mCurrentLayover);
 			mCurrentLayover = null;
 		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || (localName.equalsIgnoreCase("errorMessage"))) {
 			mInError = false;
