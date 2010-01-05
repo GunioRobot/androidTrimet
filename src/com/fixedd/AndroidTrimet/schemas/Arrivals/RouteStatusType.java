@@ -4,79 +4,90 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * <p>Java class for routeStatusType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="routeStatusType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="route" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="status" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * <p>
+ * This class occurs to indicate conditions are influencing the reporting of
+ * arrivals being reported for a route. This occurs in inclement weather
+ * conditions.
  */
 public class RouteStatusType implements Parcelable {
+	/**
+	 * Arrivals for this route are only being reported if they can be estimated 
+	 * within the next hour. This occurs in inclement weather conditions.
+	 * @see #setStatus(int)
+	 * @see #getStatus()
+	 */
+	public final static int	STATUS_ESTIMATED_ONLY	= 0;
+	/**
+	 * No arrivals are being reported for this route. This occurs when 
+	 * conditions such as snow and ice cause vehicles along the route to travel 
+	 * off their trip patterns. In such cases predictions are highly inaccurate 
+	 * or impossible.
+	 * @see #setStatus(int)
+	 * @see #getStatus()
+	 */
+	public final static int	STATUS_OFF				= 1;
 
-    protected int route;
-    protected String status;
+	protected int			mRoute					= -2147483648;
+	protected int			mStatus					= -2147483648;
 
-    public RouteStatusType() {}
-    
-    /**
-     * Gets the value of the route property.
-     * 
-     */
-    public int getRoute() {
-        return route;
-    }
+	public RouteStatusType() {}
 
-    /**
-     * Sets the value of the route property.
-     * 
-     */
-    public void setRoute(int value) {
-        this.route = value;
-    }
+	/**
+	 * Gets the number of the route or -2147483648 if it wasn't set properly.
+	 */
+	public int getRouteNumber() {
+		return mRoute;
+	}
 
-    /**
-     * Gets the value of the status property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getStatus() {
-        return status;
-    }
+	/**
+	 * Sets the route number for the route.
+	 * 
+	 * @param the id for the route.
+	 */
+	public void setRouteNumber(int routeId) {
+		mRoute = routeId;
+	}
 
-    /**
-     * Sets the value of the status property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setStatus(String value) {
-        this.status = value;
-    }
+	/**
+	 * Gets the status of the route.
+	 * 
+	 * @return The status of the route. Either {@link #STATUS_ESTIMATED},
+	 *     {@link #STATUS_SCHEDULED}, {@link #STATUS_DELAYED}, or 
+	 *     {@link #STATUS_CANCELED}. It could also be <b>-2147483648</b> if it 
+	 *     wasn't set properly.
+	 */
+	public int getStatus() {
+		return mStatus;
+	}
 
+	/**
+	 * Sets the route's status.
+	 * 
+	 * @param status {@link String} must be either "estimatedOnly" or "off".
+	 */
+	public void setStatus(String status) {
+		if (status.equalsIgnoreCase("estimatedOnly"))
+			mStatus = STATUS_ESTIMATED_ONLY;
+		else if (status.equalsIgnoreCase("off"))
+			mStatus = STATUS_OFF;
+		else
+			throw new RuntimeException("Passed in status was invalid.");
+	}
+	
+	/**
+	 * Sets the route's status.
+	 * 
+	 * @param the status of the route. Either {@link #STATUS_ESTIMATED_ONLY} 
+	 * or {@link #STATUS_OFF}.
+	 */
+	public void setStatus(int status) {
+		mStatus = status;
+	}
 
+	// **********************************************
+	// for implementing Parcelable
+	// **********************************************
 
-
-
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
 	@Override
 	public int describeContents() {
 		return 0;
@@ -84,11 +95,11 @@ public class RouteStatusType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(route);
-		dest.writeString(status);
+		dest.writeInt(mRoute);
+		dest.writeInt(mStatus);
 	}
 
-	public static final Parcelable.Creator<RouteStatusType> CREATOR = new Parcelable.Creator<RouteStatusType>() {
+	public static final Parcelable.Creator<RouteStatusType>	CREATOR	= new Parcelable.Creator<RouteStatusType>() {
 		public RouteStatusType createFromParcel(Parcel in) {
 			return new RouteStatusType(in);
 		}
@@ -97,9 +108,10 @@ public class RouteStatusType implements Parcelable {
 			return new RouteStatusType[size];
 		}
 	};
-	
+
 	private RouteStatusType(Parcel dest) {
-		route  = dest.readInt();
-	    status = dest.readString();
+		mRoute  = dest.readInt();
+		mStatus = dest.readInt();
 	}
+
 }

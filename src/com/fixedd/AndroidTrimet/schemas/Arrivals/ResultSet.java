@@ -7,200 +7,151 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-/**
- * <p>Java class for resultSet complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="resultSet">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="errorMessage" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="location" type="{urn:trimet:arrivals}locationType" maxOccurs="10" minOccurs="0"/>
- *         &lt;element name="arrival" type="{urn:trimet:arrivals}arrivalType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="routeStatus" type="{urn:trimet:arrivals}routeStatusType" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="queryTime" type="{http://www.w3.org/2001/XMLSchema}long" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+/** 
+ * <p>
+ * This class holds information on a returned result set. This is basically 
+ * the wrapper for all of the other information returned by an Arrivals 
+ * API call. 
  */
 public class ResultSet implements Parcelable {
+	protected String                mErrorMessage;
+	protected List<LocationType   > mLocation;
+	protected List<ArrivalType    > mArrival;
+	protected List<RouteStatusType> mRouteStatus;
+	protected Long                  mQueryTime = -9223372036854775808l;
 
-    protected String errorMessage;
-    protected List<LocationType> location;
-    protected List<ArrivalType> arrival;
-    protected List<RouteStatusType> routeStatus;
-    protected Long queryTime;
+	public ResultSet() {}
 
-    public ResultSet() {}
-    
-    /**
-     * Gets all of the Arrivals which belong to a certain Location.
-     * @param locationId The location id you want arrivals for. This is usually a stop id.
-     * @return all of the arrivals for a location.
-     */
-    public List<ArrivalType> getArrivalsForLocation(int locationId) {
-    	ArrayList<ArrivalType> toReturn = new ArrayList<ArrivalType>();
-    	
-    	int len = arrival.size();
-    	for (int i=0; i<len; i++) {
-    		ArrivalType arr = arrival.get(i);
-    		if (arr.locid == locationId)
-    			toReturn.add(arr);
-    	}
-    	
-    	return toReturn;
-    }
-    
-    /**
-     * Gets the value of the errorMessage property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getErrorMessage() {
-        return errorMessage;
-    }
+	/**
+	 * Gets all of the Arrivals which belong to a certain Location.
+	 * @param locationId The location id you want arrivals for. This is usually a stop id.
+	 * @return all of the arrivals for a location.
+	 */
+	public List<ArrivalType> getArrivalsForLocation(int locationId) {
+		ArrayList<ArrivalType> toReturn = new ArrayList<ArrivalType>();
 
-    /**
-     * Sets the value of the errorMessage property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setErrorMessage(String value) {
-        this.errorMessage = value;
-    }
+		int len = mArrival.size();
+		for (int i=0; i<len; i++) {
+			ArrivalType arr = mArrival.get(i);
+			if (arr.mLocid == locationId)
+				toReturn.add(arr);
+		}
 
-    /**
-     * Gets the value of the location property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the location property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getLocation().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link LocationType }
-     * 
-     * 
-     */
-    public List<LocationType> getLocation() {
-        if (location == null) {
-            location = new ArrayList<LocationType>();
-        }
-        return this.location;
-    }
+		return toReturn;
+	}
 
-    /**
-     * Gets the value of the arrival property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the arrival property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getArrival().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link ArrivalType }
-     * 
-     * 
-     */
-    public List<ArrivalType> getArrival() {
-        if (arrival == null) {
-            arrival = new ArrayList<ArrivalType>();
-        }
-        return this.arrival;
-    }
+	/**
+	 * Gets an error message.
+	 * @return A {@link String} containing an error message or null if there wasn't an error.
+	 *     
+	 */
+	public String getErrorMessage() {
+		return mErrorMessage;
+	}
 
-    /**
-     * Gets the value of the routeStatus property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the routeStatus property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRouteStatus().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link RouteStatusType }
-     * 
-     * 
-     */
-    public List<RouteStatusType> getRouteStatus() {
-        if (routeStatus == null) {
-            routeStatus = new ArrayList<RouteStatusType>();
-        }
-        return this.routeStatus;
-    }
+	/**
+	 * Sets the error message.
+	 * @param The {@link String} that contains the error message.
+	 *     
+	 */
+	public void setErrorMessage(String value) {
+		mErrorMessage = value;
+	}
 
-    /**
-     * Gets the value of the queryTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getQueryTime() {
-        return queryTime;
-    }
+	/**
+	 * Gets the locations for the ResultSet.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a 
+	 * snapshot. Therefore any modification you make to the returned 
+	 * list will be present inside the locations list. This is why there 
+	 * is not a <CODE>set</CODE> method for the location property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getLocations().add(newItem);
+	 * </pre>
+	 * @return List<LocationType> All of the locations.
+	 */
+	public List<LocationType> getLocations() {
+		if (mLocation == null) {
+			mLocation = new ArrayList<LocationType>();
+		}
+		return mLocation;
+	}
 
-    /**
-     * Sets the value of the queryTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setQueryTime(Long value) {
-        this.queryTime = value;
-    }
+	/**
+	 * Gets the arrivals for the ResultSet.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a 
+	 * snapshot. Therefore any modification you make to the returned list 
+	 * will be present inside the arrival list. This is why there is not 
+	 * a <CODE>set</CODE> method for the arrival property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getArrivals().add(newItem);
+	 * </pre>
+	 * @return List<ArrivalType> All of the arrivals. 
+	 */
+	public List<ArrivalType> getArrivals() {
+		if (mArrival == null) {
+			mArrival = new ArrayList<ArrivalType>();
+		}
+		return mArrival;
+	}
+
+	/**
+	 * Gets the routeStatuses for the ResultSet.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a 
+	 * snapshot. Therefore any modification you make to the returned list 
+	 * will be present inside the RouteStatus list. This is why there is not 
+	 * a <CODE>set</CODE> method for the routeStatus property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getRouteStatuses().add(newItem);
+	 * </pre>
+	 * @return List<RouteStatusType> All of the route statuses.
+	 * 
+	 */
+	public List<RouteStatusType> getRouteStatuses() {
+		if (mRouteStatus == null) {
+			mRouteStatus = new ArrayList<RouteStatusType>();
+		}
+		return mRouteStatus;
+	}
+
+	/**
+	 * Gets the time that the query was made (according to Trimet's servers).
+	 * @return the time that the query was made in milliseconds since epoch or -9223372036854775808 if the time wasn't set correctly.
+	 */
+	public long getQueryTime() {
+		return mQueryTime;
+	}
+
+	/**
+	 * Sets the time the query was made.
+	 * @param time The milliseconds since epoch that the query was made. 
+	 */
+	public void setQueryTime(long time) {
+		mQueryTime = time;
+	}
 
 
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -208,11 +159,35 @@ public class ResultSet implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString   (errorMessage);
-		dest.writeTypedList(location    );
-		dest.writeTypedList(arrival     );
-		dest.writeTypedList(routeStatus );
-		dest.writeLong     (queryTime   );
+		if (mErrorMessage == null)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeString(mErrorMessage);
+		}
+
+		if (mLocation == null && mLocation.size() > 0)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeTypedList(mLocation);
+		}
+
+		if (mArrival == null && mArrival.size() > 0)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeTypedList(mArrival);
+		}
+
+		if (mRouteStatus == null && mRouteStatus.size() > 0)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeTypedList(mRouteStatus );
+		}
+
+		dest.writeLong(mQueryTime);
 	}
 
 	public static final Parcelable.Creator<ResultSet> CREATOR = new Parcelable.Creator<ResultSet>() {
@@ -224,12 +199,12 @@ public class ResultSet implements Parcelable {
 			return new ResultSet[size];
 		}
 	};
-	
+
 	private ResultSet(Parcel dest) {
-		errorMessage = dest.readString();
-	    dest.readTypedList(location   , LocationType   .CREATOR);
-	    dest.readTypedList(arrival    , ArrivalType    .CREATOR);
-	    dest.readTypedList(routeStatus, RouteStatusType.CREATOR);
-	    queryTime    = dest.readLong();
+		if (dest.readInt() == 1) mErrorMessage = dest.readString();
+		if (dest.readInt() == 1) dest.readTypedList(mLocation   , LocationType   .CREATOR);
+		if (dest.readInt() == 1) dest.readTypedList(mArrival    , ArrivalType    .CREATOR);
+		if (dest.readInt() == 1) dest.readTypedList(mRouteStatus, RouteStatusType.CREATOR);
+		mQueryTime = dest.readLong();
 	}
 }

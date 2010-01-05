@@ -6,213 +6,152 @@ import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 /**
- * <p>Java class for blockPositionType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="blockPositionType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="trip" type="{urn:trimet:arrivals}tripType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="layover" type="{urn:trimet:arrivals}layoverType" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="at" use="required" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="lat" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="lng" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="heading" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="feet" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * <p>The last known position of the vehicle along its block. Includes path 
+ * information from this position to the stop requested.
  */
 public class BlockPositionType implements Parcelable {
 
-    protected List<TripType> trip;
-    protected List<LayoverType> layover;
-    protected long at;
-    protected Double lat;
-    protected Double lng;
-    protected Integer heading;
-    protected int feet;
+	protected List<TripType>	mTrips;
+	protected List<LayoverType>	mLayovers;
+	protected long				mAt			= -9223372036854775808l;
+	protected double			mLat		= -2147483648d;
+	protected double			mLng		= -2147483648d;
+	protected int				mHeading	= -2147483648;
+	protected int				mFeet		= -2147483648;
 
-    public BlockPositionType() {}
-    
-    /**
-     * Gets the value of the trip property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the trip property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getTrip().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link TripType }
-     * 
-     * 
-     */
-    public List<TripType> getTrip() {
-        if (trip == null) {
-            trip = new ArrayList<TripType>();
-        }
-        return this.trip;
-    }
+	public BlockPositionType() {}
 
-    /**
-     * Gets the value of the layover property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the layover property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getLayover().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link LayoverType }
-     * 
-     * 
-     */
-    public List<LayoverType> getLayover() {
-        if (layover == null) {
-            layover = new ArrayList<LayoverType>();
-        }
-        return this.layover;
-    }
+	/**
+	 * Gets the trips for the BlockPosition.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the trips list.
+	 * This is why there is not a <CODE>set</CODE> method for the trip property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getTrips().add(newItem);
+	 * </pre>
+	 */
+	public List<TripType> getTrips() {
+		if (mTrips == null) {
+			mTrips = new ArrayList<TripType>();
+		}
+		return this.mTrips;
+	}
 
-    /**
-     * Gets the value of the at property.
-     * 
-     */
-    public long getAt() {
-        return at;
-    }
+	/**
+	 * Gets the layovers for the BlockPosition.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the layovers list.
+	 * This is why there is not a <CODE>set</CODE> method for the layover property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getLayovers().add(newItem);
+	 * </pre>
+	 */
+	public List<LayoverType> getLayovers() {
+		if (mLayovers == null) {
+			mLayovers = new ArrayList<LayoverType>();
+		}
+		return this.mLayovers;
+	}
 
-    /**
-     * Sets the value of the at property.
-     * 
-     */
-    public void setAt(long value) {
-        this.at = value;
-    }
+	/**
+	 * Gets the time this position was reported in milliseconds since epoch.
+	 * @return time or <b>-9223372036854775808</b> if it was not set correctly.
+	 */
+	public long getAt() {
+		return mAt;
+	}
 
-    /**
-     * Gets the value of the lat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
-     */
-    public Double getLat() {
-        return lat;
-    }
+	/**
+	 * Sets the time this position was reported in milliseconds since epoch.
+	 */
+	public void setAt(long value) {
+		mAt = value;
+	}
 
-    /**
-     * Sets the value of the lat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
-     */
-    public void setLat(Double value) {
-        this.lat = value;
-    }
+	/**
+	 * Gets the latitude of the vehicle at the time the position was reported.
+	 * @return latitude or or <b>-2147483648</b> if it wasn't set properly.    
+	 */
+	public double getLatitude() {
+		return mLat;
+	}
 
-    /**
-     * Gets the value of the lng property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
-     */
-    public Double getLng() {
-        return lng;
-    }
+	/**
+	 * Sets the latitude of the vehicle at the time the position was reported.    
+	 */
+	public void setLatitude(double lat) {
+		mLat = lat;
+	}
 
-    /**
-     * Sets the value of the lng property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
-     */
-    public void setLng(Double value) {
-        this.lng = value;
-    }
+	/**
+	 * Gets the longitude of the vehicle at the time the position was reported.
+	 * @return longitude or <b>-2147483648</b> if it wasn't set properly.    
+	 */
+	public double getLongitude() {
+		return mLng;
+	}
 
-    /**
-     * Gets the value of the heading property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getHeading() {
-        return heading;
-    }
+	/**
+	 * Sets the longitude of the vehicle at the time the position was reported.    
+	 */
+	public void setLongitude(double lng) {
+		mLng = lng;
+	}
 
-    /**
-     * Sets the value of the heading property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setHeading(Integer value) {
-        this.heading = value;
-    }
+	/**
+	 * Gets the heading of the vehicle at the time of the position was 
+	 * reported.
+	 * @return heading or <b>-2147483648</b> if it wasn't set properly.    
+	 */
+	public Integer getHeading() {
+		return mHeading;
+	}
 
-    /**
-     * Gets the value of the feet property.
-     * 
-     */
-    public int getFeet() {
-        return feet;
-    }
+	/**
+	 * Sets the heading of the vehicle at the time of the position was 
+	 * reported.    
+	 */
+	public void setHeading(int heading) {
+		mHeading = heading;
+	}
 
-    /**
-     * Sets the value of the feet property.
-     * 
-     */
-    public void setFeet(int value) {
-        this.feet = value;
-    }
+	/**
+	 * Gets the number of feet the vehicle is away from the stop at the time 
+	 * the position was reported.
+	 * @return feet or <b>-2147483648</b> if it wasn't set properly.
+	 */
+	public int getFeet() {
+		return mFeet;
+	}
+
+	/**
+	 * Sets the number of feet the vehicle is away from the stop at the time 
+	 * the position was reported.
+	 */
+	public void setFeet(int feet) {
+		mFeet = feet;
+	}
 
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -220,13 +159,25 @@ public class BlockPositionType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(trip   );
-	    dest.writeTypedList(layover);
-	    dest.writeLong  (at     );
-	    dest.writeDouble(lat    );
-	    dest.writeDouble(lng    );
-	    dest.writeInt   (heading);
-	    dest.writeInt   (feet   );
+		if (mTrips == null || mTrips.size() == 0)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeTypedList(mTrips);
+		}
+
+		if (mLayovers == null || mLayovers.size() == 0)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(0);
+			dest.writeTypedList(mLayovers);
+		}
+
+		dest.writeLong  (mAt     );
+		dest.writeDouble(mLat    );
+		dest.writeDouble(mLng    );
+		dest.writeInt   (mHeading);
+		dest.writeInt   (mFeet   );
 	}
 
 	public static final Parcelable.Creator<BlockPositionType> CREATOR = new Parcelable.Creator<BlockPositionType>() {
@@ -238,14 +189,14 @@ public class BlockPositionType implements Parcelable {
 			return new BlockPositionType[size];
 		}
 	};
-	
+
 	private BlockPositionType(Parcel dest) {
-		dest.readTypedList(trip, TripType.CREATOR);
-	    dest.readTypedList(layover, LayoverType.CREATOR);
-	    at      = dest.readLong  ();
-	    lat     = dest.readDouble();
-	    lng     = dest.readDouble();
-	    heading = dest.readInt   ();
-	    feet    = dest.readInt   ();
+		if (dest.readInt() == 1) dest.readTypedList(mTrips   , TripType   .CREATOR);
+		if (dest.readInt() == 1) dest.readTypedList(mLayovers, LayoverType.CREATOR);
+		mAt      = dest.readLong  ();
+		mLat     = dest.readDouble();
+		mLng     = dest.readDouble();
+		mHeading = dest.readInt   ();
+		mFeet    = dest.readInt   ();
 	}
 }
