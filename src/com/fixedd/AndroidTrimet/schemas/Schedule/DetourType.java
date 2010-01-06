@@ -7,179 +7,135 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * <p>Java class for detourType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="detourType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="route" type="{urn:trimet:schedule}routeType" maxOccurs="unbounded"/>
- *       &lt;/sequence>
- *       &lt;attribute name="begin" use="required" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="end" use="required" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="desc" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="phonetic" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * <p>Contains information about a detour that may apply to one or more routes at the time the query was made.
  */
 public class DetourType implements Parcelable {
 
-    protected List<RouteType> route;
-    protected long begin;
-    protected long end;
-    protected String id;
-    protected String desc;
-    protected String phonetic;
+	protected List<RouteType>	mRoutes;
+	protected long				mBegin	= -9223372036854775808l;
+	protected long				mEnd	= -9223372036854775808l;
+	protected String			mId;
+	protected String			mDesc;
+	protected String			mPhonetic;
 
-    public DetourType() {}
-    
-    /**
-     * Gets the value of the route property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the route property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRoute().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link RouteType }
-     * 
-     * 
-     */
-    public List<RouteType> getRoute() {
-        if (route == null) {
-            route = new ArrayList<RouteType>();
-        }
-        return this.route;
-    }
+	public DetourType() {}
 
-    /**
-     * Gets the value of the begin property.
-     * 
-     */
-    public long getBegin() {
-        return begin;
-    }
+	/**
+	 * Gets the routes list.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the routes list.
+	 * This is why there is not a <CODE>set</CODE> method for the route property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getRoutes().add(newItem);
+	 * </pre>
+	 */
+	public List<RouteType> getRoutes() {
+		if (mRoutes == null) {
+			mRoutes = new ArrayList<RouteType>();
+		}
+		return mRoutes;
+	}
 
-    /**
-     * Sets the value of the begin property.
-     * 
-     */
-    public void setBegin(long value) {
-        this.begin = value;
-    }
+	/**
+	 * Gets the time the detour begins. This will always be a time prior to 
+	 * the time the query was made.
+	 *  
+	 * <p>This field is used internally and may be of little use outside of 
+	 * TriMet.
+	 * @return time in milliseconds since epoch or <b>-9223372036854775808</b> 
+	 * if it was set improperly.
+	 */
+	public long getBeginTime() {
+		return mBegin;
+	}
 
-    /**
-     * Gets the value of the end property.
-     * 
-     */
-    public long getEnd() {
-        return end;
-    }
+	/**
+	 * Sets the time the detour begins.
+	 * @param time milliseconds since epoch.
+	 */
+	public void setBeginTime(long time) {
+		mBegin = time;
+	}
 
-    /**
-     * Sets the value of the end property.
-     * 
-     */
-    public void setEnd(long value) {
-        this.end = value;
-    }
+	/**
+	 * Gets the time the detour will become invalid. Note that this will 
+	 * always be a time after the time the query was made. Some end times will 
+	 * be very far in the future and will be removed once the detour is no 
+	 * longer in effect. 
+	 * 
+	 * <p>This field is used internally and may be of little use outside of 
+	 * TriMet.
+	 * @return time in milliseconds since epoch or <b>-9223372036854775808</b> 
+	 * if it was set improperly.
+	 */
+	public long getEndTime() {
+		return mEnd;
+	}
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * Sets the time the detour will become invalid.
+	 * @param time milliseconds since epoch.
+	 */
+	public void setEndTime(long time) {
+		mEnd = time;
+	}
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	/**
+	 * Gets the unique identifier of the detour.    
+	 */
+	public String getId() {
+		return mId;
+	}
 
-    /**
-     * Gets the value of the desc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDesc() {
-        return desc;
-    }
+	/**
+	 * Sets the unique identifier of the detour.    
+	 */
+	public void setId(String id) {
+		mId = id;
+	}
 
-    /**
-     * Sets the value of the desc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDesc(String value) {
-        this.desc = value;
-    }
+	/**
+	 * Gets the plain text description of the detour.
+	 */
+	public String getDescription() {
+		return mDesc;
+	}
 
-    /**
-     * Gets the value of the phonetic property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPhonetic() {
-        return phonetic;
-    }
+	/**
+	 * Sets the plain text description of the detour.    
+	 */
+	public void setDescription(String description) {
+		mDesc = description;
+	}
 
-    /**
-     * Sets the value of the phonetic property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPhonetic(String value) {
-        this.phonetic = value;
-    }
+	/**
+	 * Gets the phonetic spelling of the route detour. 
+	 * 
+	 * <p>This field is used by TriMet's 238-Ride text-to-speech system.    
+	 */
+	public String getPhonetic() {
+		return mPhonetic;
+	}
+
+	/**
+	 * Sets the phonetic spelling of the route detour.    
+	 */
+	public void setPhonetic(String value) {
+		mPhonetic = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -187,12 +143,36 @@ public class DetourType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(route);
-	    dest.writeLong  (begin   );
-	    dest.writeLong  (end     );
-	    dest.writeString(id      );
-	    dest.writeString(desc    );
-	    dest.writeString(phonetic);
+		if (mRoutes == null || mRoutes.size() == 0)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeTypedList(mRoutes);
+		}
+
+		dest.writeLong  (mBegin   );
+		dest.writeLong  (mEnd     );
+
+		if (mId == null)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeString(mId);
+		}
+
+		if (mDesc == null)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeString(mDesc);
+		}
+
+		if (mPhonetic == null)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeString(mPhonetic);
+		}
 	}
 
 	public static final Parcelable.Creator<DetourType> CREATOR = new Parcelable.Creator<DetourType>() {
@@ -204,13 +184,13 @@ public class DetourType implements Parcelable {
 			return new DetourType[size];
 		}
 	};
-	
+
 	private DetourType(Parcel dest) {
-		dest.readTypedList(route, RouteType.CREATOR);
-	    begin    = dest.readLong  ();
-	    end      = dest.readLong  ();
-	    id       = dest.readString();
-	    desc     = dest.readString();
-	    phonetic = dest.readString();
+		if (dest.readInt() == 1) dest.readTypedList(mRoutes, RouteType.CREATOR);
+		mBegin = dest.readLong  ();
+		mEnd   = dest.readLong  ();
+		if (dest.readInt() == 1) mId       = dest.readString();
+		if (dest.readInt() == 1) mDesc     = dest.readString();
+		if (dest.readInt() == 1) mPhonetic = dest.readString();
 	}
 }

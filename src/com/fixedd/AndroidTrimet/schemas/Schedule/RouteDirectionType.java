@@ -8,109 +8,74 @@ import android.os.Parcelable;
 
 
 /**
- * <p>Java class for routeDirectionType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="routeDirectionType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="stop" type="{urn:trimet:schedule}stopType" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="dir" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="desc" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * <p>Contains information for each route directions.
  */
 public class RouteDirectionType implements Parcelable {
 
-    protected List<StopType> stop;
-    protected int dir;
-    protected String desc;
+	protected List<StopType>	mStops;
+	protected int				mDir	= -2147483648;
+	protected String			mDesc;
 
-    public RouteDirectionType() {}
-    
-    /**
-     * Gets the value of the stop property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the stop property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getStop().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link StopType }
-     * 
-     * 
-     */
-    public List<StopType> getStop() {
-        if (stop == null) {
-            stop = new ArrayList<StopType>();
-        }
-        return this.stop;
-    }
+	public RouteDirectionType() {}
 
-    /**
-     * Gets the value of the dir property.
-     * 
-     */
-    public int getDir() {
-        return dir;
-    }
+	/**
+	 * Gets the stops list.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the stops list.
+	 * This is why there is not a <CODE>set</CODE> method for the stop property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getStops().add(newItem);
+	 * </pre>
+	 */
+	public List<StopType> getStops() {
+		if (mStops == null) {
+			mStops = new ArrayList<StopType>();
+		}
+		return mStops;
+	}
 
-    /**
-     * Sets the value of the dir property.
-     * 
-     */
-    public void setDir(int value) {
-        this.dir = value;
-    }
+	/**
+	 * Gets the number of the direction.
+	 * @return direction: either 1 for inbound or 0 for outbound.
+	 */
+	public int getDirection() {
+		return mDir;
+	}
 
-    /**
-     * Gets the value of the desc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDesc() {
-        return desc;
-    }
+	/**
+	 * Sets the number of the direction.
+	 * @param direction either 1 for inbound or 0 for outbound.
+	 */
+	public void setDirection(int direction) {
+		mDir = direction;
+	}
 
-    /**
-     * Sets the value of the desc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDesc(String value) {
-        this.desc = value;
-    }
+	/**
+	 * Gets the description for the direction of the route.    
+	 */
+	public String getDescription() {
+		return mDesc;
+	}
+
+	/**
+	 * Sets the description for the direction of the route.    
+	 */
+	public void setDescription(String value) {
+		mDesc = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -118,9 +83,21 @@ public class RouteDirectionType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(stop);
-	    dest.writeInt      (dir );
-	    dest.writeString   (desc);
+		if (mStops == null || mStops.size() == 0)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeTypedList(mStops);
+		}
+
+		dest.writeInt(mDir );
+
+		if (mDesc == null)
+			dest.writeInt(0);
+		else { 
+			dest.writeInt(1);
+			dest.writeString(mDesc);
+		}
 	}
 
 	public static final Parcelable.Creator<RouteDirectionType> CREATOR = new Parcelable.Creator<RouteDirectionType>() {
@@ -132,10 +109,14 @@ public class RouteDirectionType implements Parcelable {
 			return new RouteDirectionType[size];
 		}
 	};
-	
+
 	private RouteDirectionType(Parcel dest) {
-		dest.readTypedList(stop, StopType.CREATOR);
-	    dir  = dest.readInt   ();
-	    desc = dest.readString();
+		if (dest.readInt() == 1)
+			dest.readTypedList(mStops, StopType.CREATOR);
+
+		mDir = dest.readInt();
+
+		if (dest.readInt() == 1)
+			mDesc = dest.readString();
 	}
 }

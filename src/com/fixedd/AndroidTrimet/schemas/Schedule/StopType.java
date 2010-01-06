@@ -4,148 +4,113 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * <p>Java class for stopType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="stopType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="desc" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="locid" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="lat" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="lng" use="required" type="{http://www.w3.org/2001/XMLSchema}double" />
- *       &lt;attribute name="seq" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="tp" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * <p>Holds info on stops in the direction requested.
  */
 public class StopType implements Parcelable {
 
-    protected String desc;
-    protected int locid;
-    protected double lat;
-    protected double lng;
-    protected int seq;
-    protected boolean tp;
+	protected String	mDesc;
+	protected int		mLocId	= -2147483648;
+	protected double	mLat	= -2147483648d;
+	protected double	mLng	= -2147483648d;
+	protected int		mSeq	= -2147483648;
+	protected boolean	mTp		= false;
 
-    public StopType() {}
-    
-    /**
-     * Gets the value of the desc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDesc() {
-        return desc;
-    }
+	public StopType() {}
 
-    /**
-     * Sets the value of the desc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDesc(String value) {
-        this.desc = value;
-    }
+	/**
+	 * Gets the description of the stop.    
+	 */
+	public String getDescription() {
+		return mDesc;
+	}
 
-    /**
-     * Gets the value of the locid property.
-     * 
-     */
-    public int getLocid() {
-        return locid;
-    }
+	/**
+	 * Sets the description of the stop.    
+	 */
+	public void setDescription(String description) {
+		mDesc = description;
+	}
 
-    /**
-     * Sets the value of the locid property.
-     * 
-     */
-    public void setLocid(int value) {
-        this.locid = value;
-    }
+	/**
+	 * Gets the stop's locationID.
+	 * @return locationID or <b>-2147483648</b> if it was not set properly. 
+	 */
+	public int getLocationId() {
+		return mLocId;
+	}
 
-    /**
-     * Gets the value of the lat property.
-     * 
-     */
-    public double getLat() {
-        return lat;
-    }
+	/**
+	 * Sets the stop's locationID.
+	 */
+	public void setLocationId(int locationId) {
+		mLocId = locationId;
+	}
 
-    /**
-     * Sets the value of the lat property.
-     * 
-     */
-    public void setLat(double value) {
-        this.lat = value;
-    }
+	/**
+	 * Gets the stop's latitude.
+	 * @return latitude or <b>-2147483648</b> if it was not set properly.
+	 */
+	public double getLatitude() {
+		return mLat;
+	}
 
-    /**
-     * Gets the value of the lng property.
-     * 
-     */
-    public double getLng() {
-        return lng;
-    }
+	/**
+	 * Sets the stop's latitude. 
+	 */
+	public void setLatitude(double lat) {
+		mLat = lat;
+	}
 
-    /**
-     * Sets the value of the lng property.
-     * 
-     */
-    public void setLng(double value) {
-        this.lng = value;
-    }
+	/**
+	 * Gets the stop's longitude.
+	 * @return longitude or <b>-2147483648</b> if it was not set properly.
+	 */
+	public double getLongitude() {
+		return mLng;
+	}
 
-    /**
-     * Gets the value of the seq property.
-     * 
-     */
-    public int getSeq() {
-        return seq;
-    }
+	/**
+	 * Sets the stop's longitude.
+	 */
+	public void setLongitude(double lng) {
+		mLng = lng;
+	}
 
-    /**
-     * Sets the value of the seq property.
-     * 
-     */
-    public void setSeq(int value) {
-        this.seq = value;
-    }
+	/**
+	 * Gets the stop's sequence number for the route's direction.
+	 * @return sequence number or <b>-2147483648</b> if it was not set properly.
+	 */
+	public int getSequence() {
+		return mSeq;
+	}
 
-    /**
-     * Gets the value of the tp property.
-     * 
-     */
-    public boolean isTp() {
-        return tp;
-    }
+	/**
+	 * Sets stop's sequence number for the route's direction.
+	 */
+	public void setSequence(int seq) {
+		mSeq = seq;
+	}
 
-    /**
-     * Sets the value of the tp property.
-     * 
-     */
-    public void setTp(boolean value) {
-        this.tp = value;
-    }
+	/**
+	 * Indicates if the stop is considered a time point for the route's direction.
+	 */
+	public boolean isTp() {
+		return mTp;
+	}
+
+	/**
+	 * Sets whether the stop is considered a time point for the route's direction.
+	 */
+	public void setTp(boolean value) {
+		mTp = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -153,12 +118,17 @@ public class StopType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(desc );
-	    dest.writeInt   (locid);
-	    dest.writeDouble(lat  );
-	    dest.writeDouble(lng  );
-	    dest.writeInt   (seq  );
-	    dest.writeString(Boolean.toString(tp));
+		if (mDesc == null)
+			dest.writeInt(0);
+		else {
+			dest.writeInt(1);
+			dest.writeString(mDesc );
+		}
+		dest.writeInt   (mLocId);
+		dest.writeDouble(mLat  );
+		dest.writeDouble(mLng  );
+		dest.writeInt   (mSeq  );
+		dest.writeString(Boolean.toString(mTp));
 	}
 
 	public static final Parcelable.Creator<StopType> CREATOR = new Parcelable.Creator<StopType>() {
@@ -170,13 +140,14 @@ public class StopType implements Parcelable {
 			return new StopType[size];
 		}
 	};
-	
+
 	private StopType(Parcel dest) {
-		desc  = dest.readString();
-	    locid = dest.readInt   ();
-	    lat   = dest.readDouble();
-	    lng   = dest.readDouble();
-	    seq   = dest.readInt   ();
-	    tp    = Boolean.parseBoolean(dest.readString());
+		if (dest.readInt() == 1)
+			mDesc  = dest.readString();
+		mLocId = dest.readInt   ();
+		mLat   = dest.readDouble();
+		mLng   = dest.readDouble();
+		mSeq   = dest.readInt   ();
+		mTp    = Boolean.parseBoolean(dest.readString());
 	}
 }
