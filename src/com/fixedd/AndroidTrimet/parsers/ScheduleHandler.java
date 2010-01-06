@@ -23,31 +23,31 @@ public class ScheduleHandler extends DefaultHandler {
 		} else if ((qualifiedName.equalsIgnoreCase("route")) || localName.equalsIgnoreCase("route")) {
 			mCurrentRoute = new RouteType();
 			// required
-			mCurrentRoute.setRoute(Integer.parseInt(attributes.getValue("route")));
-			mCurrentRoute.setDesc(attributes.getValue("desc"));
+			mCurrentRoute.setRouteNumber(Integer.parseInt(attributes.getValue("route")));
+			mCurrentRoute.setDescription(attributes.getValue("desc"));
 			mCurrentRoute.setType(attributes.getValue("type"));
 			// optional
 			if (attributes.getValue("detour") != null)
 				mCurrentRoute.setDetour(Boolean.parseBoolean(attributes.getValue("detour")));
 		} else if ((qualifiedName.equalsIgnoreCase("dir")) || localName.equalsIgnoreCase("dir")) {
 			mCurrentDirection = new RouteDirectionType();
-			mCurrentDirection.setDir(Integer.parseInt(attributes.getValue("dir")));
-			mCurrentDirection.setDesc(attributes.getValue("desc"));
+			mCurrentDirection.setDirection(Integer.parseInt(attributes.getValue("dir")));
+			mCurrentDirection.setDescription(attributes.getValue("desc"));
 		} else if ((qualifiedName.equalsIgnoreCase("stop")) || localName.equalsIgnoreCase("stop")) {
 			StopType stop = new StopType();
-			stop.setDesc (attributes.getValue("desc"));
-			stop.setLocid(Integer.parseInt    (attributes.getValue("locid")));
-			stop.setLat  (Double .parseDouble (attributes.getValue("lat"  )));
-			stop.setLng  (Double .parseDouble (attributes.getValue("lng"  )));
-			stop.setSeq  (Integer.parseInt    (attributes.getValue("seq"  )));
-			stop.setTp   (Boolean.parseBoolean(attributes.getValue("tp"   )));
-			mCurrentDirection.getStop().add(stop);
+			stop.setDescription(attributes.getValue("desc"));
+			stop.setLocationId(Integer.parseInt    (attributes.getValue("locid")));
+			stop.setLatitude(Double .parseDouble (attributes.getValue("lat"  )));
+			stop.setLongitude(Double .parseDouble (attributes.getValue("lng"  )));
+			stop.setSequence(Integer.parseInt    (attributes.getValue("seq"  )));
+			stop.setTp(Boolean.parseBoolean(attributes.getValue("tp"   )));
+			mCurrentDirection.getStops().add(stop);
 		} else if ((qualifiedName.equalsIgnoreCase("detour")) || localName.equalsIgnoreCase("detour")) {
 			mCurrentDetour = new DetourType();
-			mCurrentDetour.setBegin(Long.parseLong(attributes.getValue("begin")));
-			mCurrentDetour.setEnd  (Long.parseLong(attributes.getValue("end"  )));
-			mCurrentDetour.setId      (attributes.getValue("id"      ));
-			mCurrentDetour.setDesc    (attributes.getValue("desc"    ));
+			mCurrentDetour.setBeginTime(Long.parseLong(attributes.getValue("begin")));
+			mCurrentDetour.setEndTime(Long.parseLong(attributes.getValue("end"  )));
+			mCurrentDetour.setId(attributes.getValue("id"      ));
+			mCurrentDetour.setDescription(attributes.getValue("desc"    ));
 			mCurrentDetour.setPhonetic(attributes.getValue("phonetic"));
 		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || localName.equalsIgnoreCase("errorMessage")) {
 			mInError = true;
@@ -64,15 +64,15 @@ public class ScheduleHandler extends DefaultHandler {
 		if ((qualifiedName.equalsIgnoreCase("route")) || localName.equalsIgnoreCase("route")) {
 			// a route can belong to a resultSet or a detour
 			if (mCurrentDetour != null) 
-				mCurrentDetour.getRoute().add(mCurrentRoute);
+				mCurrentDetour.getRoutes().add(mCurrentRoute);
 			else
-				mResultSet.getRoute().add(mCurrentRoute);
+				mResultSet.getRoutes().add(mCurrentRoute);
 			mCurrentRoute = null;
 		} else if ((qualifiedName.equalsIgnoreCase("dir")) || localName.equalsIgnoreCase("dir")) {
-			mCurrentRoute.getDir().add(mCurrentDirection);
+			mCurrentRoute.getDirections().add(mCurrentDirection);
 			mCurrentDirection = null;
 		} else if ((qualifiedName.equalsIgnoreCase("detour")) || localName.equalsIgnoreCase("detour")) {
-			mResultSet.getDetour().add(mCurrentDetour);
+			mResultSet.getDetours().add(mCurrentDetour);
 			mCurrentDetour = null;
 		} else if ((qualifiedName.equalsIgnoreCase("errorMessage")) || localName.equalsIgnoreCase("errorMessage")) {
 			mInError = false;
