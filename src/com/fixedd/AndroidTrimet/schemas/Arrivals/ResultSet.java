@@ -166,21 +166,21 @@ public class ResultSet implements Parcelable {
 			dest.writeString(mErrorMessage);
 		}
 
-		if (mLocation == null && mLocation.size() > 0)
+		if (mLocation == null || mLocation.size() > 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
 			dest.writeTypedList(mLocation);
 		}
 
-		if (mArrival == null && mArrival.size() > 0)
+		if (mArrival == null || mArrival.size() > 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
 			dest.writeTypedList(mArrival);
 		}
 
-		if (mRouteStatus == null && mRouteStatus.size() > 0)
+		if (mRouteStatus == null || mRouteStatus.size() > 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
