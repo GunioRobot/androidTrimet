@@ -10,7 +10,7 @@ import android.os.Parcelable;
 /** 
  * <p>
  * This class holds information on a returned result set. This is basically 
- * the wrapper for all of the other information returned by an Arrivals 
+ * the wrapper for all of the other information returned by an Arrivals or Nearby
  * API call. 
  */
 public class ResultSet implements Parcelable {
@@ -54,8 +54,8 @@ public class ResultSet implements Parcelable {
 	 * @param The {@link String} that contains the error message.
 	 *     
 	 */
-	public void setErrorMessage(String value) {
-		mErrorMessage = value;
+	public void setErrorMessage(String message) {
+		mErrorMessage = message;
 	}
 
 	/**
