@@ -53,6 +53,8 @@ public class RouteDirectionType implements Parcelable {
 	 * @param direction either 1 for inbound or 0 for outbound.
 	 */
 	public void setDirection(int direction) {
+		if (direction != 0 && direction != 1)
+			throw new RuntimeException("The direction must be either 0 or 1.");
 		mDir = direction;
 	}
 
