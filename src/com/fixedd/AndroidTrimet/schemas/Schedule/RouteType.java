@@ -94,7 +94,7 @@ public class RouteType implements Parcelable {
 	/**
 	 * Sets whether the route has a detour in effect.    
 	 */
-	public void setDetour(Boolean value) {
+	public void setDetour(boolean value) {
 		mDetour = value;
 	}
 
