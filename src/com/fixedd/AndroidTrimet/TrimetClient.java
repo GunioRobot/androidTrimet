@@ -1,9 +1,7 @@
 package com.fixedd.AndroidTrimet;
 
 import org.apache.http.client.methods.HttpGet;
-
 import android.location.Location;
-
 import com.fixedd.AndroidTrimet.tasks.ArrivalsTask;
 import com.fixedd.AndroidTrimet.tasks.ScheduleTask;
 import com.fixedd.AndroidTrimet.tasks.ArrivalsTask.ArrivalsTaskCaller;
@@ -26,7 +24,7 @@ public class TrimetClient {
 	 * @param appId The application ID assigned to your application by Trimet. This can be procured from <a href="http://developer.trimet.org/registration/">http://developer.trimet.org/registration/</a>
 	 */
 	public TrimetClient(String appId) {
-		this.mAppId = appId;
+		mAppId = appId;
 	}
 
 	
@@ -58,12 +56,37 @@ public class TrimetClient {
 	public void fetchRoutes(ScheduleTaskCaller caller, RouteConfigOptions options) {
 		String url = String.format(Constants.URL_BASE_ROUTECONFIG, mAppId);
 		
-		if (options.getRoutes()        != null) url += "/routes/"   + options.getRoutes()       ;
-		if (options.getDirection()     != null) url += "/dir/"      + options.getDirection()    ;
-		if (options.getStops()         != null) url += "/stops/"    + options.getStops()        ;
-		if (options.getTP()            != null) url += "/tp/"       + options.getTP()           ;
-		if (options.getStartSequence() != null) url += "/startSeq/" + options.getStartSequence();
-		if (options.getEndSequence()   != null) url += "/endSeq/"   + options.getEndSequence()  ;
+		if (options.getRoutes().length > 0)
+			url += "/routes/" + Util.arrayIntsToString(options.getRoutes());
+		
+		if (options.getDirection() != RouteConfigOptions.DIRECTION_NONE) {
+			url += "/dir/";
+			switch (options.getDirection()) {
+				case RouteConfigOptions.DIRECTION_ALL:
+					url += "yes";
+					break;
+				case RouteConfigOptions.DIRECTION_INBOUND:
+					url += "1";
+					break;
+				case RouteConfigOptions.DIRECTION_OUTBOUND:
+					url += "0";
+					break;
+			}
+		}
+		
+		if (options.getStops()) 
+			url += "/stops/yes";
+		
+		if (options.getTP()) 
+			url += "/tp/yes";
+		
+		if (options.getStartSequence() > -1) 
+			url += "/startSeq/" + options.getStartSequence();
+		
+		if (options.getEndSequence() > -1) 
+			url += "/endSeq/"   + options.getEndSequence();
+		
+		System.out.println(url);
 		
 		HttpGet getReq = new HttpGet(url); 
 		ScheduleTask task = new ScheduleTask(caller);
@@ -161,92 +184,7 @@ public class TrimetClient {
 	
 	
 	
-	/**
-	 * This allows for the configuration of a Route request. All fields are optional.
-	 * @author Jeremy Logan
-	 * @since 1
-	 *
-	 */
-	public static class RouteConfigOptions {
-		private String mRoutes;
-		private String mDir;
-		private String mStops;
-		private String mTP;
-		private String mStartSeq;
-		private String mEndSeq;
-		
-		public enum RouteDirection { INBOUND, OUTBOUND, ALL }
-		
-		public String getRoutes()   { return mRoutes; }
-		public String getDirection(){ return mDir;    }
-		public String getStops()    { return mStops;  }
-		public String getTP()       { return mTP;     }
-		public String getStartSequence() { return mStartSeq; }
-		public String getEndSequence()   { return mEndSeq;   }
-
-		/**
-		 * Set the routes to look up info for.
-		 * @param routes An array of route ids to query for.
-		 */
-		public void setRoutes(int... routes) {
-			if (routes.length < 1)
-				throw new RuntimeException("routes can not be empty.");
-			
-			mRoutes = Util.arrayIntsToString(routes);
-		}
-
-		/**
-		 * Set the direction to look up info for.
-		 * @param direction Direction to search.
-		 */
-		public void setDirection(RouteDirection direction) {
-			switch (direction) {
-				case INBOUND:
-					mDir = "1";
-					break;
-				case OUTBOUND:
-					mDir = "0";
-					break;
-				case ALL:
-					mDir = "yes";
-					break;
-			}
-		}
-
-		/**
-		 * Set whether to return stops for the routes.
-		 * @param stops Whether to include stops in the listing.
-		 */
-		public void setStops(boolean stops) {
-			if (stops)
-				mStops = "true";
-		}
-
-		/**
-		 * Set whether to return time-point stops for the routes (if this is set to true then setStops() doesn't need to be set).
-		 * @param tp Whether to include time point stops in the listing.
-		 */
-		public void setTimePoint(boolean tp) {
-			if (tp)
-				mTP = "true";
-		}
-
-		/**
-		 * Set this if you want to filter out StopIDs before a certain number. 
-		 * @param startSeq StopID to filter before.
-		 */
-		public void setStartSequence(int startSeq) {
-			mStartSeq = Integer.toString(startSeq);
-		}
-
-		/**
-		 * Set this if you want to filter out StopIDs after a certain number. 
-		 * @param endSeq StopID to filter after.
-		 */
-		public void setEndSequence(int endSeq) {
-			mEndSeq = Integer.toString(endSeq);
-		}		
-	}
+	
 	
 	/**
 	 * This allows for the configuration of a Trip Planner request. 
