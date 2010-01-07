@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,7 +8,8 @@ import android.os.Parcelable;
  * <p>This child of the blockPosition will occur for every trip the vehicle 
  * must traverse to arrive at the stop requested.
  */
-public class TripType implements Parcelable {
+public class TripType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
 
 	protected int		mProgress	= -2147483648;
 	protected int		mDestDist	= -2147483648;

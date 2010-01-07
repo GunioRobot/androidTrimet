@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,7 +9,8 @@ import android.os.Parcelable;
  * This class will occur as a child of the blockPosition for every layover the 
  * vehicle has between its position and the requested arrival.
  */
-public class LayoverType implements Parcelable {
+public class LayoverType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
 
 	protected LocationType	mLocation;
 	protected long			mStart	= -9223372036854775808l;

@@ -1,13 +1,15 @@
 package com.fixedd.AndroidTrimet.schemas.Schedule;
 
+import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * <p>Holds info on stops in the direction requested.
  */
-public class StopType implements Parcelable {
-
+public class StopType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
+	
 	protected String	mDesc;
 	protected int		mLocId	= -2147483648;
 	protected double	mLat	= -2147483648d;

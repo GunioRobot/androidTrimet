@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,7 +10,9 @@ import android.os.Parcelable;
  * arrivals being reported for a route. This occurs in inclement weather
  * conditions.
  */
-public class RouteStatusType implements Parcelable {
+public class RouteStatusType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
+	
 	/**
 	 * Arrivals for this route are only being reported if they can be estimated 
 	 * within the next hour. This occurs in inclement weather conditions.

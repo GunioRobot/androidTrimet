@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,8 @@ import android.os.Parcelable;
  * <p>The last known position of the vehicle along its block. Includes path 
  * information from this position to the stop requested.
  */
-public class BlockPositionType implements Parcelable {
+public class BlockPositionType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
 
 	protected List<TripType>	mTrips;
 	protected List<LayoverType>	mLayovers;

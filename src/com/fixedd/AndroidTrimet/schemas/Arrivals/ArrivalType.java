@@ -1,15 +1,17 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * <p>Contains arrival details.
  */
-public class ArrivalType implements Parcelable {
+public class ArrivalType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
+	
 	/**
 	 * Arrival time was estimated with vehicle position information.
 	 * @see #setStatus(int)

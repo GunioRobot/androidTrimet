@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import android.os.Parcelable;
  * the wrapper for all of the other information returned by an Arrivals or Nearby
  * API call. 
  */
-public class ResultSet implements Parcelable {
+public class ResultSet implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
+	
 	protected String                mErrorMessage;
 	protected List<LocationType   > mLocation;
 	protected List<ArrivalType    > mArrival;

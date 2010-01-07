@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.Arrivals;
 
+import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,7 +10,8 @@ import android.os.Parcelable;
  * occur in two locations in a resultSet document. One to describe the stop 
  * requested, and others to describe the location of any layovers.
  */
-public class LocationType implements Parcelable {
+public class LocationType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
 
 	protected int    mLocid = -2147483648;
 	protected String mDesc;

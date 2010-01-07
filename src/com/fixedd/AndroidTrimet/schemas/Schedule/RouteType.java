@@ -1,15 +1,17 @@
 package com.fixedd.AndroidTrimet.schemas.Schedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * <p>Contains information the configuration of a route
  */
-public class RouteType implements Parcelable {
+public class RouteType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
+	
 	/**
 	 * A "Bus" route type.
 	 * @see #setType(int)

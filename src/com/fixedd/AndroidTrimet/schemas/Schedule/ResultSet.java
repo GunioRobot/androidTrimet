@@ -1,5 +1,6 @@
 package com.fixedd.AndroidTrimet.schemas.Schedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Parcel;
@@ -11,7 +12,9 @@ import android.os.Parcelable;
  * the wrapper for all of the other information returned by a RouteConfig or 
  * Detour lookup.
  */
-public class ResultSet implements Parcelable {
+public class ResultSet implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
+	
 	protected String			mErrorMessage;
 	protected List<RouteType>	mRoutes;
 	protected List<DetourType>	mDetours;

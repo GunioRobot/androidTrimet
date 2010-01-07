@@ -1,16 +1,17 @@
 package com.fixedd.AndroidTrimet.schemas.Schedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * <p>Contains information about a detour that may apply to one or more routes at the time the query was made.
  */
-public class DetourType implements Parcelable {
-
+public class DetourType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
+	
 	protected List<RouteType>	mRoutes;
 	protected long				mBegin	= -9223372036854775808l;
 	protected long				mEnd	= -9223372036854775808l;

@@ -1,8 +1,8 @@
 package com.fixedd.AndroidTrimet.schemas.Schedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,7 +10,8 @@ import android.os.Parcelable;
 /**
  * <p>Contains information for each route directions.
  */
-public class RouteDirectionType implements Parcelable {
+public class RouteDirectionType implements Parcelable, Serializable {
+	private static final long	serialVersionUID	= 1L;
 
 	protected List<StopType>	mStops;
 	protected int				mDir	= -2147483648;
