@@ -101,13 +101,13 @@ public class TrimetClient {
 	 * Retrieves a list of detours currently in effect by route.
 	 * @since 1
 	 * @param caller The SchedulesTaskCaller that the task should report back to.
-	 * @param routes The list of route IDs you want detour info for. If it's empty then all detours (for all routes) will be requested. 
+	 * @param routes The list of route IDs you want detour info for. If it's empty (or null) then all detours (for all routes) will be requested. 
 	 */
 	public void findDetours(ScheduleTaskCaller caller, int... routes) {
 		String url = String.format(Constants.URL_BASE_DETOURS, mAppId);
 		
 		// routes are not required... if it's empty we'll just fetch all
-		if (routes.length > 0)
+		if (routes != null && routes.length > 0)
 			url += "/routes/" + Util.arrayIntsToString(routes);
 		
 		HttpGet getReq = new HttpGet(url); 
