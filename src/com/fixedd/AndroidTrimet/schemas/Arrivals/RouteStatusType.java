@@ -54,9 +54,8 @@ public class RouteStatusType implements Parcelable, Serializable {
 	/**
 	 * Gets the status of the route.
 	 * 
-	 * @return The status of the route. Either {@link #STATUS_ESTIMATED},
-	 *     {@link #STATUS_SCHEDULED}, {@link #STATUS_DELAYED}, or 
-	 *     {@link #STATUS_CANCELED}. It could also be <b>-2147483648</b> if it 
+	 * @return The status of the route. Either {@link #STATUS_ESTIMATED_ONLY} 
+	 *     or {@link #STATUS_OFF}. It could also be <b>-2147483648</b> if it 
 	 *     wasn't set properly.
 	 */
 	public int getStatus() {
