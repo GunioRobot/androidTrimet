@@ -45,6 +45,11 @@ public class TimeDistanceType implements Parcelable {
     protected int waitingTime;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public TimeDistanceType() {}
+    
+    /**
      * Gets the value of the date property.
      * 
      * @return

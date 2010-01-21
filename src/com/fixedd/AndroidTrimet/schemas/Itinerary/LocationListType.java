@@ -37,6 +37,11 @@ public class LocationListType implements Parcelable {
     protected Integer count;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public LocationListType() {}
+    
+    /**
      * Gets the value of the query property.
      * 
      * @return

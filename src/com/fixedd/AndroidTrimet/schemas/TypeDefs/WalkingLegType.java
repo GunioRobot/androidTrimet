@@ -27,6 +27,11 @@ public class WalkingLegType extends LegType implements Parcelable {
     protected String direction;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public WalkingLegType() {}
+    
+    /**
      * Gets the value of the direction property.
      * 
      * @return

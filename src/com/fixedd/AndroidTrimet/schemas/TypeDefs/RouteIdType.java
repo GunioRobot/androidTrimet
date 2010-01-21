@@ -31,6 +31,11 @@ public class RouteIdType implements Parcelable {
     protected String direction;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public RouteIdType() {}
+    
+    /**
      * Gets the value of the number property.
      * 
      * @return

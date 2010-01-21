@@ -40,6 +40,11 @@ public class RequestType implements Parcelable {
     protected List<RequestType.Param> param;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public RequestType() {}
+    
+    /**
      * Gets the value of the url property.
      * 
      * @return
@@ -115,6 +120,8 @@ public class RequestType implements Parcelable {
         protected String value;
         protected String name;
 
+        public Param() {}
+        
         /**
          * Gets the value of the value property.
          * 

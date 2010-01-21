@@ -33,6 +33,11 @@ public class FareType implements Parcelable {
     protected String provider;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public FareType() {}
+    
+    /**
      * Gets the value of the regular property.
      * 
      * @return

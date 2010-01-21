@@ -44,6 +44,11 @@ public class RouteType implements Parcelable {
     protected List<AlertType> alert;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public RouteType() {}
+    
+    /**
      * Gets the value of the number property.
      * 
      * @return

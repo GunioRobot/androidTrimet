@@ -37,6 +37,11 @@ public class GeoPointType implements Parcelable {
     protected String id;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public GeoPointType() {}
+    
+    /**
      * Gets the value of the x property.
      * 
      * @return

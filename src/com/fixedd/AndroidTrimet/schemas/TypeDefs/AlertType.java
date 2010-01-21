@@ -33,6 +33,11 @@ public class AlertType implements Parcelable {
     protected StatusType status;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public AlertType() {}
+    
+    /**
      * Gets the value of the description property.
      * 
      * @return

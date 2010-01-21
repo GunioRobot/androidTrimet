@@ -35,6 +35,11 @@ public class GeoRouteType implements Parcelable {
     protected String wmsUrl;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public GeoRouteType() {}
+    
+    /**
      * Gets the value of the domain property.
      * 
      * @return

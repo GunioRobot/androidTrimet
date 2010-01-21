@@ -28,6 +28,11 @@ public class TransitLegType extends LegType implements Parcelable {
     protected FareType fare;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public TransitLegType() {}
+    
+    /**
      * Gets the value of the route property.
      * 
      * @return

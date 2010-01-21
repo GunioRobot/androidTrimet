@@ -34,10 +34,10 @@ public class PointType implements Parcelable {
     protected String areaValue;
     protected String id;
 
-    // unused
-    public PointType() {
-    	
-    }
+    /**
+     * Create a new, empty copy of this object.
+     */
+    public PointType() {}
     
     /**
      * Gets the value of the pos property.

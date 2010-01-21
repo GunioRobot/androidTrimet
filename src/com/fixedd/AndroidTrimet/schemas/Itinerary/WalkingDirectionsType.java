@@ -37,6 +37,11 @@ public class WalkingDirectionsType implements Parcelable {
     protected Integer count;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public WalkingDirectionsType() {}
+    
+    /**
      * Gets the value of the turn property.
      * 
      * <p>

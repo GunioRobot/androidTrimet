@@ -53,6 +53,11 @@ public class ResponseType implements Parcelable {
     protected Boolean success;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public ResponseType() {}
+    
+    /**
      * Gets the value of the date property.
      * 
      * @return

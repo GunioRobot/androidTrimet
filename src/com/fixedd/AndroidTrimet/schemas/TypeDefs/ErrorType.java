@@ -29,6 +29,11 @@ public class ErrorType implements Parcelable {
     protected String code;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public ErrorType() {}
+    
+    /**
      * Gets the value of the message property.
      * 
      * @return

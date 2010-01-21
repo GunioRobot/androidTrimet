@@ -43,6 +43,11 @@ public class StopPointType extends PointType implements Parcelable {
     protected List<ParcelableString> comment;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public StopPointType() {}
+    
+    /**
      * Gets the value of the stopId property.
      * 
      * @return

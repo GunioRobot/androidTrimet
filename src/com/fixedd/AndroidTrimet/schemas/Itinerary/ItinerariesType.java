@@ -35,6 +35,11 @@ public class ItinerariesType implements Parcelable {
     protected Integer count;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public ItinerariesType() {}
+    
+    /**
      * Gets the value of the itinerary property.
      * 
      * <p>

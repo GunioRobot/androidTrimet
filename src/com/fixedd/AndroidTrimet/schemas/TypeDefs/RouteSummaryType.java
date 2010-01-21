@@ -31,6 +31,11 @@ public class RouteSummaryType implements Parcelable {
     protected List<RouteIdType> route;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public RouteSummaryType() {}
+    
+    /**
      * Gets the value of the route property.
      * 
      * <p>

@@ -26,6 +26,11 @@ public class OrderedStringsType implements Parcelable {
     protected int id;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public OrderedStringsType() {}
+    
+    /**
      * Gets the value of the value property.
      * 
      * @return

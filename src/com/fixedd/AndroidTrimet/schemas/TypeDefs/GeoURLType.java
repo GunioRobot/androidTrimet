@@ -28,6 +28,11 @@ public class GeoURLType implements Parcelable {
     protected String param;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public GeoURLType() {}
+    
+    /**
      * Gets the value of the url property.
      * 
      * @return

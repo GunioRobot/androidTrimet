@@ -26,6 +26,11 @@ public class SpecialFareType implements Parcelable {
     protected String id;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public SpecialFareType() {}
+    
+    /**
      * Gets the value of the value property.
      * 
      * @return

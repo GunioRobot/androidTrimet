@@ -42,6 +42,11 @@ public class ItineraryType implements Parcelable {
     protected String viaRoute;
 
     /**
+     * Create a new, empty copy of this object.
+     */
+    public ItineraryType() {}
+    
+    /**
      * Gets the value of the timeDistance property.
      * 
      * @return
