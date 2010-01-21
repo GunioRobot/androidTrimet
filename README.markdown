@@ -6,9 +6,9 @@ Threads) to perform non-blocking network lookups.
 
 
 ##Current State:
-This is actively being worked on library. Presently, all of the functionality that is present in Trimet's web services (http://developer.trimet.org/ws_docs/) is fully supported, except planning a trip (which will be coming soon).
+This is actively being worked on library. Presently, all of the functionality that is present in [Trimet's web services](http://developer.trimet.org/ws_docs/) is fully supported, except planning a trip (which will be coming soon).
 
-Other than Trip Planning, the piece that most needs improvement is documentation. Here's a hint: You'll want to start with an instance of the TrimetClient class and then call the methods on it.
+Other than Trip Planning, the piece that most needs improvement is documentation. Here's a hint: You'll want to start with an instance of the TrimetClient class and then call the methods it exposes.
 
 
 ##Notes:
