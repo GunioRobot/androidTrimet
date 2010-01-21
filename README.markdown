@@ -1,4 +1,4 @@
-#androidTrimet is a Trimet client library for the Android operating system.
+#androidTrimet is a client library for the Android operating system that makes use of Trimet's public-facing APIs.
 
 ##Purpose:
 The main thing that this library buys you is not having to parse the XML yourself and not having to figure out how to properly use AsyncTasks (or
