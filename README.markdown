@@ -19,6 +19,7 @@ Finally, please read the [LICENSE](http://github.com/fixedd/androidTrimet/raw/ma
 ---
 
 Jeremy Logan
-Killer Robots LLC
-20 January 2010
 
+Killer Robots LLC
+
+20 January 2010
