@@ -165,7 +165,10 @@ public class TripPlannerOptions {
 	 *        address or a landmark (like 'zoo').
 	 */
 	public void setFromPlace(String fromPlace) {
-		mFromPlace = fromPlace;
+		if (fromPlace.trim().length() > 0)
+			mFromPlace = fromPlace.trim();
+		else
+			throw new RuntimeException("fromPlace can not be an empty string.");
 	}
 
 	/**
@@ -175,7 +178,10 @@ public class TripPlannerOptions {
 	 *        address or a landmark (like 'zoo').
 	 */
 	public void setToPlace(String toPlace) {
-		mToPlace = toPlace;
+		if (toPlace.trim().length() > 0)
+			mToPlace = toPlace;
+		else
+			throw new RuntimeException("toPlace can not be an empty string.");
 	}
 
 	/**
