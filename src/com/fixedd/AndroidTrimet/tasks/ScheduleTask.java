@@ -45,11 +45,11 @@ public class ScheduleTask extends AsyncTask<HttpUriRequest, Integer, ResultSet> 
 		HttpResponse resp = null;
 		
     	try {
-    		Log.i(getClass().getSimpleName(), "Starting HTTP Request");
+    		//Log.i(getClass().getSimpleName(), "Starting HTTP Request");
     		HttpClient httpClient = new DefaultHttpClient();
     		resp = httpClient.execute(request[0]);
     		
-    		Log.i(getClass().getSimpleName(), "Starting XML parser");
+    		//Log.i(getClass().getSimpleName(), "Starting XML parser");
     		SAXParserFactory saxFactory = SAXParserFactory.newInstance();
     		ScheduleHandler handler = new ScheduleHandler();
     		SAXParser parser = saxFactory.newSAXParser();
