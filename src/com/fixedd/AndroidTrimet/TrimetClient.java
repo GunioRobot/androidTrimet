@@ -1,9 +1,12 @@
 package com.fixedd.AndroidTrimet;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import org.apache.http.client.methods.HttpGet;
 import android.location.Location;
 import com.fixedd.AndroidTrimet.tasks.ArrivalsTask;
 import com.fixedd.AndroidTrimet.tasks.ScheduleTask;
+import com.fixedd.AndroidTrimet.tasks.TripTask;
 import com.fixedd.AndroidTrimet.tasks.ArrivalsTask.ArrivalsTaskCaller;
 import com.fixedd.AndroidTrimet.tasks.ScheduleTask.ScheduleTaskCaller;
 import com.fixedd.AndroidTrimet.tasks.TripTask.TripTaskCaller;
@@ -57,8 +60,7 @@ public class TrimetClient {
 	 *        to.
 	 * @param options The options you want to search by.
 	 */
-	public void fetchRoutes(ScheduleTaskCaller caller,
-		RouteConfigOptions options) {
+	public void fetchRoutes(ScheduleTaskCaller caller, RouteConfigOptions options) {
 		String url = String.format(Constants.URL_BASE_ROUTECONFIG, mAppId);
 
 		if (options.getRoutes().length > 0)
@@ -129,18 +131,17 @@ public class TrimetClient {
 	 *        (example: 45.523232d).
 	 * @param longitude The longitude in decimal format to center the search on
 	 *        (example: -122.671452d).
-	 * @param distanceInMeters The radius in which to search for stops (in
+	 * @param radiusInMeters The radius in which to search for stops (in
 	 *        meters). If the radius is less than 10 then the default of 400
 	 *        will be used.
 	 */
-	public void findNearbyStops(ArrivalsTaskCaller caller, double latitude,
-		double longitude, int distanceInMeters) {
-		if (distanceInMeters < 10)
-			distanceInMeters = 400;
+	public void findNearbyStops(ArrivalsTaskCaller caller, double latitude, double longitude, int radiusInMeters) {
+		if (radiusInMeters < 10)
+			radiusInMeters = 400;
 
 		String url = String.format(Constants.URL_BASE_NEARBY, mAppId);
 		url += "/ll/" + Double.toString(longitude) + "," + Double.toString(latitude);
-		url += "/meters/" + Integer.toString(distanceInMeters);
+		url += "/meters/" + Integer.toString(radiusInMeters);
 
 		HttpGet getReq = new HttpGet(url);
 		ArrivalsTask task = new ArrivalsTask(caller);
@@ -153,50 +154,62 @@ public class TrimetClient {
 	 * @since 1
 	 * @param caller The ArrivalsTaskCaller that the task should report back to.
 	 * @param location The location to center the search on.
-	 * @param distanceInMeters The radius in which to search for stops (in
+	 * @param radiusInMeters The radius in which to search for stops (in
 	 *        meters). If the radius is less than 10 then the default of 400
 	 *        will be used.
 	 */
-	public void findNearbyStops(ArrivalsTaskCaller caller, Location location, int distanceInMeters) {
-		findNearbyStops(caller, location.getLatitude(), location.getLongitude(), distanceInMeters);
+	public void findNearbyStops(ArrivalsTaskCaller caller, Location location, int radiusInMeters) {
+		findNearbyStops(caller, location.getLatitude(), location.getLongitude(), radiusInMeters);
 	}
 
 	/**
 	 * Plan trips between two locations programmatically.
-	 * <p>
-	 * <b>WARNING:</b> This is not yet implemented and will throw a
-	 * RuntimeException!
-	 * </p>
 	 * 
 	 * @since 1
 	 * @param caller The TripTaskCaller that the task should report back to.
-	 * @param options The options you want to plan by.
+	 * @param options The {@link TripPlannerOptions} you want to plan use to 
+	 *        plan the trip. Note that it must have had a datetime, from 
+	 *        location, and to locations set.
 	 */
 	public void planTrip(TripTaskCaller caller, TripPlannerOptions options) {
-		throw new RuntimeException("This method is not yet implemented.");
+		String url = String.format(Constants.URL_BASE_TRIPPLANNER, mAppId);
+		// validate requirements
+		if (options.getFromPlace() == null && options.getFromCoord() == null)
+			throw new RuntimeException("TripPlannerOptions must have a 'from' location set.");
+		if (options.getToPlace() == null && options.getToCoord() == null)
+			throw new RuntimeException("TripPlannerOptions must have a 'to' location set.");
+		if (options.getDate() == null || options.getTime() == null)
+			throw new RuntimeException("TripPlannerOptions must have a datetime set.");
+		
+		// build URL
+		try {
+			if (options.getFromPlace() != null) 
+				url += "/fromPlace/" + URLEncoder.encode(options.getFromPlace(), "UTF-8");
+			if (options.getFromCoord() != null) 
+				url += "/fromCoord/" + options.getFromCoord();
+			if (options.getToPlace() != null) 
+				url += "/toPlace/" + URLEncoder.encode(options.getToPlace(), "UTF-8");
+			if (options.getToCoord() != null) 
+				url += "/toCoord/" + options.getToCoord();
+			url += "/Date/" + options.getDate();
+			url += "/Time/" + URLEncoder.encode(options.getTime(), "UTF-8");
+			if (options.getArriveDepart() != null) 
+				url += "/Arr/" + options.getArriveDepart();
+			if (options.getMaxWalk() != null) 
+				url += "/Walk/" + options.getMaxWalk();
+			if (options.getMode() != null) 
+				url += "/Mode/" + options.getMode();
+			if (options.getMaxIntineraries() > 0) 
+				url += "/MaxIntineraries/" + options.getMaxIntineraries();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Could not build the URL from the supplied inputs.");
+		}
 
-		// String url = String.format(Constants.URL_BASE_TRIPPLANNER, mAppId);
-		//		
-		// if (options.getFromPlace() != null) url += "/fromPlace/" +
-		// options.getFromPlace() ;
-		// if (options.getFromCoord() != null) url += "/fromCoord/" +
-		// options.getFromCoord() ;
-		// if (options.getToPlace() != null) url += "/toPlace/" +
-		// options.getToPlace() ;
-		// if (options.getToCoord() != null) url += "/toCoord/" +
-		// options.getToCoord() ;
-		// if (options.getDate() != null) url += "/Date/" + options.getDate() ;
-		// if (options.getTime() != null) url += "/Time/" + options.getTime() ;
-		// if (options.getArriveDepart() != null) url += "/Arr/" +
-		// options.getArriveDepart() ;
-		// if (options.getMaxWalk() != null) url += "/Walk/" +
-		// options.getMaxWalk() ;
-		// if (options.getMode() != null) url += "/Mode/" + options.getMode() ;
-		// if (options.getMaxIntineraries() != null) url += "/MaxIntineraries/"
-		// + options.getMaxIntineraries();
-		//		
-		// HttpGet getReq = new HttpGet(url);
-		// TripTask task = new TripTask(caller);
-		// task.execute(getReq);
+		// make the request
+		HttpGet getReq = new HttpGet(url);
+		TripTask task = new TripTask(caller);
+		task.execute(getReq);
+		
 	}
 }
