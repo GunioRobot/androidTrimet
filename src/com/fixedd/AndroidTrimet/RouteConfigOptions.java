@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 /**
  * This allows for the configuration of a Route request. All fields are optional.
+ * <p>
+ * For a complete explanation of these options, please see <a 
+ * href="http://developer.trimet.org/ws_docs/routeConfig_ws.shtml">http://developer.trimet.org/ws_docs/routeConfig_ws.shtml</a>
  * @author Jeremy Logan
  * @since 1
  *
