@@ -13,13 +13,8 @@ public class ArrivalHandler extends DefaultHandler {
 	private  LayoverType       mCurrentLayover       = null;
 	private  Boolean           mInError              = false;
 	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
-	 */
 	@Override
-	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {
-		//super.startElement(namespaceUri, localName, qualifiedName, attributes);
-		
+	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {		
 		if ((qualifiedName.equalsIgnoreCase("resultSet")) || (localName.equalsIgnoreCase("resultSet"))) {
 			mResultSet = new ResultSet();
 			if (attributes.getValue("queryTime") != null)
@@ -88,9 +83,6 @@ public class ArrivalHandler extends DefaultHandler {
 		
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
 	public void endElement(String namespaceUri, String localName, String qualifiedName) throws SAXException {
 		if ((qualifiedName.equalsIgnoreCase("location")) || (localName.equalsIgnoreCase("location"))) {
@@ -114,9 +106,6 @@ public class ArrivalHandler extends DefaultHandler {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
-	 */
 	@Override
 	public void characters(char[] chars, int startIndex, int length) throws SAXException {
 		String dataString = new String(chars, startIndex, length).trim();
