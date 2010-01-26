@@ -205,11 +205,9 @@ public class TrimetClient {
 			e.printStackTrace();
 			throw new RuntimeException("Could not build the URL from the supplied inputs.");
 		}
-
-		// make the request
-		HttpGet getReq = new HttpGet(url);
-		TripTask task = new TripTask(caller);
-		task.execute(getReq);
 		
+		// make the request
+		TripTask task = new TripTask(caller);
+		task.execute(new HttpGet(url.replace("+", "%20")));	// trimet doesn't like "+" in place of a space... requires "%20"
 	}
 }
