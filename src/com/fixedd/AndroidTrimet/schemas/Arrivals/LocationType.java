@@ -120,17 +120,17 @@ public class LocationType implements Parcelable, Serializable {
 			dest.writeInt(0);
 		} else {
 			dest.writeInt(1);
-			dest.writeString(mDesc );
+			dest.writeString(mDesc);
 		}
 		if (mDir == null) {
 			dest.writeInt(0);
 		} else {
 			dest.writeInt(1);
-			dest.writeString(mDir  );
+			dest.writeString(mDir);
 		}
 
-		dest.writeDouble(mLat  );
-		dest.writeDouble(mLng  );
+		dest.writeDouble(mLat);
+		dest.writeDouble(mLng);
 	}
 
 	public static final Parcelable.Creator<LocationType> CREATOR = new Parcelable.Creator<LocationType>() {
