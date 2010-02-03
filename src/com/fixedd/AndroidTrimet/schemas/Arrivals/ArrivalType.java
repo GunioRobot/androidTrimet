@@ -316,7 +316,7 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		if (mBlockPositions == null || mBlockPositions.size() == 0)
+		if (mBlockPositions == null || mBlockPositions.size() < 1)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
