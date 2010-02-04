@@ -19,27 +19,27 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  * 
  */
 public enum StatusType {
-    DETOUR("Detour"),
-    ROUTE_STATUS("Route Status"),
-    LOSS_OF_SERVICE("Loss of Service"),
-    ANNOUNCEMENT("Announcement");
-    
-    private final String value;
+	DETOUR("Detour"),
+	ROUTE_STATUS("Route Status"),
+	LOSS_OF_SERVICE("Loss of Service"),
+	ANNOUNCEMENT("Announcement");
 
-    StatusType(String v) {
-        value = v;
-    }
+	private final String mValue;
 
-    public String value() {
-        return value;
-    }
+	StatusType(String v) {
+		mValue = v;
+	}
 
-    public static StatusType fromValue(String v) {
-        for (StatusType c: StatusType.values()) {
-            if (c.value.equals(v)) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException(v);
-    }
+	public String value() {
+		return mValue;
+	}
+
+	public static StatusType fromValue(String v) {
+		for (StatusType c: StatusType.values()) {
+			if (c.mValue.equals(v)) {
+				return c;
+			}
+		}
+		throw new IllegalArgumentException(v);
+	}
 }

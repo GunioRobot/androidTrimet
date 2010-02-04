@@ -28,143 +28,143 @@ import android.os.Parcelable;
  */
 public class GeoRouteType implements Parcelable {
 
-    protected String domain;
-    protected String typeName;
-    protected String ogcFilter;
-    protected String wfsUrl;
-    protected String wmsUrl;
+	protected String	mDomain		= "";
+	protected String	mTypeName	= "";
+	protected String	mOgcFilter	= "";
+	protected String	mWfsUrl		= "";
+	protected String	mWmsUrl		= "";
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public GeoRouteType() {}
-    
-    /**
-     * Gets the value of the domain property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDomain() {
-        return domain;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public GeoRouteType() {}
 
-    /**
-     * Sets the value of the domain property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDomain(String value) {
-        this.domain = value;
-    }
+	/**
+	 * Gets the value of the domain property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getDomain() {
+		return mDomain;
+	}
 
-    /**
-     * Gets the value of the typeName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTypeName() {
-        return typeName;
-    }
+	/**
+	 * Sets the value of the domain property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setDomain(String value) {
+		mDomain = value;
+	}
 
-    /**
-     * Sets the value of the typeName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTypeName(String value) {
-        this.typeName = value;
-    }
+	/**
+	 * Gets the value of the typeName property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getTypeName() {
+		return mTypeName;
+	}
 
-    /**
-     * Gets the value of the ogcFilter property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOgcFilter() {
-        return ogcFilter;
-    }
+	/**
+	 * Sets the value of the typeName property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setTypeName(String value) {
+		mTypeName = value;
+	}
 
-    /**
-     * Sets the value of the ogcFilter property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setOgcFilter(String value) {
-        this.ogcFilter = value;
-    }
+	/**
+	 * Gets the value of the ogcFilter property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getOgcFilter() {
+		return mOgcFilter;
+	}
 
-    /**
-     * Gets the value of the wfsUrl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getWfsUrl() {
-        return wfsUrl;
-    }
+	/**
+	 * Sets the value of the ogcFilter property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setOgcFilter(String value) {
+		mOgcFilter = value;
+	}
 
-    /**
-     * Sets the value of the wfsUrl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setWfsUrl(String value) {
-        this.wfsUrl = value;
-    }
+	/**
+	 * Gets the value of the wfsUrl property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getWfsUrl() {
+		return mWfsUrl;
+	}
 
-    /**
-     * Gets the value of the wmsUrl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getWmsUrl() {
-        return wmsUrl;
-    }
+	/**
+	 * Sets the value of the wfsUrl property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setWfsUrl(String value) {
+		mWfsUrl = value;
+	}
 
-    /**
-     * Sets the value of the wmsUrl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setWmsUrl(String value) {
-        this.wmsUrl = value;
-    }
+	/**
+	 * Gets the value of the wmsUrl property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getWmsUrl() {
+		return mWmsUrl;
+	}
+
+	/**
+	 * Sets the value of the wmsUrl property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setWmsUrl(String value) {
+		mWmsUrl = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -172,11 +172,11 @@ public class GeoRouteType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(domain   );
-		dest.writeString(typeName );
-		dest.writeString(ogcFilter);
-		dest.writeString(wfsUrl   );
-		dest.writeString(wmsUrl   );
+		dest.writeString(mDomain   );
+		dest.writeString(mTypeName );
+		dest.writeString(mOgcFilter);
+		dest.writeString(mWfsUrl   );
+		dest.writeString(mWmsUrl   );
 	}
 
 	public static final Parcelable.Creator<GeoRouteType> CREATOR = new Parcelable.Creator<GeoRouteType>() {
@@ -188,12 +188,12 @@ public class GeoRouteType implements Parcelable {
 			return new GeoRouteType[size];
 		}
 	};
-	
+
 	private GeoRouteType(Parcel dest) {
-		domain    = dest.readString();
-	    typeName  = dest.readString();
-	    ogcFilter = dest.readString();
-	    wfsUrl    = dest.readString();
-	    wmsUrl    = dest.readString();
+		mDomain    = dest.readString();
+		mTypeName  = dest.readString();
+		mOgcFilter = dest.readString();
+		mWfsUrl    = dest.readString();
+		mWmsUrl    = dest.readString();
 	}
 }

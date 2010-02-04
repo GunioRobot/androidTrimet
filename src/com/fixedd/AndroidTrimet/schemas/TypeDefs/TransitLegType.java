@@ -24,68 +24,68 @@ import android.os.Parcelable;
  * 
  */
 public class TransitLegType extends LegType implements Parcelable {
-    protected RouteType route;
-    protected FareType fare;
+	protected RouteType	mRoute;
+	protected FareType	mFare;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public TransitLegType() {}
-    
-    /**
-     * Gets the value of the route property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RouteType }
-     *     
-     */
-    public RouteType getRoute() {
-        return route;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public TransitLegType() {}
 
-    /**
-     * Sets the value of the route property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RouteType }
-     *     
-     */
-    public void setRoute(RouteType value) {
-        this.route = value;
-    }
+	/**
+	 * Gets the value of the route property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link RouteType }
+	 *     
+	 */
+	public RouteType getRoute() {
+		return mRoute;
+	}
 
-    /**
-     * Gets the value of the fare property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FareType }
-     *     
-     */
-    public FareType getFare() {
-        return fare;
-    }
+	/**
+	 * Sets the value of the route property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link RouteType }
+	 *     
+	 */
+	public void setRoute(RouteType value) {
+		mRoute = value;
+	}
 
-    /**
-     * Sets the value of the fare property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FareType }
-     *     
-     */
-    public void setFare(FareType value) {
-        this.fare = value;
-    }
+	/**
+	 * Gets the value of the fare property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link FareType }
+	 *     
+	 */
+	public FareType getFare() {
+		return mFare;
+	}
+
+	/**
+	 * Sets the value of the fare property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link FareType }
+	 *     
+	 */
+	public void setFare(FareType value) {
+		mFare = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -93,15 +93,45 @@ public class TransitLegType extends LegType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeParcelable(route       , flags);
-		dest.writeParcelable(fare        , flags);
-		dest.writeParcelable(timeDistance, flags);
-		dest.writeParcelable(lineURL     , flags);
-		dest.writeParcelable(from        , flags);
-		dest.writeParcelable(to          , flags);
-	    dest.writeString(order.value());
-	    dest.writeString(id           );
-	    dest.writeString(mode         );
+		if (mRoute != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mRoute, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mFare != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mFare, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mTimeDistance != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mTimeDistance, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mLineURL != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mLineURL, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mFrom != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mFrom, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mTo != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mTo, flags);
+		} else
+			dest.writeInt(0);
+
+		dest.writeString(mOrder.value());
+		dest.writeString(mId           );
+		dest.writeString(mMode         );
 	}
 
 	public static final Parcelable.Creator<TransitLegType> CREATOR = new Parcelable.Creator<TransitLegType>() {
@@ -113,16 +143,16 @@ public class TransitLegType extends LegType implements Parcelable {
 			return new TransitLegType[size];
 		}
 	};
-	
+
 	private TransitLegType(Parcel dest) {
-		route        = (RouteType       ) dest.readParcelable(null);
-	    fare         = (FareType        ) dest.readParcelable(null);
-	    timeDistance = (TimeDistanceType) dest.readParcelable(null);
-	    lineURL      = (GeoURLType      ) dest.readParcelable(null);
-	    from         = (PointType       ) dest.readParcelable(null);
-	    to           = (PointType       ) dest.readParcelable(null);
-	    order = OrderType.fromValue(dest.readString());
-	    id    = dest.readString();
-	    mode  = dest.readString();
+		if (dest.readInt() == 1) mRoute        = (RouteType       ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mFare         = (FareType        ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(null);
+		if (dest.readInt() == 1) mLineURL      = (GeoURLType      ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mFrom         = (PointType       ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mTo           = (PointType       ) dest.readParcelable(null);
+		mOrder = OrderType.fromValue(dest.readString());
+		mId    = dest.readString();
+		mMode  = dest.readString();
 	}
 }

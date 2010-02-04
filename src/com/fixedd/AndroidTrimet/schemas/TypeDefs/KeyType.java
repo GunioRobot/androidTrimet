@@ -21,28 +21,28 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  */
 public enum KeyType {
 
-    WEEKDAY("Weekday"),
-    SATURDAY("Saturday"),
-    SUNDAY("Sunday"),
-    HOLIDAY("Holiday"),
-    OTHER("Other");
+	WEEKDAY("Weekday"),
+	SATURDAY("Saturday"),
+	SUNDAY("Sunday"),
+	HOLIDAY("Holiday"),
+	OTHER("Other");
 
-    private final String value;
+	private final String mValue;
 
-    KeyType(String v) {
-        value = v;
-    }
+	KeyType(String v) {
+		mValue = v;
+	}
 
-    public String value() {
-        return value;
-    }
+	public String value() {
+		return mValue;
+	}
 
-    public static KeyType fromValue(String v) {
-        for (KeyType c: KeyType.values()) {
-            if (c.value.equals(v)) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException(v);
-    }
+	public static KeyType fromValue(String v) {
+		for (KeyType c: KeyType.values()) {
+			if (c.mValue.equals(v)) {
+				return c;
+			}
+		}
+		throw new IllegalArgumentException(v);
+	}
 }

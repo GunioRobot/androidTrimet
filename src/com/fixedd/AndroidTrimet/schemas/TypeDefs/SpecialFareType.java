@@ -22,68 +22,68 @@ import android.os.Parcelable;
  */
 public class SpecialFareType implements Parcelable {
 
-    protected String value;
-    protected String id;
+	protected String	mValue	= "";
+	protected String	mId		= "";
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public SpecialFareType() {}
-    
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getValue() {
-        return value;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public SpecialFareType() {}
 
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
+	/**
+	 * Gets the value of the value property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getValue() {
+		return mValue;
+	}
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * Sets the value of the value property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setValue(String value) {
+		mValue = value;
+	}
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getId() {
+		return mId;
+	}
+
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setId(String value) {
+		mId = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -91,8 +91,8 @@ public class SpecialFareType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(value);
-		dest.writeString(id   );
+		dest.writeString(mValue);
+		dest.writeString(mId   );
 	}
 
 	public static final Parcelable.Creator<SpecialFareType> CREATOR = new Parcelable.Creator<SpecialFareType>() {
@@ -104,9 +104,9 @@ public class SpecialFareType implements Parcelable {
 			return new SpecialFareType[size];
 		}
 	};
-	
+
 	private SpecialFareType(Parcel dest) {
-		value = dest.readString();
-		id    = dest.readString();
+		mValue = dest.readString();
+		mId    = dest.readString();
 	}
 }

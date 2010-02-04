@@ -27,118 +27,118 @@ import android.os.Parcelable;
  */
 public class AlertType implements Parcelable {
 
-    protected String description;
-    protected String begin;
-    protected String end;
-    protected StatusType status;
+	protected String		mDescription	= "";
+	protected String		mBegin			= "";
+	protected String		mEnd			= "";
+	protected StatusType	mStatus;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public AlertType() {}
-    
-    /**
-     * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public AlertType() {}
 
-    /**
-     * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescription(String value) {
-        this.description = value;
-    }
+	/**
+	 * Gets the value of the description property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getDescription() {
+		return mDescription;
+	}
 
-    /**
-     * Gets the value of the begin property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBegin() {
-        return begin;
-    }
+	/**
+	 * Sets the value of the description property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setDescription(String value) {
+		mDescription = value;
+	}
 
-    /**
-     * Sets the value of the begin property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBegin(String value) {
-        this.begin = value;
-    }
+	/**
+	 * Gets the value of the begin property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getBegin() {
+		return mBegin;
+	}
 
-    /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEnd() {
-        return end;
-    }
+	/**
+	 * Sets the value of the begin property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setBegin(String value) {
+		mBegin = value;
+	}
 
-    /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEnd(String value) {
-        this.end = value;
-    }
+	/**
+	 * Gets the value of the end property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getEnd() {
+		return mEnd;
+	}
 
-    /**
-     * Gets the value of the status property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link StatusType }
-     *     
-     */
-    public StatusType getStatus() {
-        return status;
-    }
+	/**
+	 * Sets the value of the end property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setEnd(String value) {
+		mEnd = value;
+	}
 
-    /**
-     * Sets the value of the status property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StatusType }
-     *     
-     */
-    public void setStatus(StatusType value) {
-        this.status = value;
-    }
+	/**
+	 * Gets the value of the status property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link StatusType }
+	 *     
+	 */
+	public StatusType getStatus() {
+		return mStatus;
+	}
+
+	/**
+	 * Sets the value of the status property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link StatusType }
+	 *     
+	 */
+	public void setStatus(StatusType value) {
+		mStatus = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -146,12 +146,10 @@ public class AlertType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(description   );
-	    dest.writeString(begin         );
-	    dest.writeString(end           );
-	    dest.writeString(status.value());
-	    
-	    
+		dest.writeString(mDescription   );
+		dest.writeString(mBegin         );
+		dest.writeString(mEnd           );
+		dest.writeString(mStatus.value());
 	}
 
 	public static final Parcelable.Creator<AlertType> CREATOR = new Parcelable.Creator<AlertType>() {
@@ -163,11 +161,11 @@ public class AlertType implements Parcelable {
 			return new AlertType[size];
 		}
 	};
-	
+
 	private AlertType(Parcel dest) {
-		description = dest.readString();
-	    begin       = dest.readString();
-	    end         = dest.readString();
-	    status      = StatusType.fromValue(dest.readString());
+		mDescription = dest.readString();
+		mBegin       = dest.readString();
+		mEnd         = dest.readString();
+		mStatus      = StatusType.fromValue(dest.readString());
 	}
 }

@@ -25,68 +25,68 @@ import android.os.Parcelable;
  */
 public class ErrorType implements Parcelable {
 
-    protected String message;
-    protected String code;
+	protected String	mMessage	= "";
+	protected String	mCode		= "";
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public ErrorType() {}
-    
-    /**
-     * Gets the value of the message property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMessage() {
-        return message;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public ErrorType() {}
 
-    /**
-     * Sets the value of the message property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMessage(String value) {
-        this.message = value;
-    }
+	/**
+	 * Gets the value of the message property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getMessage() {
+		return mMessage;
+	}
 
-    /**
-     * Gets the value of the code property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCode() {
-        return code;
-    }
+	/**
+	 * Sets the value of the message property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setMessage(String value) {
+		mMessage = value;
+	}
 
-    /**
-     * Sets the value of the code property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCode(String value) {
-        this.code = value;
-    }
+	/**
+	 * Gets the value of the code property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getCode() {
+		return mCode;
+	}
+
+	/**
+	 * Sets the value of the code property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setCode(String value) {
+		mCode = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -94,8 +94,8 @@ public class ErrorType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(message);
-		dest.writeString(code   );
+		dest.writeString(mMessage);
+		dest.writeString(mCode   );
 	}
 
 	public static final Parcelable.Creator<ErrorType> CREATOR = new Parcelable.Creator<ErrorType>() {
@@ -107,9 +107,9 @@ public class ErrorType implements Parcelable {
 			return new ErrorType[size];
 		}
 	};
-	
+
 	private ErrorType(Parcel dest) {
-		message = dest.readString();
-		code    = dest.readString();
+		mMessage = dest.readString();
+		mCode    = dest.readString();
 	}
 }

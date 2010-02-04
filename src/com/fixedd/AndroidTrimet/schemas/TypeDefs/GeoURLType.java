@@ -24,68 +24,68 @@ import android.os.Parcelable;
  * 
  */
 public class GeoURLType implements Parcelable {
-    protected String url;
-    protected String param;
+	protected String	mUrl	= "";
+	protected String	mParam	= "";
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public GeoURLType() {}
-    
-    /**
-     * Gets the value of the url property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUrl() {
-        return url;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public GeoURLType() {}
 
-    /**
-     * Sets the value of the url property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUrl(String value) {
-        this.url = value;
-    }
+	/**
+	 * Gets the value of the url property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getUrl() {
+		return mUrl;
+	}
 
-    /**
-     * Gets the value of the param property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getParam() {
-        return param;
-    }
+	/**
+	 * Sets the value of the url property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setUrl(String value) {
+		mUrl = value;
+	}
 
-    /**
-     * Sets the value of the param property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setParam(String value) {
-        this.param = value;
-    }
+	/**
+	 * Gets the value of the param property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getParam() {
+		return mParam;
+	}
+
+	/**
+	 * Sets the value of the param property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setParam(String value) {
+		mParam = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -93,8 +93,8 @@ public class GeoURLType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(url  );
-		dest.writeString(param);
+		dest.writeString(mUrl  );
+		dest.writeString(mParam);
 	}
 
 	public static final Parcelable.Creator<GeoURLType> CREATOR = new Parcelable.Creator<GeoURLType>() {
@@ -106,9 +106,9 @@ public class GeoURLType implements Parcelable {
 			return new GeoURLType[size];
 		}
 	};
-	
+
 	private GeoURLType(Parcel dest) {
-		url   = dest.readString();
-		param = dest.readString();
+		mUrl   = dest.readString();
+		mParam = dest.readString();
 	}
 }

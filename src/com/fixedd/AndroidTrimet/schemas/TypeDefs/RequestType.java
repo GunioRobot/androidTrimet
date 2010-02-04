@@ -36,180 +36,180 @@ import android.os.Parcelable;
  */
 public class RequestType implements Parcelable {
 
-    protected String url;
-    protected List<RequestType.Param> param;
+	protected String					mUrl	= "";
+	protected List<RequestType.Param>	mParam;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public RequestType() {}
-    
-    /**
-     * Gets the value of the url property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUrl() {
-        return url;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public RequestType() {}
 
-    /**
-     * Sets the value of the url property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUrl(String value) {
-        this.url = value;
-    }
+	/**
+	 * Gets the value of the url property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getUrl() {
+		return mUrl;
+	}
 
-    /**
-     * Gets the value of the param property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the param property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getParam().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link RequestType.Param }
-     * 
-     * 
-     */
-    public List<RequestType.Param> getParam() {
-        if (param == null) {
-            param = new ArrayList<RequestType.Param>();
-        }
-        return this.param;
-    }
+	/**
+	 * Sets the value of the url property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setUrl(String value) {
+		mUrl = value;
+	}
 
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;simpleContent>
-     *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
-     *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *     &lt;/extension>
-     *   &lt;/simpleContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    public static class Param implements Parcelable {
-
-        protected String value;
-        protected String name;
-
-        public Param() {}
-        
-        /**
-         * Gets the value of the value property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getValue() {
-            return value;
-        }
-
-        /**
-         * Sets the value of the value property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setValue(String value) {
-            this.value = value;
-        }
-
-        /**
-         * Gets the value of the name property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getName() {
-            return name;
-        }
-
-        /**
-         * Sets the value of the name property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setName(String value) {
-            this.name = value;
-        }
+	/**
+	 * Gets the value of the param property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object.
+	 * This is why there is not a <CODE>set</CODE> method for the param property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getParam().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link RequestType.Param }
+	 * 
+	 * 
+	 */
+	public List<RequestType.Param> getParam() {
+		if (mParam == null) {
+			mParam = new ArrayList<RequestType.Param>();
+		}
+		return mParam;
+	}
 
 
+	/**
+	 * <p>Java class for anonymous complex type.
+	 * 
+	 * <p>The following schema fragment specifies the expected content contained within this class.
+	 * 
+	 * <pre>
+	 * &lt;complexType>
+	 *   &lt;simpleContent>
+	 *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
+	 *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+	 *     &lt;/extension>
+	 *   &lt;/simpleContent>
+	 * &lt;/complexType>
+	 * </pre>
+	 * 
+	 * 
+	 */
+	public static class Param implements Parcelable {
 
-        // **********************************************
-        //  for implementing Parcelable
-        // **********************************************
-        
-        
-    	@Override
-    	public int describeContents() {
-    		return 0;
-    	}
+		protected String	mValue	= "";
+		protected String	mName	= "";
 
-    	@Override
-    	public void writeToParcel(Parcel dest, int flags) {
-    		dest.writeString(value);
-    		dest.writeString(name);
-    	}
+		public Param() {}
 
-    	public static final Parcelable.Creator<Param> CREATOR = new Parcelable.Creator<Param>() {
-    		public Param createFromParcel(Parcel in) {
-    			return new Param(in);
-    		}
+		/**
+		 * Gets the value of the value property.
+		 * 
+		 * @return
+		 *     possible object is
+		 *     {@link String }
+		 *     
+		 */
+		public String getValue() {
+			return mValue;
+		}
 
-    		public Param[] newArray(int size) {
-    			return new Param[size];
-    		}
-    	};
-    	
-    	private Param(Parcel dest) {
-    		value = dest.readString();
-    		name  = dest.readString();
-    	}
-    }
+		/**
+		 * Sets the value of the value property.
+		 * 
+		 * @param value
+		 *     allowed object is
+		 *     {@link String }
+		 *     
+		 */
+		public void setValue(String value) {
+			mValue = value;
+		}
+
+		/**
+		 * Gets the value of the name property.
+		 * 
+		 * @return
+		 *     possible object is
+		 *     {@link String }
+		 *     
+		 */
+		public String getName() {
+			return mName;
+		}
+
+		/**
+		 * Sets the value of the name property.
+		 * 
+		 * @param value
+		 *     allowed object is
+		 *     {@link String }
+		 *     
+		 */
+		public void setName(String value) {
+			mName = value;
+		}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+
+		// **********************************************
+		//  for implementing Parcelable
+		// **********************************************
+
+
+		@Override
+		public int describeContents() {
+			return 0;
+		}
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags) {
+			dest.writeString(mValue);
+			dest.writeString(mName);
+		}
+
+		public static final Parcelable.Creator<Param> CREATOR = new Parcelable.Creator<Param>() {
+			public Param createFromParcel(Parcel in) {
+				return new Param(in);
+			}
+
+			public Param[] newArray(int size) {
+				return new Param[size];
+			}
+		};
+
+		private Param(Parcel dest) {
+			mValue = dest.readString();
+			mName  = dest.readString();
+		}
+	}
+
+
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -217,8 +217,12 @@ public class RequestType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(url);
-	    dest.writeTypedList(param);
+		dest.writeString(mUrl);
+		if (mParam != null && mParam.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mParam);
+		} else
+			dest.writeInt(0);
 	}
 
 	public static final Parcelable.Creator<RequestType> CREATOR = new Parcelable.Creator<RequestType>() {
@@ -230,9 +234,9 @@ public class RequestType implements Parcelable {
 			return new RequestType[size];
 		}
 	};
-	
+
 	private RequestType(Parcel dest) {
-		url = dest.readString();
-	    dest.readTypedList(param, RequestType.Param.CREATOR);
+		mUrl = dest.readString();
+		if (dest.readInt() == 1) dest.readTypedList(mParam, RequestType.Param.CREATOR);
 	}
 }

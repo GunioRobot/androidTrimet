@@ -33,212 +33,212 @@ import android.os.Parcelable;
  */
 public class TimeDistanceType implements Parcelable {
 
-    protected String date;
-    protected String startTime;
-    protected String endTime;
-    protected int duration;
-    protected double distance;
-    protected int numberOfTransfers;
-    protected int numberOfTripLegs;
-    protected int walkingTime;
-    protected int transitTime;
-    protected int waitingTime;
+	protected String	mDate				= "";
+	protected String	mStartTime			= "";
+	protected String	mEndTime			= "";
+	protected int		mDuration			= -2147483648;
+	protected double	mDistance			= -2147483648;
+	protected int		mNumberOfTransfers	= -2147483648;
+	protected int		mNumberOfTripLegs	= -2147483648;
+	protected int		mWalkingTime		= -2147483648;
+	protected int		mTransitTime		= -2147483648;
+	protected int		mWaitingTime		= -2147483648;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public TimeDistanceType() {}
-    
-    /**
-     * Gets the value of the date property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDate() {
-        return date;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public TimeDistanceType() {}
 
-    /**
-     * Sets the value of the date property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDate(String value) {
-        this.date = value;
-    }
+	/**
+	 * Gets the value of the date property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getDate() {
+		return mDate;
+	}
 
-    /**
-     * Gets the value of the startTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getStartTime() {
-        return startTime;
-    }
+	/**
+	 * Sets the value of the date property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setDate(String value) {
+		mDate = value;
+	}
 
-    /**
-     * Sets the value of the startTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setStartTime(String value) {
-        this.startTime = value;
-    }
+	/**
+	 * Gets the value of the startTime property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getStartTime() {
+		return mStartTime;
+	}
 
-    /**
-     * Gets the value of the endTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEndTime() {
-        return endTime;
-    }
+	/**
+	 * Sets the value of the startTime property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setStartTime(String value) {
+		mStartTime = value;
+	}
 
-    /**
-     * Sets the value of the endTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEndTime(String value) {
-        this.endTime = value;
-    }
+	/**
+	 * Gets the value of the endTime property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getEndTime() {
+		return mEndTime;
+	}
 
-    /**
-     * Gets the value of the duration property.
-     * 
-     */
-    public int getDuration() {
-        return duration;
-    }
+	/**
+	 * Sets the value of the endTime property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setEndTime(String value) {
+		mEndTime = value;
+	}
 
-    /**
-     * Sets the value of the duration property.
-     * 
-     */
-    public void setDuration(int value) {
-        this.duration = value;
-    }
+	/**
+	 * Gets the value of the duration property.
+	 * 
+	 */
+	public int getDuration() {
+		return mDuration;
+	}
 
-    /**
-     * Gets the value of the distance property.
-     * 
-     */
-    public double getDistance() {
-        return distance;
-    }
+	/**
+	 * Sets the value of the duration property.
+	 * 
+	 */
+	public void setDuration(int value) {
+		mDuration = value;
+	}
 
-    /**
-     * Sets the value of the distance property.
-     * 
-     */
-    public void setDistance(double value) {
-        this.distance = value;
-    }
+	/**
+	 * Gets the value of the distance property.
+	 * 
+	 */
+	public double getDistance() {
+		return mDistance;
+	}
 
-    /**
-     * Gets the value of the numberOfTransfers property.
-     * 
-     */
-    public int getNumberOfTransfers() {
-        return numberOfTransfers;
-    }
+	/**
+	 * Sets the value of the distance property.
+	 * 
+	 */
+	public void setDistance(double value) {
+		mDistance = value;
+	}
 
-    /**
-     * Sets the value of the numberOfTransfers property.
-     * 
-     */
-    public void setNumberOfTransfers(int value) {
-        this.numberOfTransfers = value;
-    }
+	/**
+	 * Gets the value of the numberOfTransfers property.
+	 * 
+	 */
+	public int getNumberOfTransfers() {
+		return mNumberOfTransfers;
+	}
 
-    /**
-     * Gets the value of the numberOfTripLegs property.
-     * 
-     */
-    public int getNumberOfTripLegs() {
-        return numberOfTripLegs;
-    }
+	/**
+	 * Sets the value of the numberOfTransfers property.
+	 * 
+	 */
+	public void setNumberOfTransfers(int value) {
+		mNumberOfTransfers = value;
+	}
 
-    /**
-     * Sets the value of the numberOfTripLegs property.
-     * 
-     */
-    public void setNumberOfTripLegs(int value) {
-        this.numberOfTripLegs = value;
-    }
+	/**
+	 * Gets the value of the numberOfTripLegs property.
+	 * 
+	 */
+	public int getNumberOfTripLegs() {
+		return mNumberOfTripLegs;
+	}
 
-    /**
-     * Gets the value of the walkingTime property.
-     * 
-     */
-    public int getWalkingTime() {
-        return walkingTime;
-    }
+	/**
+	 * Sets the value of the numberOfTripLegs property.
+	 * 
+	 */
+	public void setNumberOfTripLegs(int value) {
+		mNumberOfTripLegs = value;
+	}
 
-    /**
-     * Sets the value of the walkingTime property.
-     * 
-     */
-    public void setWalkingTime(int value) {
-        this.walkingTime = value;
-    }
+	/**
+	 * Gets the value of the walkingTime property.
+	 * 
+	 */
+	public int getWalkingTime() {
+		return mWalkingTime;
+	}
 
-    /**
-     * Gets the value of the transitTime property.
-     * 
-     */
-    public int getTransitTime() {
-        return transitTime;
-    }
+	/**
+	 * Sets the value of the walkingTime property.
+	 * 
+	 */
+	public void setWalkingTime(int value) {
+		mWalkingTime = value;
+	}
 
-    /**
-     * Sets the value of the transitTime property.
-     * 
-     */
-    public void setTransitTime(int value) {
-        this.transitTime = value;
-    }
+	/**
+	 * Gets the value of the transitTime property.
+	 * 
+	 */
+	public int getTransitTime() {
+		return mTransitTime;
+	}
 
-    /**
-     * Gets the value of the waitingTime property.
-     * 
-     */
-    public int getWaitingTime() {
-        return waitingTime;
-    }
+	/**
+	 * Sets the value of the transitTime property.
+	 * 
+	 */
+	public void setTransitTime(int value) {
+		mTransitTime = value;
+	}
 
-    /**
-     * Sets the value of the waitingTime property.
-     * 
-     */
-    public void setWaitingTime(int value) {
-        this.waitingTime = value;
-    }
+	/**
+	 * Gets the value of the waitingTime property.
+	 * 
+	 */
+	public int getWaitingTime() {
+		return mWaitingTime;
+	}
+
+	/**
+	 * Sets the value of the waitingTime property.
+	 * 
+	 */
+	public void setWaitingTime(int value) {
+		mWaitingTime = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -246,16 +246,16 @@ public class TimeDistanceType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(date             );
-		dest.writeString(startTime        );
-		dest.writeString(endTime          );
-		dest.writeInt   (duration         );
-		dest.writeDouble(distance         );
-		dest.writeInt   (numberOfTransfers);
-		dest.writeInt   (numberOfTripLegs );
-		dest.writeInt   (walkingTime      );
-		dest.writeInt   (transitTime      );
-		dest.writeInt   (waitingTime      );
+		dest.writeString(mDate             );
+		dest.writeString(mStartTime        );
+		dest.writeString(mEndTime          );
+		dest.writeInt   (mDuration         );
+		dest.writeDouble(mDistance         );
+		dest.writeInt   (mNumberOfTransfers);
+		dest.writeInt   (mNumberOfTripLegs );
+		dest.writeInt   (mWalkingTime      );
+		dest.writeInt   (mTransitTime      );
+		dest.writeInt   (mWaitingTime      );
 	}
 
 	public static final Parcelable.Creator<TimeDistanceType> CREATOR = new Parcelable.Creator<TimeDistanceType>() {
@@ -267,17 +267,17 @@ public class TimeDistanceType implements Parcelable {
 			return new TimeDistanceType[size];
 		}
 	};
-	
+
 	private TimeDistanceType(Parcel dest) {
-		date              = dest.readString();
-	    startTime         = dest.readString();
-	    endTime           = dest.readString();
-	    duration          = dest.readInt();
-	    distance          = dest.readDouble();
-	    numberOfTransfers = dest.readInt();
-	    numberOfTripLegs  = dest.readInt();
-	    walkingTime       = dest.readInt();
-	    transitTime       = dest.readInt();
-	    waitingTime       = dest.readInt();
+		mDate              = dest.readString();
+		mStartTime         = dest.readString();
+		mEndTime           = dest.readString();
+		mDuration          = dest.readInt();
+		mDistance          = dest.readDouble();
+		mNumberOfTransfers = dest.readInt();
+		mNumberOfTripLegs  = dest.readInt();
+		mWalkingTime       = dest.readInt();
+		mTransitTime       = dest.readInt();
+		mWaitingTime       = dest.readInt();
 	}
 }

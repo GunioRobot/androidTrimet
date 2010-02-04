@@ -24,43 +24,43 @@ import android.os.Parcelable;
  */
 public class WalkingLegType extends LegType implements Parcelable {
 
-    protected String direction;
+	protected String mDirection = "";
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public WalkingLegType() {}
-    
-    /**
-     * Gets the value of the direction property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDirection() {
-        return direction;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public WalkingLegType() {}
 
-    /**
-     * Sets the value of the direction property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDirection(String value) {
-        this.direction = value;
-    }
+	/**
+	 * Gets the value of the direction property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getDirection() {
+		return mDirection;
+	}
+
+	/**
+	 * Sets the value of the direction property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setDirection(String value) {
+		mDirection = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -68,14 +68,35 @@ public class WalkingLegType extends LegType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(direction);
-		dest.writeString(id       );
-	    dest.writeString(mode     );
-		dest.writeParcelable(timeDistance, flags);
-		dest.writeParcelable(lineURL     , flags);
-	    dest.writeParcelable(from        , flags);
-	    dest.writeParcelable(to          , flags);
-	    dest.writeString(order.value());
+		dest.writeString(mDirection);
+		dest.writeString(mId       );
+		dest.writeString(mMode     );
+
+		if (mTimeDistance != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mTimeDistance, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mLineURL != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mLineURL, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mFrom != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mFrom, flags);
+		} else
+			dest.writeInt(0);
+
+		if (mTo != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mTo, flags);
+		} else
+			dest.writeInt(0);
+
+		dest.writeString(mOrder.value());
 	}
 
 	public static final Parcelable.Creator<WalkingLegType> CREATOR = new Parcelable.Creator<WalkingLegType>() {
@@ -87,15 +108,15 @@ public class WalkingLegType extends LegType implements Parcelable {
 			return new WalkingLegType[size];
 		}
 	};
-	
+
 	private WalkingLegType(Parcel dest) {
-		direction = dest.readString();
-		id        = dest.readString();
-		mode      = dest.readString();
-		timeDistance = (TimeDistanceType) dest.readParcelable(null);
-		lineURL      = (GeoURLType      ) dest.readParcelable(null);
-		from         = (PointType       ) dest.readParcelable(null);
-		to           = (PointType       ) dest.readParcelable(null);
-		order = OrderType.fromValue(dest.readString());
+		mDirection = dest.readString();
+		mId        = dest.readString();
+		mMode      = dest.readString();
+		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(null);
+		if (dest.readInt() == 1) mLineURL      = (GeoURLType      ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mFrom         = (PointType       ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mTo           = (PointType       ) dest.readParcelable(null);
+		mOrder = OrderType.fromValue(dest.readString());
 	}
 }

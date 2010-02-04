@@ -20,27 +20,27 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  */
 public enum OrderType {
 
-    START("start"),
-    TRANSFER("transfer"),
-    THRU_ROUTE("thru-route"),
-    END("end");
+	START("start"),
+	TRANSFER("transfer"),
+	THRU_ROUTE("thru-route"),
+	END("end");
 
-    private final String value;
+	private final String mValue;
 
-    OrderType(String v) {
-        value = v;
-    }
+	OrderType(String v) {
+		mValue = v;
+	}
 
-    public String value() {
-        return value;
-    }
+	public String value() {
+		return mValue;
+	}
 
-    public static OrderType fromValue(String v) {
-        for (OrderType c: OrderType.values()) {
-            if (c.value.equals(v)) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException(v);
-    }
+	public static OrderType fromValue(String v) {
+		for (OrderType c: OrderType.values()) {
+			if (c.mValue.equals(v)) {
+				return c;
+			}
+		}
+		throw new IllegalArgumentException(v);
+	}
 }

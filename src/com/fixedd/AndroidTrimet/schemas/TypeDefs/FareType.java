@@ -28,98 +28,98 @@ import android.os.Parcelable;
  * 
  */
 public class FareType implements Parcelable {
-    protected String regular;
-    protected List<SpecialFareType> special;
-    protected String provider;
+	protected String				mRegular	= "";
+	protected List<SpecialFareType>	mSpecial;
+	protected String				mProvider	= "";
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public FareType() {}
-    
-    /**
-     * Gets the value of the regular property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRegular() {
-        return regular;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public FareType() {}
 
-    /**
-     * Sets the value of the regular property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRegular(String value) {
-        this.regular = value;
-    }
+	/**
+	 * Gets the value of the regular property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getRegular() {
+		return mRegular;
+	}
 
-    /**
-     * Gets the value of the special property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the special property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getSpecial().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link SpecialFareType }
-     * 
-     * 
-     */
-    public List<SpecialFareType> getSpecial() {
-        if (special == null) {
-            special = new ArrayList<SpecialFareType>();
-        }
-        return this.special;
-    }
+	/**
+	 * Sets the value of the regular property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setRegular(String value) {
+		mRegular = value;
+	}
 
-    /**
-     * Gets the value of the provider property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getProvider() {
-        return provider;
-    }
+	/**
+	 * Gets the value of the special property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object.
+	 * This is why there is not a <CODE>set</CODE> method for the special property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getSpecial().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link SpecialFareType }
+	 * 
+	 * 
+	 */
+	public List<SpecialFareType> getSpecial() {
+		if (mSpecial == null) {
+			mSpecial = new ArrayList<SpecialFareType>();
+		}
+		return mSpecial;
+	}
 
-    /**
-     * Sets the value of the provider property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setProvider(String value) {
-        this.provider = value;
-    }
+	/**
+	 * Gets the value of the provider property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getProvider() {
+		return mProvider;
+	}
+
+	/**
+	 * Sets the value of the provider property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setProvider(String value) {
+		mProvider = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -127,9 +127,13 @@ public class FareType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString   (regular );
-	    dest.writeTypedList(special );
-	    dest.writeString   (provider);
+		dest.writeString(mRegular);
+		if (mSpecial != null && mSpecial.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mSpecial);
+		} else 
+			dest.writeInt(0);
+		dest.writeString(mProvider);
 	}
 
 	public static final Parcelable.Creator<FareType> CREATOR = new Parcelable.Creator<FareType>() {
@@ -141,10 +145,10 @@ public class FareType implements Parcelable {
 			return new FareType[size];
 		}
 	};
-	
+
 	private FareType(Parcel dest) {
-		regular = dest.readString();
-	    dest.readTypedList(special, SpecialFareType.CREATOR);
-	    provider = dest.readString();
+		mRegular = dest.readString();
+		if (dest.readInt() == 1) dest.readTypedList(mSpecial, SpecialFareType.CREATOR);
+		mProvider = dest.readString();
 	}
 }

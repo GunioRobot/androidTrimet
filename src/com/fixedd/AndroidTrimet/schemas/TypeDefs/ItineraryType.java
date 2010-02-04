@@ -32,204 +32,203 @@ import android.os.Parcelable;
  * 
  */
 public class ItineraryType implements Parcelable {
+	protected TimeDistanceType		mTimeDistance;
+	protected FareType				mFare;
+	protected RouteSummaryType		mRoutes;
+	protected List<LegType>			mLeg;
+	protected List<GeoRouteType>	mGeo;
+	protected String				mId			= "";
+	protected String				mViaRoute	= "";
 
-    protected TimeDistanceType timeDistance;
-    protected FareType fare;
-    protected RouteSummaryType routes;
-    protected List<LegType> leg;
-    protected List<GeoRouteType> geo;
-    protected String id;
-    protected String viaRoute;
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public ItineraryType() {}
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public ItineraryType() {}
-    
-    /**
-     * Gets the value of the timeDistance property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TimeDistanceType }
-     *     
-     */
-    public TimeDistanceType getTimeDistance() {
-        return timeDistance;
-    }
+	/**
+	 * Gets the value of the timeDistance property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link TimeDistanceType }
+	 *     
+	 */
+	public TimeDistanceType getTimeDistance() {
+		return mTimeDistance;
+	}
 
-    /**
-     * Sets the value of the timeDistance property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TimeDistanceType }
-     *     
-     */
-    public void setTimeDistance(TimeDistanceType value) {
-        this.timeDistance = value;
-    }
+	/**
+	 * Sets the value of the timeDistance property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link TimeDistanceType }
+	 *     
+	 */
+	public void setTimeDistance(TimeDistanceType value) {
+		mTimeDistance = value;
+	}
 
-    /**
-     * Gets the value of the fare property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FareType }
-     *     
-     */
-    public FareType getFare() {
-        return fare;
-    }
+	/**
+	 * Gets the value of the fare property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link FareType }
+	 *     
+	 */
+	public FareType getFare() {
+		return mFare;
+	}
 
-    /**
-     * Sets the value of the fare property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FareType }
-     *     
-     */
-    public void setFare(FareType value) {
-        this.fare = value;
-    }
+	/**
+	 * Sets the value of the fare property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link FareType }
+	 *     
+	 */
+	public void setFare(FareType value) {
+		mFare = value;
+	}
 
-    /**
-     * Gets the value of the routes property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RouteSummaryType }
-     *     
-     */
-    public RouteSummaryType getRoutes() {
-        return routes;
-    }
+	/**
+	 * Gets the value of the routes property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link RouteSummaryType }
+	 *     
+	 */
+	public RouteSummaryType getRoutes() {
+		return mRoutes;
+	}
 
-    /**
-     * Sets the value of the routes property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RouteSummaryType }
-     *     
-     */
-    public void setRoutes(RouteSummaryType value) {
-        this.routes = value;
-    }
+	/**
+	 * Sets the value of the routes property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link RouteSummaryType }
+	 *     
+	 */
+	public void setRoutes(RouteSummaryType value) {
+		mRoutes = value;
+	}
 
-    /**
-     * Gets the value of the leg property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the leg property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getLeg().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link LegType }
-     * 
-     * 
-     */
-    public List<LegType> getLeg() {
-        if (leg == null) {
-            leg = new ArrayList<LegType>();
-        }
-        return this.leg;
-    }
+	/**
+	 * Gets the value of the leg property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object.
+	 * This is why there is not a <CODE>set</CODE> method for the leg property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getLeg().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link LegType }
+	 * 
+	 * 
+	 */
+	public List<LegType> getLeg() {
+		if (mLeg == null) {
+			mLeg = new ArrayList<LegType>();
+		}
+		return mLeg;
+	}
 
-    /**
-     * Gets the value of the geo property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the geo property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getGeo().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link GeoRouteType }
-     * 
-     * 
-     */
-    public List<GeoRouteType> getGeo() {
-        if (geo == null) {
-            geo = new ArrayList<GeoRouteType>();
-        }
-        return this.geo;
-    }
+	/**
+	 * Gets the value of the geo property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object.
+	 * This is why there is not a <CODE>set</CODE> method for the geo property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getGeo().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link GeoRouteType }
+	 * 
+	 * 
+	 */
+	public List<GeoRouteType> getGeo() {
+		if (mGeo == null) {
+			mGeo = new ArrayList<GeoRouteType>();
+		}
+		return mGeo;
+	}
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getId() {
+		return mId;
+	}
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setId(String value) {
+		mId = value;
+	}
 
-    /**
-     * Gets the value of the viaRoute property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getViaRoute() {
-        return viaRoute;
-    }
+	/**
+	 * Gets the value of the viaRoute property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getViaRoute() {
+		return mViaRoute;
+	}
 
-    /**
-     * Sets the value of the viaRoute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setViaRoute(String value) {
-        this.viaRoute = value;
-    }
+	/**
+	 * Sets the value of the viaRoute property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setViaRoute(String value) {
+		mViaRoute = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -237,13 +236,38 @@ public class ItineraryType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeParcelable(timeDistance, flags);
-		dest.writeParcelable(fare        , flags);
-		dest.writeParcelable(routes      , flags);
-		dest.writeTypedList(leg     );
-		dest.writeTypedList(geo     );
-	    dest.writeString   (id      );
-	    dest.writeString   (viaRoute);
+		if (mTimeDistance != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mTimeDistance, flags);
+		} else 
+			dest.writeInt(0);
+
+		if (mFare != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mFare, flags);
+		} else 
+			dest.writeInt(0);
+
+		if (mRoutes != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mRoutes, flags);
+		} else 
+			dest.writeInt(0);
+
+		if (mLeg != null && mLeg.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mLeg);
+		} else 
+			dest.writeInt(0);
+
+		if (mGeo != null && mGeo.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mGeo);
+		} else 
+			dest.writeInt(0);
+
+		dest.writeString(mId      );
+		dest.writeString(mViaRoute);
 	}
 
 	public static final Parcelable.Creator<ItineraryType> CREATOR = new Parcelable.Creator<ItineraryType>() {
@@ -255,14 +279,14 @@ public class ItineraryType implements Parcelable {
 			return new ItineraryType[size];
 		}
 	};
-	
+
 	public ItineraryType(Parcel dest) {
-		timeDistance = (TimeDistanceType) dest.readParcelable(null);
-	    fare         = (FareType        ) dest.readParcelable(null);
-	    routes       = (RouteSummaryType) dest.readParcelable(null);
-	    dest.readTypedList(leg, LegType     .CREATOR);
-	    dest.readTypedList(geo, GeoRouteType.CREATOR);
-	    id       = dest.readString();
-	    viaRoute = dest.readString();
+		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(null);
+		if (dest.readInt() == 1) mFare         = (FareType        ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mRoutes       = (RouteSummaryType) dest.readParcelable(null);
+		if (dest.readInt() == 1) dest.readTypedList(mLeg, LegType     .CREATOR);
+		if (dest.readInt() == 1) dest.readTypedList(mGeo, GeoRouteType.CREATOR);
+		mId       = dest.readString();
+		mViaRoute = dest.readString();
 	}
 }

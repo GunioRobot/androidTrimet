@@ -22,60 +22,60 @@ import android.os.Parcelable;
  */
 public class OrderedStringsType implements Parcelable {
 
-    protected String value;
-    protected int id;
+	protected String	mValue	= "";
+	protected int		mId		= -2147483648;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public OrderedStringsType() {}
-    
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getValue() {
-        return value;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public OrderedStringsType() {}
 
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
+	/**
+	 * Gets the value of the value property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getValue() {
+		return mValue;
+	}
 
-    /**
-     * Gets the value of the id property.
-     * 
-     */
-    public int getId() {
-        return id;
-    }
+	/**
+	 * Sets the value of the value property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setValue(String value) {
+		mValue = value;
+	}
 
-    /**
-     * Sets the value of the id property.
-     * 
-     */
-    public void setId(int value) {
-        this.id = value;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 */
+	public int getId() {
+		return mId;
+	}
+
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 */
+	public void setId(int value) {
+		mId = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -83,8 +83,8 @@ public class OrderedStringsType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(value);
-		dest.writeInt   (id   );
+		dest.writeString(mValue);
+		dest.writeInt   (mId   );
 	}
 
 	public static final Parcelable.Creator<OrderedStringsType> CREATOR = new Parcelable.Creator<OrderedStringsType>() {
@@ -96,9 +96,9 @@ public class OrderedStringsType implements Parcelable {
 			return new OrderedStringsType[size];
 		}
 	};
-	
+
 	private OrderedStringsType(Parcel dest) {
-		value = dest.readString();
-	    id    = dest.readInt   ();
+		mValue = dest.readString();
+		mId    = dest.readInt   ();
 	}
 }

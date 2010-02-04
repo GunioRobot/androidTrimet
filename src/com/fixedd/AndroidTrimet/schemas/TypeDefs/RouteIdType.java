@@ -26,93 +26,93 @@ import android.os.Parcelable;
  */
 public class RouteIdType implements Parcelable {
 
-    protected String number;
-    protected String internalNumber;
-    protected String direction;
+	protected String	mNumber			= "";
+	protected String	mInternalNumber	= "";
+	protected String	mDirection		= "";
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public RouteIdType() {}
-    
-    /**
-     * Gets the value of the number property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNumber() {
-        return number;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public RouteIdType() {}
 
-    /**
-     * Sets the value of the number property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNumber(String value) {
-        this.number = value;
-    }
+	/**
+	 * Gets the value of the number property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getNumber() {
+		return mNumber;
+	}
 
-    /**
-     * Gets the value of the internalNumber property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getInternalNumber() {
-        return internalNumber;
-    }
+	/**
+	 * Sets the value of the number property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setNumber(String value) {
+		mNumber = value;
+	}
 
-    /**
-     * Sets the value of the internalNumber property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setInternalNumber(String value) {
-        this.internalNumber = value;
-    }
+	/**
+	 * Gets the value of the internalNumber property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getInternalNumber() {
+		return mInternalNumber;
+	}
 
-    /**
-     * Gets the value of the direction property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDirection() {
-        return direction;
-    }
+	/**
+	 * Sets the value of the internalNumber property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setInternalNumber(String value) {
+		mInternalNumber = value;
+	}
 
-    /**
-     * Sets the value of the direction property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDirection(String value) {
-        this.direction = value;
-    }
+	/**
+	 * Gets the value of the direction property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getDirection() {
+		return mDirection;
+	}
+
+	/**
+	 * Sets the value of the direction property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setDirection(String value) {
+		mDirection = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -120,9 +120,9 @@ public class RouteIdType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(number        );
-	    dest.writeString(internalNumber);
-		dest.writeString(direction     );
+		dest.writeString(mNumber        );
+		dest.writeString(mInternalNumber);
+		dest.writeString(mDirection     );
 	}
 
 	public static final Parcelable.Creator<RouteIdType> CREATOR = new Parcelable.Creator<RouteIdType>() {
@@ -134,10 +134,10 @@ public class RouteIdType implements Parcelable {
 			return new RouteIdType[size];
 		}
 	};
-	
+
 	private RouteIdType(Parcel dest) {
-		number         = dest.readString();
-	    internalNumber = dest.readString();
-	    direction      = dest.readString();
+		mNumber         = dest.readString();
+		mInternalNumber = dest.readString();
+		mDirection      = dest.readString();
 	}
 }
