@@ -32,90 +32,90 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.OrderedStringsType;
  */
 public class WalkingDirectionsType implements Parcelable {
 
-    protected List<OrderedStringsType> turn;
-    protected double distance;
-    protected Integer count;
+	protected List<OrderedStringsType>	mTurn;
+	protected double					mDistance	= -2147483648;
+	protected int						mCount		= -2147483648;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public WalkingDirectionsType() {}
-    
-    /**
-     * Gets the value of the turn property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the turn property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getTurn().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link OrderedStringsType }
-     * 
-     * 
-     */
-    public List<OrderedStringsType> getTurn() {
-        if (turn == null) {
-            turn = new ArrayList<OrderedStringsType>();
-        }
-        return this.turn;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public WalkingDirectionsType() {}
 
-    /**
-     * Gets the value of the distance property.
-     * 
-     */
-    public double getDistance() {
-        return distance;
-    }
+	/**
+	 * Gets the value of the turn property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object.
+	 * This is why there is not a <CODE>set</CODE> method for the turn property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getTurn().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link OrderedStringsType }
+	 * 
+	 * 
+	 */
+	public List<OrderedStringsType> getTurn() {
+		if (mTurn == null) {
+			mTurn = new ArrayList<OrderedStringsType>();
+		}
+		return mTurn;
+	}
 
-    /**
-     * Sets the value of the distance property.
-     * 
-     */
-    public void setDistance(double value) {
-        this.distance = value;
-    }
+	/**
+	 * Gets the value of the distance property.
+	 * 
+	 */
+	public double getDistance() {
+		return mDistance;
+	}
 
-    /**
-     * Gets the value of the count property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getCount() {
-        return count;
-    }
+	/**
+	 * Sets the value of the distance property.
+	 * 
+	 */
+	public void setDistance(double value) {
+		mDistance = value;
+	}
 
-    /**
-     * Sets the value of the count property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setCount(Integer value) {
-        this.count = value;
-    }
+	/**
+	 * Gets the value of the count property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link Integer }
+	 *     
+	 */
+	public int getCount() {
+		return mCount;
+	}
+
+	/**
+	 * Sets the value of the count property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link Integer }
+	 *     
+	 */
+	public void setCount(Integer value) {
+		mCount = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -123,9 +123,13 @@ public class WalkingDirectionsType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(turn    );
-	    dest.writeDouble   (distance);
-	    dest.writeInt      (count   );
+		if (mTurn != null && mTurn.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mTurn);
+		} else
+			dest.writeInt(0);
+		dest.writeDouble(mDistance);
+		dest.writeInt   (mCount   );
 	}
 
 	public static final Parcelable.Creator<WalkingDirectionsType> CREATOR = new Parcelable.Creator<WalkingDirectionsType>() {
@@ -137,10 +141,10 @@ public class WalkingDirectionsType implements Parcelable {
 			return new WalkingDirectionsType[size];
 		}
 	};
-	
+
 	private WalkingDirectionsType(Parcel dest) {
-		dest.readTypedList(turn, OrderedStringsType.CREATOR);
-		distance = dest.readDouble();
-		count    = dest.readInt();
+		if (dest.readInt() == 1) dest.readTypedList(mTurn, OrderedStringsType.CREATOR);
+		mDistance = dest.readDouble();
+		mCount    = dest.readInt();
 	}
 }

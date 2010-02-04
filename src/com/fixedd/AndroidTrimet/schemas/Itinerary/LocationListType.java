@@ -32,98 +32,98 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.PointType;
  */
 public class LocationListType implements Parcelable {
 
-    protected String query;
-    protected List<PointType> location;
-    protected Integer count;
+	protected String			mQuery	= "";
+	protected List<PointType>	mLocation;
+	protected int				mCount	= -2147483648;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public LocationListType() {}
-    
-    /**
-     * Gets the value of the query property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getQuery() {
-        return query;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public LocationListType() {}
 
-    /**
-     * Sets the value of the query property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setQuery(String value) {
-        this.query = value;
-    }
+	/**
+	 * Gets the value of the query property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getQuery() {
+		return mQuery;
+	}
 
-    /**
-     * Gets the value of the location property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the location property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getLocation().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link PointType }
-     * 
-     * 
-     */
-    public List<PointType> getLocation() {
-        if (location == null) {
-            location = new ArrayList<PointType>();
-        }
-        return this.location;
-    }
+	/**
+	 * Sets the value of the query property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setQuery(String value) {
+		mQuery = value;
+	}
 
-    /**
-     * Gets the value of the count property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getCount() {
-        return count;
-    }
+	/**
+	 * Gets the value of the location property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object.
+	 * This is why there is not a <CODE>set</CODE> method for the location property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getLocation().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link PointType }
+	 * 
+	 * 
+	 */
+	public List<PointType> getLocation() {
+		if (mLocation == null) {
+			mLocation = new ArrayList<PointType>();
+		}
+		return mLocation;
+	}
 
-    /**
-     * Sets the value of the count property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setCount(Integer value) {
-        this.count = value;
-    }
+	/**
+	 * Gets the value of the count property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link Integer }
+	 *     
+	 */
+	public int getCount() {
+		return mCount;
+	}
+
+	/**
+	 * Sets the value of the count property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link Integer }
+	 *     
+	 */
+	public void setCount(int value) {
+		mCount = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -131,9 +131,13 @@ public class LocationListType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString   (query   );
-	    dest.writeTypedList(location);
-	    dest.writeInt      (count   );
+		dest.writeString(mQuery);
+		if (mLocation != null && mLocation.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mLocation);
+		} else
+			dest.writeInt(0);
+		dest.writeInt(mCount);
 	}
 
 	public static final Parcelable.Creator<LocationListType> CREATOR = new Parcelable.Creator<LocationListType>() {
@@ -145,10 +149,10 @@ public class LocationListType implements Parcelable {
 			return new LocationListType[size];
 		}
 	};
-	
+
 	private LocationListType(Parcel dest) {
-		query = dest.readString();
-	    dest.readTypedList(location, PointType.CREATOR);
-	    count = dest.readInt();
+		mQuery = dest.readString();
+		if (dest.readInt() == 1) dest.readTypedList(mLocation, PointType.CREATOR);
+		mCount = dest.readInt();
 	}
 }

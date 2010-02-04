@@ -39,318 +39,318 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.RequestType;
  */
 public class ResponseType implements Parcelable {
 
-    protected String date;
-    protected String time;
-    protected RequestType request;
-    protected PointType from;
-    protected PointType to;
-    protected ItinerariesType itineraries;
-    protected LocationListType locations;
-    protected LocationListType fromList;
-    protected LocationListType toList;
-    protected WalkingDirectionsType walkingDirections;
-    protected ErrorType error;
-    protected Boolean success;
+	protected String				mDate				= "";
+	protected String				mTime				= "";
+	protected RequestType			mRequest;
+	protected PointType				mFrom;
+	protected PointType				mTo;
+	protected ItinerariesType		mItineraries;
+	protected LocationListType		mLocations;
+	protected LocationListType		mFromList;
+	protected LocationListType		mToList;
+	protected WalkingDirectionsType	mWalkingDirections;
+	protected ErrorType				mError;
+	protected boolean				mSuccess			= false;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public ResponseType() {}
-    
-    /**
-     * Gets the value of the date property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDate() {
-        return date;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public ResponseType() {}
 
-    /**
-     * Sets the value of the date property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDate(String value) {
-        this.date = value;
-    }
+	/**
+	 * Gets the value of the date property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getDate() {
+		return mDate;
+	}
 
-    /**
-     * Gets the value of the time property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTime() {
-        return time;
-    }
+	/**
+	 * Sets the value of the date property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setDate(String value) {
+		mDate = value;
+	}
 
-    /**
-     * Sets the value of the time property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTime(String value) {
-        this.time = value;
-    }
+	/**
+	 * Gets the value of the time property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link String }
+	 *     
+	 */
+	public String getTime() {
+		return mTime;
+	}
 
-    /**
-     * Gets the value of the request property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RequestType }
-     *     
-     */
-    public RequestType getRequest() {
-        return request;
-    }
+	/**
+	 * Sets the value of the time property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link String }
+	 *     
+	 */
+	public void setTime(String value) {
+		mTime = value;
+	}
 
-    /**
-     * Sets the value of the request property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RequestType }
-     *     
-     */
-    public void setRequest(RequestType value) {
-        this.request = value;
-    }
+	/**
+	 * Gets the value of the request property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link RequestType }
+	 *     
+	 */
+	public RequestType getRequest() {
+		return mRequest;
+	}
 
-    /**
-     * Gets the value of the from property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PointType }
-     *     
-     */
-    public PointType getFrom() {
-        return from;
-    }
+	/**
+	 * Sets the value of the request property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link RequestType }
+	 *     
+	 */
+	public void setRequest(RequestType value) {
+		mRequest = value;
+	}
 
-    /**
-     * Sets the value of the from property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PointType }
-     *     
-     */
-    public void setFrom(PointType value) {
-        this.from = value;
-    }
+	/**
+	 * Gets the value of the from property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link PointType }
+	 *     
+	 */
+	public PointType getFrom() {
+		return mFrom;
+	}
 
-    /**
-     * Gets the value of the to property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PointType }
-     *     
-     */
-    public PointType getTo() {
-        return to;
-    }
+	/**
+	 * Sets the value of the from property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link PointType }
+	 *     
+	 */
+	public void setFrom(PointType value) {
+		mFrom = value;
+	}
 
-    /**
-     * Sets the value of the to property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PointType }
-     *     
-     */
-    public void setTo(PointType value) {
-        this.to = value;
-    }
+	/**
+	 * Gets the value of the to property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link PointType }
+	 *     
+	 */
+	public PointType getTo() {
+		return mTo;
+	}
 
-    /**
-     * Gets the value of the itineraries property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ItinerariesType }
-     *     
-     */
-    public ItinerariesType getItineraries() {
-        return itineraries;
-    }
+	/**
+	 * Sets the value of the to property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link PointType }
+	 *     
+	 */
+	public void setTo(PointType value) {
+		mTo = value;
+	}
 
-    /**
-     * Sets the value of the itineraries property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ItinerariesType }
-     *     
-     */
-    public void setItineraries(ItinerariesType value) {
-        this.itineraries = value;
-    }
+	/**
+	 * Gets the value of the itineraries property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link ItinerariesType }
+	 *     
+	 */
+	public ItinerariesType getItineraries() {
+		return mItineraries;
+	}
 
-    /**
-     * Gets the value of the locations property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocationListType }
-     *     
-     */
-    public LocationListType getLocations() {
-        return locations;
-    }
+	/**
+	 * Sets the value of the itineraries property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link ItinerariesType }
+	 *     
+	 */
+	public void setItineraries(ItinerariesType value) {
+		mItineraries = value;
+	}
 
-    /**
-     * Sets the value of the locations property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocationListType }
-     *     
-     */
-    public void setLocations(LocationListType value) {
-        this.locations = value;
-    }
+	/**
+	 * Gets the value of the locations property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link LocationListType }
+	 *     
+	 */
+	public LocationListType getLocations() {
+		return mLocations;
+	}
 
-    /**
-     * Gets the value of the fromList property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocationListType }
-     *     
-     */
-    public LocationListType getFromList() {
-        return fromList;
-    }
+	/**
+	 * Sets the value of the locations property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link LocationListType }
+	 *     
+	 */
+	public void setLocations(LocationListType value) {
+		mLocations = value;
+	}
 
-    /**
-     * Sets the value of the fromList property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocationListType }
-     *     
-     */
-    public void setFromList(LocationListType value) {
-        this.fromList = value;
-    }
+	/**
+	 * Gets the value of the fromList property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link LocationListType }
+	 *     
+	 */
+	public LocationListType getFromList() {
+		return mFromList;
+	}
 
-    /**
-     * Gets the value of the toList property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocationListType }
-     *     
-     */
-    public LocationListType getToList() {
-        return toList;
-    }
+	/**
+	 * Sets the value of the fromList property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link LocationListType }
+	 *     
+	 */
+	public void setFromList(LocationListType value) {
+		mFromList = value;
+	}
 
-    /**
-     * Sets the value of the toList property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocationListType }
-     *     
-     */
-    public void setToList(LocationListType value) {
-        this.toList = value;
-    }
+	/**
+	 * Gets the value of the toList property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link LocationListType }
+	 *     
+	 */
+	public LocationListType getToList() {
+		return mToList;
+	}
 
-    /**
-     * Gets the value of the walkingDirections property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link WalkingDirectionsType }
-     *     
-     */
-    public WalkingDirectionsType getWalkingDirections() {
-        return walkingDirections;
-    }
+	/**
+	 * Sets the value of the toList property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link LocationListType }
+	 *     
+	 */
+	public void setToList(LocationListType value) {
+		mToList = value;
+	}
 
-    /**
-     * Sets the value of the walkingDirections property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WalkingDirectionsType }
-     *     
-     */
-    public void setWalkingDirections(WalkingDirectionsType value) {
-        this.walkingDirections = value;
-    }
+	/**
+	 * Gets the value of the walkingDirections property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link WalkingDirectionsType }
+	 *     
+	 */
+	public WalkingDirectionsType getWalkingDirections() {
+		return mWalkingDirections;
+	}
 
-    /**
-     * Gets the value of the error property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ErrorType }
-     *     
-     */
-    public ErrorType getError() {
-        return error;
-    }
+	/**
+	 * Sets the value of the walkingDirections property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link WalkingDirectionsType }
+	 *     
+	 */
+	public void setWalkingDirections(WalkingDirectionsType value) {
+		mWalkingDirections = value;
+	}
 
-    /**
-     * Sets the value of the error property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ErrorType }
-     *     
-     */
-    public void setError(ErrorType value) {
-        this.error = value;
-    }
+	/**
+	 * Gets the value of the error property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link ErrorType }
+	 *     
+	 */
+	public ErrorType getError() {
+		return mError;
+	}
 
-    /**
-     * Gets the value of the success property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isSuccess() {
-        return success;
-    }
+	/**
+	 * Sets the value of the error property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link ErrorType }
+	 *     
+	 */
+	public void setError(ErrorType value) {
+		mError = value;
+	}
 
-    /**
-     * Sets the value of the success property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setSuccess(Boolean value) {
-        this.success = value;
-    }
+	/**
+	 * Gets the value of the success property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link Boolean }
+	 *     
+	 */
+	public boolean isSuccess() {
+		return mSuccess;
+	}
+
+	/**
+	 * Sets the value of the success property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link Boolean }
+	 *     
+	 */
+	public void setSuccess(boolean value) {
+		mSuccess = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -358,18 +358,54 @@ public class ResponseType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(date);
-		dest.writeString(time);
-	    dest.writeParcelable(request          , flags);
-	    dest.writeParcelable(from             , flags);
-	    dest.writeParcelable(to               , flags);
-	    dest.writeParcelable(itineraries      , flags);
-	    dest.writeParcelable(locations        , flags);
-	    dest.writeParcelable(fromList         , flags);
-	    dest.writeParcelable(toList           , flags);
-	    dest.writeParcelable(walkingDirections, flags);
-	    dest.writeParcelable(error            , flags);
-	    dest.writeString(Boolean.toString(success));
+		dest.writeString(mDate);
+		dest.writeString(mTime);
+		if (mRequest != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mRequest, flags);
+		} else
+			dest.writeInt(0);
+		if (mFrom != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mFrom, flags);
+		} else
+			dest.writeInt(0);
+		if (mTo != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mTo, flags);
+		} else
+			dest.writeInt(0);
+		if (mItineraries != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mItineraries, flags);
+		} else 
+			dest.writeInt(0);
+		if (mLocations != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mLocations, flags);
+		} else 
+			dest.writeInt(0);
+		if (mFromList != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mFromList, flags);
+		} else 
+			dest.writeInt(0);
+		if (mToList != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mToList, flags);
+		} else 
+			dest.writeInt(0);
+		if (mWalkingDirections != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mWalkingDirections, flags);
+		} else 
+			dest.writeInt(0);
+		if (mError != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mError, flags);
+		} else 
+			dest.writeInt(0);
+		dest.writeString(Boolean.toString(mSuccess));
 	}
 
 	public static final Parcelable.Creator<ResponseType> CREATOR = new Parcelable.Creator<ResponseType>() {
@@ -381,19 +417,19 @@ public class ResponseType implements Parcelable {
 			return new ResponseType[size];
 		}
 	};
-	
+
 	private ResponseType(Parcel dest) {
-		date = dest.readString();
-	    time = dest.readString();
-	    request           = (RequestType          ) dest.readParcelable(null);
-	    from              = (PointType            ) dest.readParcelable(null);
-	    to                = (PointType            ) dest.readParcelable(null);
-	    itineraries       = (ItinerariesType      ) dest.readParcelable(null);
-	    locations         = (LocationListType     ) dest.readParcelable(null);
-	    fromList          = (LocationListType     ) dest.readParcelable(null);
-	    toList            = (LocationListType     ) dest.readParcelable(null);
-	    walkingDirections = (WalkingDirectionsType) dest.readParcelable(null);
-	    error             = (ErrorType            ) dest.readParcelable(null);
-	    success = Boolean.parseBoolean(dest.readString());
+		mDate = dest.readString();
+		mTime = dest.readString();
+		if (dest.readInt() == 1) mRequest           = (RequestType          ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mFrom              = (PointType            ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mTo                = (PointType            ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mItineraries       = (ItinerariesType      ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mLocations         = (LocationListType     ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mFromList          = (LocationListType     ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mToList            = (LocationListType     ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mWalkingDirections = (WalkingDirectionsType) dest.readParcelable(null);
+		if (dest.readInt() == 1) mError             = (ErrorType            ) dest.readParcelable(null);
+		mSuccess = Boolean.parseBoolean(dest.readString());
 	}
 }

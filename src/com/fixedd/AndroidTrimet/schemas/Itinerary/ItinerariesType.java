@@ -31,73 +31,73 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.ItineraryType;
  */
 public class ItinerariesType implements Parcelable {
 
-    protected List<ItineraryType> itinerary;
-    protected Integer count;
+	protected List<ItineraryType>	mItinerary;
+	protected int					mCount	= -2147483648;
 
-    /**
-     * Create a new, empty copy of this object.
-     */
-    public ItinerariesType() {}
-    
-    /**
-     * Gets the value of the itinerary property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the itinerary property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getItinerary().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link ItineraryType }
-     * 
-     * 
-     */
-    public List<ItineraryType> getItinerary() {
-        if (itinerary == null) {
-            itinerary = new ArrayList<ItineraryType>();
-        }
-        return this.itinerary;
-    }
+	/**
+	 * Create a new, empty copy of this object.
+	 */
+	public ItinerariesType() {}
 
-    /**
-     * Gets the value of the count property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getCount() {
-        return count;
-    }
+	/**
+	 * Gets the value of the itinerary property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list,
+	 * not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object.
+	 * This is why there is not a <CODE>set</CODE> method for the itinerary property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * <pre>
+	 *    getItinerary().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link ItineraryType }
+	 * 
+	 * 
+	 */
+	public List<ItineraryType> getItinerary() {
+		if (mItinerary == null) {
+			mItinerary = new ArrayList<ItineraryType>();
+		}
+		return mItinerary;
+	}
 
-    /**
-     * Sets the value of the count property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setCount(Integer value) {
-        this.count = value;
-    }
+	/**
+	 * Gets the value of the count property.
+	 * 
+	 * @return
+	 *     possible object is
+	 *     {@link Integer }
+	 *     
+	 */
+	public int getCount() {
+		return mCount;
+	}
+
+	/**
+	 * Sets the value of the count property.
+	 * 
+	 * @param value
+	 *     allowed object is
+	 *     {@link Integer }
+	 *     
+	 */
+	public void setCount(int value) {
+		mCount = value;
+	}
 
 
-    // **********************************************
-    //  for implementing Parcelable
-    // **********************************************
-    
-    
+	// **********************************************
+	//  for implementing Parcelable
+	// **********************************************
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -105,8 +105,12 @@ public class ItinerariesType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(itinerary);
-	    dest.writeInt      (count    );
+		if (mItinerary != null && mItinerary.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mItinerary);
+		} else 
+			dest.writeInt(0);
+		dest.writeInt      (mCount    );
 	}
 
 	public static final Parcelable.Creator<ItinerariesType> CREATOR = new Parcelable.Creator<ItinerariesType>() {
@@ -118,9 +122,9 @@ public class ItinerariesType implements Parcelable {
 			return new ItinerariesType[size];
 		}
 	};
-	
+
 	private ItinerariesType(Parcel dest) {
-		dest.readTypedList(itinerary, ItineraryType.CREATOR);
-	    count = dest.readInt();
+		if (dest.readInt() == 1) dest.readTypedList(mItinerary, ItineraryType.CREATOR);
+		mCount = dest.readInt();
 	}
 }
