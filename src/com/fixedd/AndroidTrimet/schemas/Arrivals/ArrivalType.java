@@ -316,7 +316,7 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		if (mBlockPositions == null || mBlockPositions.size() < 1)
+		if (mBlockPositions == null || mBlockPositions.size() == 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
@@ -368,6 +368,8 @@ public class ArrivalType implements Parcelable, Serializable {
 	};
 
 	private ArrivalType(Parcel dest) {
+		mBlockPositions = new ArrayList<BlockPositionType>();
+		
 		if (dest.readInt() == 1)
 			dest.readTypedList(mBlockPositions, BlockPositionType.CREATOR);
 		mRoute     = dest.readInt();
@@ -376,12 +378,12 @@ public class ArrivalType implements Parcelable, Serializable {
 		if (dest.readInt() == 1)
 			mShortSign = dest.readString();
 		if (dest.readInt() == 1)
-			mFullSign  = dest.readString();
+			mFullSign = dest.readString();
 		mEstimated = dest.readLong();
 		mScheduled = dest.readLong();
 		mBlock     = dest.readInt();
 		if (dest.readInt() == 1)
-			mPiece     = dest.readString();
+			mPiece = dest.readString();
 		mDeparted  = Boolean.parseBoolean(dest.readString());
 		mDetour    = Boolean.parseBoolean(dest.readString());
 		mStatus    = dest.readInt();

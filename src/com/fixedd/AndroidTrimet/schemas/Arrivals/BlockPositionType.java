@@ -161,14 +161,14 @@ public class BlockPositionType implements Parcelable, Serializable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		if (mTrips == null || mTrips.size() < 1)
+		if (mTrips == null || mTrips.size() == 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
 			dest.writeTypedList(mTrips);
 		}
 
-		if (mLayovers == null || mLayovers.size() < 1)
+		if (mLayovers == null || mLayovers.size() == 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(0);
@@ -193,6 +193,9 @@ public class BlockPositionType implements Parcelable, Serializable {
 	};
 
 	private BlockPositionType(Parcel dest) {
+		mTrips    = new ArrayList<TripType   >();
+		mLayovers = new ArrayList<LayoverType>();
+		
 		if (dest.readInt() == 1) dest.readTypedList(mTrips   , TripType   .CREATOR);
 		if (dest.readInt() == 1) dest.readTypedList(mLayovers, LayoverType.CREATOR);
 		mAt      = dest.readLong  ();

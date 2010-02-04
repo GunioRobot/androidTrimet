@@ -13,11 +13,11 @@ import android.os.Parcelable;
 public class LocationType implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
 
-	protected int    mLocid = -2147483648;
-	protected String mDesc;
-	protected String mDir;
-	protected double mLat   = -2147483648;
-	protected double mLng   = -2147483648;
+	protected int				mLocid				= -2147483648;
+	protected String			mDesc;
+	protected String			mDir;
+	protected double			mLat				= -2147483648;
+	protected double			mLng				= -2147483648;
 
 	public LocationType() {}
 
@@ -115,7 +115,7 @@ public class LocationType implements Parcelable, Serializable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt   (mLocid);
+		dest.writeInt(mLocid);
 		if (mDesc == null) {
 			dest.writeInt(0);
 		} else {
@@ -144,7 +144,7 @@ public class LocationType implements Parcelable, Serializable {
 	};
 
 	private LocationType(Parcel dest) {
-		mLocid = dest.readInt   ();
+		mLocid = dest.readInt();
 		if (dest.readInt() == 1)
 			mDesc  = dest.readString();
 		if (dest.readInt() == 1)

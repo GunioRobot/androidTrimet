@@ -3,7 +3,6 @@ package com.fixedd.AndroidTrimet.schemas.Arrivals;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -169,25 +168,25 @@ public class ResultSet implements Parcelable, Serializable {
 			dest.writeString(mErrorMessage);
 		}
 
-		if (mLocation == null || mLocation.size() < 1)
+		if (mLocation == null || mLocation.size() == 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
 			dest.writeTypedList(mLocation);
 		}
 
-		if (mArrival == null || mArrival.size() < 1)
+		if (mArrival == null || mArrival.size() == 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
 			dest.writeTypedList(mArrival);
 		}
 
-		if (mRouteStatus == null || mRouteStatus.size() < 1)
+		if (mRouteStatus == null || mRouteStatus.size() == 0)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
-			dest.writeTypedList(mRouteStatus );
+			dest.writeTypedList(mRouteStatus);
 		}
 
 		dest.writeLong(mQueryTime);
@@ -204,8 +203,12 @@ public class ResultSet implements Parcelable, Serializable {
 	};
 
 	private ResultSet(Parcel dest) {
+		mLocation    = new ArrayList<LocationType   >();
+		mArrival     = new ArrayList<ArrivalType    >();
+		mRouteStatus = new ArrayList<RouteStatusType>();
+		
 		if (dest.readInt() == 1) mErrorMessage = dest.readString();
-		if (dest.readInt() == 1) dest.readTypedList(mLocation   , LocationType   .CREATOR);
+		if (dest.readInt() == 1) dest.readTypedList(mLocation   ,LocationType   .CREATOR);
 		if (dest.readInt() == 1) dest.readTypedList(mArrival    , ArrivalType    .CREATOR);
 		if (dest.readInt() == 1) dest.readTypedList(mRouteStatus, RouteStatusType.CREATOR);
 		mQueryTime = dest.readLong();
