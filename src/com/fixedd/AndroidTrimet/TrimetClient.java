@@ -186,11 +186,11 @@ public class TrimetClient {
 			if (options.getFromPlace() != null) 
 				url += "/fromPlace/" + URLEncoder.encode(options.getFromPlace(), "UTF-8");
 			if (options.getFromCoord() != null) 
-				url += "/fromCoord/" + options.getFromCoord();
+				url += "/fromCoord/" + options.getFromCoord().getLongitude() + "," + options.getFromCoord().getLatitude();
 			if (options.getToPlace() != null) 
 				url += "/toPlace/" + URLEncoder.encode(options.getToPlace(), "UTF-8");
 			if (options.getToCoord() != null) 
-				url += "/toCoord/" + options.getToCoord();
+				url += "/toCoord/" + options.getToCoord().getLongitude() + "," + options.getToCoord().getLatitude();
 			url += "/Date/" + options.getDate();
 			url += "/Time/" + URLEncoder.encode(options.getTime(), "UTF-8");
 			if (options.getArriveDepart() != null) 
