@@ -193,16 +193,6 @@ public class StopPointType extends PointType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(mStopId        );
-		dest.writeString(mStreetPosition);
-		dest.writeString(mFareZone      );
-		dest.writeInt   (mStopSequence  );
-		dest.writeDouble(mDistance      );
-		if (mComment != null && mComment.size() > 0) {
-			dest.writeInt(1);
-			dest.writeTypedList(mComment);
-		} else
-			dest.writeInt(0);
 		// from PointType
 		if (mPos != null) {
 			dest.writeInt(1);
@@ -213,6 +203,18 @@ public class StopPointType extends PointType implements Parcelable {
 		dest.writeString(mAreaKey    );
 		dest.writeString(mAreaValue  );
 		dest.writeString(mId         );
+		
+		// from StopPointType
+		dest.writeString(mStopId        );
+		dest.writeString(mStreetPosition);
+		dest.writeString(mFareZone      );
+		dest.writeInt   (mStopSequence  );
+		dest.writeDouble(mDistance      );
+		if (mComment != null && mComment.size() > 0) {
+			dest.writeInt(1);
+			dest.writeTypedList(mComment);
+		} else
+			dest.writeInt(0);
 	}
 
 	public static final Parcelable.Creator<StopPointType> CREATOR = new Parcelable.Creator<StopPointType>() {
@@ -226,17 +228,22 @@ public class StopPointType extends PointType implements Parcelable {
 	};
 
 	private StopPointType(Parcel dest) {
+		// from PointType
+		if (dest.readInt() == 1) mPos = (GeoPointType) dest.readParcelable(getClass().getClassLoader());
+		mDescription = dest.readString();
+		mAreaKey     = dest.readString();
+		mAreaValue   = dest.readString();
+		mId          = dest.readString();
+		
+		// from StopPointType
 		mStopId         = dest.readString();
 		mStreetPosition = dest.readString();
 		mFareZone       = dest.readString();
 		mStopSequence   = dest.readInt   ();
 		mDistance       = dest.readDouble();
-		if (dest.readInt() == 1) dest.readTypedList(mComment, ParcelableString.CREATOR);
-		// from PointType
-		if (dest.readInt() == 1) mPos = (GeoPointType) dest.readParcelable(null);
-		mDescription = dest.readString();
-		mAreaKey     = dest.readString();
-		mAreaValue   = dest.readString();
-		mId          = dest.readString();
+		if (dest.readInt() == 1) {
+			mComment = new ArrayList<ParcelableString>();
+			dest.readTypedList(mComment, ParcelableString.CREATOR);
+		}
 	}
 }

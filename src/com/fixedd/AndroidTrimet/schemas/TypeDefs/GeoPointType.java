@@ -27,7 +27,7 @@ import android.os.Parcelable;
  * 
  * 
  */
-public class GeoPointType implements Parcelable {
+public class GeoPointType extends PointType implements Parcelable {
 
 	protected String	mX			= "";
 	protected String	mY			= "";
@@ -198,6 +198,18 @@ public class GeoPointType implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
+		// from PointType
+		if (mPos != null) {
+			dest.writeInt(1);
+			dest.writeParcelable(mPos, flags);
+		} else
+			dest.writeInt(0);
+		dest.writeString(mDescription);
+		dest.writeString(mAreaKey    );
+		dest.writeString(mAreaValue  );
+		dest.writeString(mId         );
+		
+		// from GeoPointType
 		dest.writeString(mX      );
 		dest.writeString(mY      );
 		dest.writeString(mLat    );
@@ -217,11 +229,20 @@ public class GeoPointType implements Parcelable {
 	};
 
 	private GeoPointType(Parcel dest) {
+		// from PointType
+		if (dest.readInt() == 1) mPos = (GeoPointType) dest.readParcelable(getClass().getClassLoader());
+		mDescription = dest.readString();
+		mAreaKey     = dest.readString();
+		mAreaValue   = dest.readString();
+		mId          = dest.readString();
+		
+		// from GeoPointType
 		mX       = dest.readString();
 		mY       = dest.readString();
 		mLat     = dest.readString();
 		mLon     = dest.readString();
 		mSrsName = dest.readString();
 		mId      = dest.readString();
+		
 	}
 }
