@@ -86,6 +86,11 @@ public class PointType implements Parcelable {
 	public void setDescription(String value) {
 		mDescription = value;
 	}
+	
+	public void appendDescription(String value) {
+		mDescription += value;
+	}
+	
 
 	/**
 	 * Gets the value of the areaKey property.
@@ -193,8 +198,8 @@ public class PointType implements Parcelable {
 		}
 	};
 
-	private PointType(Parcel dest) {
-		if (dest.readInt() == 1) mPos = (GeoPointType) dest.readParcelable(null);
+	protected PointType(Parcel dest) {
+		if (dest.readInt() == 1) mPos = (GeoPointType) dest.readParcelable(getClass().getClassLoader());
 		mDescription = dest.readString();
 		mAreaKey     = dest.readString();
 		mAreaValue   = dest.readString();
