@@ -148,7 +148,10 @@ public class FareType implements Parcelable {
 
 	private FareType(Parcel dest) {
 		mRegular = dest.readString();
-		if (dest.readInt() == 1) dest.readTypedList(mSpecial, SpecialFareType.CREATOR);
+		if (dest.readInt() == 1) {
+			mSpecial = new ArrayList<SpecialFareType>();
+			dest.readTypedList(mSpecial, SpecialFareType.CREATOR);
+		}
 		mProvider = dest.readString();
 	}
 }

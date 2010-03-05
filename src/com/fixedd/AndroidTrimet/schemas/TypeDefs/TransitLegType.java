@@ -145,12 +145,12 @@ public class TransitLegType extends LegType implements Parcelable {
 	};
 
 	private TransitLegType(Parcel dest) {
-		if (dest.readInt() == 1) mRoute        = (RouteType       ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mFare         = (FareType        ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(null);
-		if (dest.readInt() == 1) mLineURL      = (GeoURLType      ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mFrom         = (PointType       ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mTo           = (PointType       ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mRoute        = (RouteType       ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mFare         = (FareType        ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mLineURL      = (GeoURLType      ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mFrom         = (PointType       ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mTo           = (PointType       ) dest.readParcelable(getClass().getClassLoader());
 		mOrder = OrderType.fromValue(dest.readString());
 		mId    = dest.readString();
 		mMode  = dest.readString();

@@ -143,7 +143,10 @@ public class WalkingDirectionsType implements Parcelable {
 	};
 
 	private WalkingDirectionsType(Parcel dest) {
-		if (dest.readInt() == 1) dest.readTypedList(mTurn, OrderedStringsType.CREATOR);
+		if (dest.readInt() == 1) {
+			mTurn = new ArrayList<OrderedStringsType>();
+			dest.readTypedList(mTurn, OrderedStringsType.CREATOR);
+		}
 		mDistance = dest.readDouble();
 		mCount    = dest.readInt();
 	}

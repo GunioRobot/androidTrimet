@@ -124,7 +124,10 @@ public class ItinerariesType implements Parcelable {
 	};
 
 	private ItinerariesType(Parcel dest) {
-		if (dest.readInt() == 1) dest.readTypedList(mItinerary, ItineraryType.CREATOR);
+		if (dest.readInt() == 1) {
+			mItinerary = new ArrayList<ItineraryType>();
+			dest.readTypedList(mItinerary, ItineraryType.CREATOR);
+		}
 		mCount = dest.readInt();
 	}
 }

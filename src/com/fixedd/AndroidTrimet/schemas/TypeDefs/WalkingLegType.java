@@ -113,10 +113,10 @@ public class WalkingLegType extends LegType implements Parcelable {
 		mDirection = dest.readString();
 		mId        = dest.readString();
 		mMode      = dest.readString();
-		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(null);
-		if (dest.readInt() == 1) mLineURL      = (GeoURLType      ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mFrom         = (PointType       ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mTo           = (PointType       ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mLineURL      = (GeoURLType      ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mFrom         = (PointType       ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mTo           = (PointType       ) dest.readParcelable(getClass().getClassLoader());
 		mOrder = OrderType.fromValue(dest.readString());
 	}
 }

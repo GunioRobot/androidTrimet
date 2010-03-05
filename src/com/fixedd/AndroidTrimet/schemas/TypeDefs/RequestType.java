@@ -36,8 +36,8 @@ import android.os.Parcelable;
  */
 public class RequestType implements Parcelable {
 
-	protected String					mUrl	= "";
-	protected List<RequestType.Param>	mParam;
+	protected String		mUrl	= "";
+	protected List<Param>	mParam;
 
 	/**
 	 * Create a new, empty copy of this object.
@@ -92,7 +92,7 @@ public class RequestType implements Parcelable {
 	 */
 	public List<RequestType.Param> getParam() {
 		if (mParam == null) {
-			mParam = new ArrayList<RequestType.Param>();
+			mParam = new ArrayList<Param>();
 		}
 		return mParam;
 	}
@@ -237,6 +237,9 @@ public class RequestType implements Parcelable {
 
 	private RequestType(Parcel dest) {
 		mUrl = dest.readString();
-		if (dest.readInt() == 1) dest.readTypedList(mParam, RequestType.Param.CREATOR);
+		if (dest.readInt() == 1) {
+			mParam = new ArrayList<Param>();
+			dest.readTypedList(mParam, Param.CREATOR);
+		}
 	}
 }

@@ -255,10 +255,28 @@ public class ItineraryType implements Parcelable {
 			dest.writeInt(0);
 
 		if (mLeg != null && mLeg.size() > 0) {
-			dest.writeInt(1);
-			dest.writeTypedList(mLeg);
-		} else 
-			dest.writeInt(0);
+			// legs can be either TransitLegType or WalkingLegType. separate them into two lists
+			ArrayList<WalkingLegType> walkingLegs = new ArrayList<WalkingLegType>();
+			ArrayList<TransitLegType> transitLegs = new ArrayList<TransitLegType>();
+			for (int i=0; i<mLeg.size(); i++) {
+				if (mLeg.get(i) instanceof WalkingLegType)
+					walkingLegs.add((WalkingLegType) mLeg.get(i));
+				else
+					transitLegs.add((TransitLegType) mLeg.get(i));
+			}
+			// store the walking legs
+			if (walkingLegs.size() > 0) {
+				dest.writeInt(1);
+				dest.writeTypedList(walkingLegs);
+			} else
+				dest.writeInt(0);
+			// store the transit legs
+			if (transitLegs.size() > 0) {
+				dest.writeInt(1);
+				dest.writeTypedList(transitLegs);
+			} else
+				dest.writeInt(0);
+		}
 
 		if (mGeo != null && mGeo.size() > 0) {
 			dest.writeInt(1);
@@ -281,11 +299,25 @@ public class ItineraryType implements Parcelable {
 	};
 
 	public ItineraryType(Parcel dest) {
-		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(null);
-		if (dest.readInt() == 1) mFare         = (FareType        ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mRoutes       = (RouteSummaryType) dest.readParcelable(null);
-		if (dest.readInt() == 1) dest.readTypedList(mLeg, LegType     .CREATOR);
-		if (dest.readInt() == 1) dest.readTypedList(mGeo, GeoRouteType.CREATOR);
+		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mFare         = (FareType        ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mRoutes       = (RouteSummaryType) dest.readParcelable(getClass().getClassLoader());
+		
+		// mLeg can contain WalkingLegTypes or TransitLegTypes. Pull them out then combine them.
+		ArrayList<WalkingLegType> walkingLegs = new ArrayList<WalkingLegType>();
+		ArrayList<TransitLegType> transitLegs = new ArrayList<TransitLegType>();
+		if (dest.readInt() == 1)
+			dest.readTypedList(walkingLegs, WalkingLegType.CREATOR);
+		if (dest.readInt() == 1)
+			dest.readTypedList(transitLegs, TransitLegType.CREATOR);
+		mLeg = new ArrayList<LegType>();
+		mLeg.addAll(walkingLegs);
+		mLeg.addAll(transitLegs);
+			
+		if (dest.readInt() == 1) {
+			mGeo = new ArrayList<GeoRouteType>();
+			dest.readTypedList(mGeo, GeoRouteType.CREATOR);
+		}
 		mId       = dest.readString();
 		mViaRoute = dest.readString();
 	}

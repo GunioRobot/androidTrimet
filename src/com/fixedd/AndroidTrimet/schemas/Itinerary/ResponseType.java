@@ -3,9 +3,7 @@ package com.fixedd.AndroidTrimet.schemas.Itinerary;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fixedd.AndroidTrimet.schemas.TypeDefs.ErrorType;
-import com.fixedd.AndroidTrimet.schemas.TypeDefs.PointType;
-import com.fixedd.AndroidTrimet.schemas.TypeDefs.RequestType;
+import com.fixedd.AndroidTrimet.schemas.TypeDefs.*;
 
 /**
  * <p>Java class for ResponseType complex type.
@@ -360,51 +358,61 @@ public class ResponseType implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(mDate);
 		dest.writeString(mTime);
+		
 		if (mRequest != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mRequest, flags);
 		} else
 			dest.writeInt(0);
+		
 		if (mFrom != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mFrom, flags);
 		} else
 			dest.writeInt(0);
+		
 		if (mTo != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mTo, flags);
 		} else
 			dest.writeInt(0);
+		
 		if (mItineraries != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mItineraries, flags);
 		} else 
 			dest.writeInt(0);
+		
 		if (mLocations != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mLocations, flags);
 		} else 
 			dest.writeInt(0);
+		
 		if (mFromList != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mFromList, flags);
 		} else 
 			dest.writeInt(0);
+		
 		if (mToList != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mToList, flags);
 		} else 
 			dest.writeInt(0);
+		
 		if (mWalkingDirections != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mWalkingDirections, flags);
 		} else 
 			dest.writeInt(0);
+		
 		if (mError != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mError, flags);
 		} else 
 			dest.writeInt(0);
+		
 		dest.writeString(Boolean.toString(mSuccess));
 	}
 
@@ -421,15 +429,15 @@ public class ResponseType implements Parcelable {
 	private ResponseType(Parcel dest) {
 		mDate = dest.readString();
 		mTime = dest.readString();
-		if (dest.readInt() == 1) mRequest           = (RequestType          ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mFrom              = (PointType            ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mTo                = (PointType            ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mItineraries       = (ItinerariesType      ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mLocations         = (LocationListType     ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mFromList          = (LocationListType     ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mToList            = (LocationListType     ) dest.readParcelable(null);
-		if (dest.readInt() == 1) mWalkingDirections = (WalkingDirectionsType) dest.readParcelable(null);
-		if (dest.readInt() == 1) mError             = (ErrorType            ) dest.readParcelable(null);
+		if (dest.readInt() == 1) mRequest           = (RequestType          ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mFrom              = (PointType            ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mTo                = (PointType            ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mItineraries       = (ItinerariesType      ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mLocations         = (LocationListType     ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mFromList          = (LocationListType     ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mToList            = (LocationListType     ) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mWalkingDirections = (WalkingDirectionsType) dest.readParcelable(getClass().getClassLoader());
+		if (dest.readInt() == 1) mError             = (ErrorType            ) dest.readParcelable(getClass().getClassLoader());
 		mSuccess = Boolean.parseBoolean(dest.readString());
 	}
 }

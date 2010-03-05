@@ -95,6 +95,9 @@ public class RouteSummaryType implements Parcelable {
 	};
 
 	private RouteSummaryType(Parcel dest) {
-		if (dest.readInt() == 1) dest.readTypedList(mRoute, RouteIdType.CREATOR);
+		if (dest.readInt() == 1) {
+			mRoute = new ArrayList<RouteIdType>();
+			dest.readTypedList(mRoute, RouteIdType.CREATOR);
+		}
 	}
 }

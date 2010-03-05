@@ -152,7 +152,10 @@ public class LocationListType implements Parcelable {
 
 	private LocationListType(Parcel dest) {
 		mQuery = dest.readString();
-		if (dest.readInt() == 1) dest.readTypedList(mLocation, PointType.CREATOR);
+		if (dest.readInt() == 1) {
+			mLocation = new ArrayList<PointType>();
+			dest.readTypedList(mLocation, PointType.CREATOR);
+		}
 		mCount = dest.readInt();
 	}
 }

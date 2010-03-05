@@ -290,6 +290,9 @@ public class RouteType implements Parcelable {
 		mDirection      = dest.readString();
 		mBlock          = dest.readString();
 		mProvider       = dest.readString();
-		if (dest.readInt() == 1) dest.readTypedList(mAlert, AlertType.CREATOR);
+		if (dest.readInt() == 1) {
+			mAlert = new ArrayList<AlertType>();
+			dest.readTypedList(mAlert, AlertType.CREATOR);
+		}
 	}
 }
