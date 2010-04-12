@@ -24,6 +24,7 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.RouteSummaryType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.RouteType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.SpecialFareType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.StatusType;
+import com.fixedd.AndroidTrimet.schemas.TypeDefs.StopPointType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.TimeDistanceType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.TransitLegType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.WalkingLegType;
@@ -117,7 +118,27 @@ public class ItineraryHandler extends DefaultHandler {
 			
 		} else if (qualifiedName.equalsIgnoreCase("from") || localName.equalsIgnoreCase("from")) {
 			mInFrom = true;
-			mCurrentPointType = new PointType();
+			
+			// TODO: HACK! I can't seem to figure out how to just request the 
+			// "xsi:type" attribute without looping over the attribute list 
+			// looking for it. This needs more research.
+			String val = null;
+			for (int i=0; i < attributes.getLength(); i++) {
+				if (attributes.getQName(i).equalsIgnoreCase("type") || attributes.getLocalName(i).equalsIgnoreCase("type")) {
+					val = attributes.getValue(i);
+					break;
+				}
+			}
+			if (val == null)
+				mCurrentPointType = new PointType();
+			else if (val.equalsIgnoreCase("ns:GeoPointType")) {	// xsi:type
+				mCurrentPointType = new GeoPointType();
+			} else if (val.equalsIgnoreCase("ns:StopPointType")) {
+				mCurrentPointType = new StopPointType();
+			} else {
+				mCurrentPointType = new PointType();
+			}
+			
 			if (attributes.getValue("areaKey") != null)
 				mCurrentPointType.setAreaKey(attributes.getValue("areaKey"));
 			if (attributes.getValue("areaValue") != null)
@@ -144,15 +165,33 @@ public class ItineraryHandler extends DefaultHandler {
 			
 		} else if (qualifiedName.equalsIgnoreCase("to") || localName.equalsIgnoreCase("to")) {
 			mInTo = true;
-			mCurrentPointType = new PointType();
+			
+			// TODO: HACK! I can't seem to figure out how to just request the 
+			// "xsi:type" attribute without looping over the attribute list 
+			// looking for it. This needs more research.
+			String val = null;
+			for (int i=0; i < attributes.getLength(); i++) {
+				if (attributes.getQName(i).equalsIgnoreCase("type") || attributes.getLocalName(i).equalsIgnoreCase("type")) {
+					val = attributes.getValue(i);
+					break;
+				}
+			}
+			if (val == null)
+				mCurrentPointType = new PointType();
+			else if (val.equalsIgnoreCase("ns:GeoPointType")) {	// xsi:type
+				mCurrentPointType = new GeoPointType();
+			} else if (val.equalsIgnoreCase("ns:StopPointType")) {
+				mCurrentPointType = new StopPointType();
+			} else {
+				mCurrentPointType = new PointType();
+			}
+			
 			if (attributes.getValue("areaKey") != null)
 				mCurrentPointType.setAreaKey(attributes.getValue("areaKey"));
 			if (attributes.getValue("areaValue") != null)
 				mCurrentPointType.setAreaValue(attributes.getValue("areaValue"));
 			if (attributes.getValue("id") != null)
 				mCurrentPointType.setAreaKey(attributes.getValue("id"));
-			
-			
 		} else if (qualifiedName.equalsIgnoreCase("itineraries") || localName.equalsIgnoreCase("itineraries")) {
 			mResponse.setItineraries(new ItinerariesType());
 			mResponse.getItineraries().setCount(Integer.parseInt(attributes.getValue("count")));
@@ -287,7 +326,8 @@ public class ItineraryHandler extends DefaultHandler {
 			qualifiedName.equalsIgnoreCase("toList"   ) || localName.equalsIgnoreCase("toList"   ) 
 		) {
 			mCurrentLocationList = new LocationListType();
-			mCurrentLocationList.setCount(Integer.parseInt(attributes.getValue("count")));
+			if (attributes.getValue("count") != null)
+				mCurrentLocationList.setCount(Integer.parseInt(attributes.getValue("count")));
 		} else if (qualifiedName.equalsIgnoreCase("query") || localName.equalsIgnoreCase("query")) {
 			mInQuery = true;
 		} else if (qualifiedName.equalsIgnoreCase("location") || localName.equalsIgnoreCase("location")) {
@@ -323,7 +363,7 @@ public class ItineraryHandler extends DefaultHandler {
 	
 	@Override
 	public void characters(char[] chars, int startIndex, int length) throws SAXException {
-		String dataString = new String(chars, startIndex, length).trim();
+		String dataString = new String(chars, startIndex, length);
 		
 		if (mInDate) {
 			if (mInTimeDistance) {
@@ -353,7 +393,7 @@ public class ItineraryHandler extends DefaultHandler {
 			if (mInLeg && !mInFrom && !mInTo)
 				mCurrentAlert.setDescription(dataString); 
 			else
-				mCurrentPointType.setDescription(dataString);
+				mCurrentPointType.appendDescription(dataString);
 			
 		} else if (mInStartTime) {
 			mCurrentTimeDistance.setStartTime(dataString);
