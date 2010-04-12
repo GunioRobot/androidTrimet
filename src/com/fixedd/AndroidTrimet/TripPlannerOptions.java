@@ -168,7 +168,7 @@ public class TripPlannerOptions {
 		if (fromPlace.trim().length() > 0)
 			mFromPlace = fromPlace.trim();
 		else
-			throw new RuntimeException("fromPlace can not be an empty string.");
+			throw new IllegalArgumentException("fromPlace can not be an empty string.");
 	}
 
 	/**
@@ -181,7 +181,7 @@ public class TripPlannerOptions {
 		if (toPlace.trim().length() > 0)
 			mToPlace = toPlace;
 		else
-			throw new RuntimeException("toPlace can not be an empty string.");
+			throw new IllegalArgumentException("toPlace can not be an empty string.");
 	}
 
 	/**
@@ -213,15 +213,15 @@ public class TripPlannerOptions {
 	 */
 	public void setDateTime(int year, int monthOfYear, int dayOfMonth, int hourOfDay, int minuteOfHour) {
 		if (year < 2010 || year > 2100)
-			throw new RuntimeException("year out of range (2010-2100, inclusive).");
+			throw new IllegalArgumentException("year out of range (2010-2100, inclusive).");
 		if (monthOfYear < 1 || monthOfYear > 12)
-			throw new RuntimeException("monthOfYear out of range (1-12, inclusive).");
+			throw new IllegalArgumentException("monthOfYear out of range (1-12, inclusive).");
 		if (dayOfMonth < 1 || dayOfMonth > 31)
-			throw new RuntimeException("dayOfMonth out of range (1-31, inclusive).");
+			throw new IllegalArgumentException("dayOfMonth out of range (1-31, inclusive).");
 		if (hourOfDay < 0 || hourOfDay > 23)
-			throw new RuntimeException("hourOfDay out of range (0-23, inclusive).");
+			throw new IllegalArgumentException("hourOfDay out of range (0-23, inclusive).");
 		if (minuteOfHour < 0 || minuteOfHour > 59)
-			throw new RuntimeException("minuteOfHour out of range (0-59, inclusive).");
+			throw new IllegalArgumentException("minuteOfHour out of range (0-59, inclusive).");
 		
 		mDate = monthOfYear + "-" + dayOfMonth + "-" + year;
 		if (hourOfDay > 11)
@@ -239,7 +239,7 @@ public class TripPlannerOptions {
 	 */
 	public void setArriveDepart(String arriveDepart) {
 		if (!arriveDepart.contentEquals(WHEN_ARRIVE_BY) && !arriveDepart.contentEquals(WHEN_DEPART_AFTER))
-			throw new RuntimeException("ArriveDepart must be A or D.");
+			throw new IllegalArgumentException("ArriveDepart must be A or D.");
 		mArriveDepart = arriveDepart;
 	}
 
@@ -251,7 +251,7 @@ public class TripPlannerOptions {
 	 */
 	public void setMaxWalk(float maxWalk) {
 		if ((maxWalk < 0.01) || (maxWalk > 0.999))
-			throw new RuntimeException("maxWalk out of range (0.01-0.999).");
+			throw new IllegalArgumentException("maxWalk out of range (0.01-0.999).");
 
 		mMaxWalk = Float.toString(maxWalk);
 	}
@@ -264,7 +264,7 @@ public class TripPlannerOptions {
 	 */
 	public void setMode(String mode) {
 		if (!mode.contentEquals(MODE_ALL) && !mode.contentEquals(MODE_BUS) && !mode.contentEquals(MODE_TRAIN))
-			throw new RuntimeException("Mode must be 'A', 'B', or 'T'.");
+			throw new IllegalArgumentException("Mode must be 'A', 'B', or 'T'.");
 		mMode = mode;
 	}
 
@@ -275,7 +275,7 @@ public class TripPlannerOptions {
 	 */
 	public void setMaxIntineraries(int maxIntineraries) {
 		if (maxIntineraries < 1 || maxIntineraries > 6)
-			throw new RuntimeException("Itineraries must be between 1 and 6 (inclusive).");
+			throw new IllegalArgumentException("Itineraries must be between 1 and 6 (inclusive).");
 		mMaxIntineraries = maxIntineraries;
 	}
 
