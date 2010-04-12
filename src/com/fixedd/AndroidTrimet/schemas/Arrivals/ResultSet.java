@@ -208,7 +208,7 @@ public class ResultSet implements Parcelable, Serializable {
 		mRouteStatus = new ArrayList<RouteStatusType>();
 		
 		if (dest.readInt() == 1) mErrorMessage = dest.readString();
-		if (dest.readInt() == 1) dest.readTypedList(mLocation   ,LocationType   .CREATOR);
+		if (dest.readInt() == 1) dest.readTypedList(mLocation   , LocationType   .CREATOR);
 		if (dest.readInt() == 1) dest.readTypedList(mArrival    , ArrivalType    .CREATOR);
 		if (dest.readInt() == 1) dest.readTypedList(mRouteStatus, RouteStatusType.CREATOR);
 		mQueryTime = dest.readLong();
