@@ -171,7 +171,7 @@ public class BlockPositionType implements Parcelable, Serializable {
 		if (mLayovers == null || mLayovers.size() == 0)
 			dest.writeInt(0);
 		else {
-			dest.writeInt(0);
+			dest.writeInt(1);
 			dest.writeTypedList(mLayovers);
 		}
 
