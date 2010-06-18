@@ -3,6 +3,7 @@ package com.fixedd.AndroidTrimet.parsers;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import android.util.Log;
 import com.fixedd.AndroidTrimet.schemas.Itinerary.ItinerariesType;
 import com.fixedd.AndroidTrimet.schemas.Itinerary.LocationListType;
 import com.fixedd.AndroidTrimet.schemas.Itinerary.ResponseType;
@@ -43,7 +44,7 @@ public class ItineraryHandler extends DefaultHandler {
 	private boolean				mInX					= false;
 	private boolean				mInY					= false;
 	private boolean				mInLat					= false;
-	private boolean				mInLng					= false;
+	private boolean				mInLon					= false;
 	private boolean				mInDescription			= false;
 	private boolean				mInLeg					= false;
 	private boolean				mInStartTime			= false;
@@ -157,8 +158,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mInY = true;
 		} else if (qualifiedName.equalsIgnoreCase("lat") || localName.equalsIgnoreCase("lat")) {
 			mInLat = true;
-		} else if (qualifiedName.equalsIgnoreCase("lng") || localName.equalsIgnoreCase("lng")) {
-			mInLng = true;
+		} else if (qualifiedName.equalsIgnoreCase("lon") || localName.equalsIgnoreCase("lon")) {
+			mInLon = true;
 		} else if (qualifiedName.equalsIgnoreCase("description") || localName.equalsIgnoreCase("description")) {
 			mInDescription = true;
 			
@@ -356,6 +357,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mResponse.getError().setCode(attributes.getValue("code"));
 		} else if (qualifiedName.equalsIgnoreCase("message") || localName.equalsIgnoreCase("message")) {
 			mInMessage = true;
+		} else {
+			Log.i(getClass().getSimpleName(), "Unknown start element: " + qualifiedName + "/" + localName);
 		}
 	}
 
@@ -387,7 +390,7 @@ public class ItineraryHandler extends DefaultHandler {
 			mCurrentGeoPointType.setY(dataString);
 		} else if (mInLat) {
 			mCurrentGeoPointType.setLat(dataString);
-		} else if (mInLng) {
+		} else if (mInLon) {
 			mCurrentGeoPointType.setLon(dataString);
 		} else if (mInDescription) {
 			if (mInLeg && !mInFrom && !mInTo)
@@ -514,8 +517,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mInY = false;
 		} else if (qualifiedName.equalsIgnoreCase("lat") || localName.equalsIgnoreCase("lat")) {
 			mInLat = false;
-		} else if (qualifiedName.equalsIgnoreCase("lng") || localName.equalsIgnoreCase("lng")) {
-			mInLng = false;
+		} else if (qualifiedName.equalsIgnoreCase("lon") || localName.equalsIgnoreCase("lon")) {
+			mInLon = false;
 		} else if (qualifiedName.equalsIgnoreCase("description") || localName.equalsIgnoreCase("description")) {
 			mInDescription = false;
 		} else if (qualifiedName.equalsIgnoreCase("to") || localName.equalsIgnoreCase("to")) {
@@ -632,6 +635,8 @@ public class ItineraryHandler extends DefaultHandler {
 			
 		} else if (qualifiedName.equalsIgnoreCase("message") || localName.equalsIgnoreCase("message")) {
 			mInMessage = false;
+		} else {
+			Log.i(getClass().getSimpleName(), "Unknown end element: " + qualifiedName + "/" + localName);
 		}
 	}
 	
