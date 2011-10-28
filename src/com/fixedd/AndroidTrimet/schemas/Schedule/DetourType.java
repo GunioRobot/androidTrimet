@@ -11,7 +11,7 @@ import android.os.Parcelable;
  */
 public class DetourType implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	protected List<RouteType>	mRoutes;
 	protected long				mBegin	= -9223372036854775808l;
 	protected long				mEnd	= -9223372036854775808l;
@@ -23,13 +23,13 @@ public class DetourType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the routes list.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the routes list.
 	 * This is why there is not a <CODE>set</CODE> method for the route property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
@@ -44,12 +44,12 @@ public class DetourType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the time the detour begins. This will always be a time prior to 
+	 * Gets the time the detour begins. This will always be a time prior to
 	 * the time the query was made.
-	 *  
-	 * <p>This field is used internally and may be of little use outside of 
+	 *
+	 * <p>This field is used internally and may be of little use outside of
 	 * TriMet.
-	 * @return time in milliseconds since epoch or <b>-9223372036854775808</b> 
+	 * @return time in milliseconds since epoch or <b>-9223372036854775808</b>
 	 * if it was set improperly.
 	 */
 	public long getBeginTime() {
@@ -65,14 +65,14 @@ public class DetourType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the time the detour will become invalid. Note that this will 
-	 * always be a time after the time the query was made. Some end times will 
-	 * be very far in the future and will be removed once the detour is no 
-	 * longer in effect. 
-	 * 
-	 * <p>This field is used internally and may be of little use outside of 
+	 * Gets the time the detour will become invalid. Note that this will
+	 * always be a time after the time the query was made. Some end times will
+	 * be very far in the future and will be removed once the detour is no
+	 * longer in effect.
+	 *
+	 * <p>This field is used internally and may be of little use outside of
 	 * TriMet.
-	 * @return time in milliseconds since epoch or <b>-9223372036854775808</b> 
+	 * @return time in milliseconds since epoch or <b>-9223372036854775808</b>
 	 * if it was set improperly.
 	 */
 	public long getEndTime() {
@@ -88,14 +88,14 @@ public class DetourType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the unique identifier of the detour.    
+	 * Gets the unique identifier of the detour.
 	 */
 	public String getId() {
 		return mId;
 	}
 
 	/**
-	 * Sets the unique identifier of the detour.    
+	 * Sets the unique identifier of the detour.
 	 */
 	public void setId(String id) {
 		mId = id;
@@ -109,23 +109,23 @@ public class DetourType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets the plain text description of the detour.    
+	 * Sets the plain text description of the detour.
 	 */
 	public void setDescription(String description) {
 		mDesc = description;
 	}
 
 	/**
-	 * Gets the phonetic spelling of the route detour. 
-	 * 
-	 * <p>This field is used by TriMet's 238-Ride text-to-speech system.    
+	 * Gets the phonetic spelling of the route detour.
+	 *
+	 * <p>This field is used by TriMet's 238-Ride text-to-speech system.
 	 */
 	public String getPhonetic() {
 		return mPhonetic;
 	}
 
 	/**
-	 * Sets the phonetic spelling of the route detour.    
+	 * Sets the phonetic spelling of the route detour.
 	 */
 	public void setPhonetic(String value) {
 		mPhonetic = value;

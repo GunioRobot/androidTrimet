@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for GeoURLType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="GeoURLType">
  *   &lt;complexContent>
@@ -20,8 +20,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class GeoURLType implements Parcelable {
 	protected String	mUrl	= "";
@@ -34,11 +34,11 @@ public class GeoURLType implements Parcelable {
 
 	/**
 	 * Gets the value of the url property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getUrl() {
 		return mUrl;
@@ -46,11 +46,11 @@ public class GeoURLType implements Parcelable {
 
 	/**
 	 * Sets the value of the url property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setUrl(String value) {
 		mUrl = value;
@@ -58,11 +58,11 @@ public class GeoURLType implements Parcelable {
 
 	/**
 	 * Gets the value of the param property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getParam() {
 		return mParam;
@@ -70,11 +70,11 @@ public class GeoURLType implements Parcelable {
 
 	/**
 	 * Sets the value of the param property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setParam(String value) {
 		mParam = value;

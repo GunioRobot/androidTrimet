@@ -7,9 +7,9 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.*;
 
 /**
  * <p>Java class for ResponseType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ResponseType">
  *   &lt;complexContent>
@@ -32,8 +32,8 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.*;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class ResponseType implements Parcelable {
 
@@ -57,11 +57,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the date property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getDate() {
 		return mDate;
@@ -69,11 +69,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the date property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setDate(String value) {
 		mDate = value;
@@ -81,11 +81,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the time property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getTime() {
 		return mTime;
@@ -93,11 +93,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the time property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setTime(String value) {
 		mTime = value;
@@ -105,11 +105,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the request property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link RequestType }
-	 *     
+	 *
 	 */
 	public RequestType getRequest() {
 		return mRequest;
@@ -117,11 +117,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the request property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link RequestType }
-	 *     
+	 *
 	 */
 	public void setRequest(RequestType value) {
 		mRequest = value;
@@ -129,11 +129,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the from property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public PointType getFrom() {
 		return mFrom;
@@ -141,11 +141,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the from property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public void setFrom(PointType value) {
 		mFrom = value;
@@ -153,11 +153,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the to property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public PointType getTo() {
 		return mTo;
@@ -165,11 +165,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the to property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public void setTo(PointType value) {
 		mTo = value;
@@ -177,11 +177,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the itineraries property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link ItinerariesType }
-	 *     
+	 *
 	 */
 	public ItinerariesType getItineraries() {
 		return mItineraries;
@@ -189,11 +189,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the itineraries property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link ItinerariesType }
-	 *     
+	 *
 	 */
 	public void setItineraries(ItinerariesType value) {
 		mItineraries = value;
@@ -201,11 +201,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the locations property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link LocationListType }
-	 *     
+	 *
 	 */
 	public LocationListType getLocations() {
 		return mLocations;
@@ -213,11 +213,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the locations property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link LocationListType }
-	 *     
+	 *
 	 */
 	public void setLocations(LocationListType value) {
 		mLocations = value;
@@ -225,11 +225,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the fromList property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link LocationListType }
-	 *     
+	 *
 	 */
 	public LocationListType getFromList() {
 		return mFromList;
@@ -237,11 +237,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the fromList property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link LocationListType }
-	 *     
+	 *
 	 */
 	public void setFromList(LocationListType value) {
 		mFromList = value;
@@ -249,11 +249,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the toList property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link LocationListType }
-	 *     
+	 *
 	 */
 	public LocationListType getToList() {
 		return mToList;
@@ -261,11 +261,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the toList property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link LocationListType }
-	 *     
+	 *
 	 */
 	public void setToList(LocationListType value) {
 		mToList = value;
@@ -273,11 +273,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the walkingDirections property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link WalkingDirectionsType }
-	 *     
+	 *
 	 */
 	public WalkingDirectionsType getWalkingDirections() {
 		return mWalkingDirections;
@@ -285,11 +285,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the walkingDirections property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link WalkingDirectionsType }
-	 *     
+	 *
 	 */
 	public void setWalkingDirections(WalkingDirectionsType value) {
 		mWalkingDirections = value;
@@ -297,11 +297,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the error property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link ErrorType }
-	 *     
+	 *
 	 */
 	public ErrorType getError() {
 		return mError;
@@ -309,11 +309,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the error property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link ErrorType }
-	 *     
+	 *
 	 */
 	public void setError(ErrorType value) {
 		mError = value;
@@ -321,11 +321,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Gets the value of the success property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link Boolean }
-	 *     
+	 *
 	 */
 	public boolean isSuccess() {
 		return mSuccess;
@@ -333,11 +333,11 @@ public class ResponseType implements Parcelable {
 
 	/**
 	 * Sets the value of the success property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link Boolean }
-	 *     
+	 *
 	 */
 	public void setSuccess(boolean value) {
 		mSuccess = value;
@@ -358,61 +358,61 @@ public class ResponseType implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(mDate);
 		dest.writeString(mTime);
-		
+
 		if (mRequest != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mRequest, flags);
 		} else
 			dest.writeInt(0);
-		
+
 		if (mFrom != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mFrom, flags);
 		} else
 			dest.writeInt(0);
-		
+
 		if (mTo != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mTo, flags);
 		} else
 			dest.writeInt(0);
-		
+
 		if (mItineraries != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mItineraries, flags);
-		} else 
+		} else
 			dest.writeInt(0);
-		
+
 		if (mLocations != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mLocations, flags);
-		} else 
+		} else
 			dest.writeInt(0);
-		
+
 		if (mFromList != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mFromList, flags);
-		} else 
+		} else
 			dest.writeInt(0);
-		
+
 		if (mToList != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mToList, flags);
-		} else 
+		} else
 			dest.writeInt(0);
-		
+
 		if (mWalkingDirections != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mWalkingDirections, flags);
-		} else 
+		} else
 			dest.writeInt(0);
-		
+
 		if (mError != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mError, flags);
-		} else 
+		} else
 			dest.writeInt(0);
-		
+
 		dest.writeString(Boolean.toString(mSuccess));
 	}
 

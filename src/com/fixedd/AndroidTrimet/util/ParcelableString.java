@@ -9,7 +9,7 @@ import android.os.Parcelable;
  */
 public final class ParcelableString implements Parcelable {
 	private String mString;
-	
+
 	/**
 	 * Create a new wrapped string.
 	 * @param s The String to wrap.
@@ -17,7 +17,7 @@ public final class ParcelableString implements Parcelable {
 	public ParcelableString(String s) {
 		mString = s;
 	}
-	
+
 	/**
 	 * Get the wrapped string.
 	 * @return the wrapped String.
@@ -59,7 +59,7 @@ public final class ParcelableString implements Parcelable {
 			return new ParcelableString[size];
 		}
 	};
-	
+
 	private ParcelableString(Parcel dest) {
 		mString = dest.readString();
 	}

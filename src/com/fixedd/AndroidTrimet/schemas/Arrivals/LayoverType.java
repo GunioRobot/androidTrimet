@@ -4,9 +4,9 @@ import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/** 
+/**
  * <p>
- * This class will occur as a child of the blockPosition for every layover the 
+ * This class will occur as a child of the blockPosition for every layover the
  * vehicle has between its position and the requested arrival.
  */
 public class LayoverType implements Parcelable, Serializable {
@@ -35,7 +35,7 @@ public class LayoverType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the time that the layover starts. 
+	 * Gets the time that the layover starts.
 	 * @return Returns the time that the layover starts (in milliseconds since epoch) or -9223372036854775808 if the time was not set properly.
 	 */
 	public long getStartTime() {
@@ -44,14 +44,14 @@ public class LayoverType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the start time for the layover.
-	 * @param time The time (in milliseconds since epoch) that the layover starts. 
+	 * @param time The time (in milliseconds since epoch) that the layover starts.
 	 */
 	public void setStartTime(long time) {
 		mStart = time;
 	}
 
 	/**
-	 * Gets the time that the layover ends. 
+	 * Gets the time that the layover ends.
 	 * @return Returns the time that the layover ends (in milliseconds since epoch) or -9223372036854775808 if the time was not set properly.
 	 */
 	public long getEndTime() {

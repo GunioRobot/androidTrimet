@@ -21,13 +21,13 @@ public class RouteDirectionType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the stops list.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the stops list.
 	 * This is why there is not a <CODE>set</CODE> method for the stop property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
@@ -60,14 +60,14 @@ public class RouteDirectionType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the description for the direction of the route.    
+	 * Gets the description for the direction of the route.
 	 */
 	public String getDescription() {
 		return mDesc;
 	}
 
 	/**
-	 * Sets the description for the direction of the route.    
+	 * Sets the description for the direction of the route.
 	 */
 	public void setDescription(String value) {
 		mDesc = value;
@@ -97,7 +97,7 @@ public class RouteDirectionType implements Parcelable, Serializable {
 
 		if (mDesc == null)
 			dest.writeInt(0);
-		else { 
+		else {
 			dest.writeInt(1);
 			dest.writeString(mDesc);
 		}

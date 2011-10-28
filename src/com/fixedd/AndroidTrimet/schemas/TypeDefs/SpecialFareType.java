@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for SpecialFareType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="SpecialFareType">
  *   &lt;simpleContent>
@@ -17,8 +17,8 @@ import android.os.Parcelable;
  *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class SpecialFareType implements Parcelable {
 
@@ -32,11 +32,11 @@ public class SpecialFareType implements Parcelable {
 
 	/**
 	 * Gets the value of the value property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getValue() {
 		return mValue;
@@ -44,11 +44,11 @@ public class SpecialFareType implements Parcelable {
 
 	/**
 	 * Sets the value of the value property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setValue(String value) {
 		mValue = value;
@@ -56,11 +56,11 @@ public class SpecialFareType implements Parcelable {
 
 	/**
 	 * Gets the value of the id property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getId() {
 		return mId;
@@ -68,11 +68,11 @@ public class SpecialFareType implements Parcelable {
 
 	/**
 	 * Sets the value of the id property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setId(String value) {
 		mId = value;

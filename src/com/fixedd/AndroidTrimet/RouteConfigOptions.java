@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * This allows for the configuration of a Route request. All fields are optional.
  * <p>
- * For a complete explanation of these options, please see <a 
+ * For a complete explanation of these options, please see <a
  * href="http://developer.trimet.org/ws_docs/routeConfig_ws.shtml">http://developer.trimet.org/ws_docs/routeConfig_ws.shtml</a>
  * @author Jeremy Logan
  * @since 1
@@ -37,34 +37,34 @@ public class RouteConfigOptions implements Parcelable {
 	 * @see #getDirection()
 	 */
 	public static final int	DIRECTION_ALL		= 2;
-	
-	
+
+
 	private int			mRoutes[] 	= {};
 	private int			mDir		= DIRECTION_NONE;
 	private boolean		mStops		= false;
 	private boolean		mTP			= false;
 	private int			mStartSeq	= -1;
 	private int			mEndSeq		= -1;
-	
+
 	public RouteConfigOptions() {}
-	
+
 	public int[] getRoutes() {
-		return mRoutes; 
+		return mRoutes;
 	}
-	public int getDirection() { 
+	public int getDirection() {
 		return mDir;
 	}
-	public boolean getStops() { 
-		return mStops;  
+	public boolean getStops() {
+		return mStops;
 	}
-	public boolean getTP() { 
+	public boolean getTP() {
 		return mTP;
 	}
-	public int getStartSequence() { 
-		return mStartSeq; 
+	public int getStartSequence() {
+		return mStartSeq;
 	}
-	public int getEndSequence() { 
-		return mEndSeq;   
+	public int getEndSequence() {
+		return mEndSeq;
 	}
 
 	/**
@@ -74,14 +74,14 @@ public class RouteConfigOptions implements Parcelable {
 	public void setRoutes(int... routes) {
 		if (routes.length < 1)
 			throw new RuntimeException("Routes can not be empty.");
-		
+
 		mRoutes = routes;
 	}
 
 	/**
 	 * Set the direction to look up info for.
-	 * @param direction Direction to search. One of: 
-	 * {@link #DIRECTION_INBOUND}, {@link #DIRECTION_OUTBOUND}, or 
+	 * @param direction Direction to search. One of:
+	 * {@link #DIRECTION_INBOUND}, {@link #DIRECTION_OUTBOUND}, or
 	 * {@link #DIRECTION_ALL}.
 	 */
 	public void setDirection(int direction) {
@@ -90,7 +90,7 @@ public class RouteConfigOptions implements Parcelable {
 			direction != DIRECTION_ALL      &&
 			direction != DIRECTION_NONE     ) {
 			throw new RuntimeException("Direction must be one of: DIRECTION_INBOUND, DIRECTION_OUTBOUND, or DIRECTION_ALL.");
-		} else 
+		} else
 			mDir = direction;
 	}
 
@@ -111,7 +111,7 @@ public class RouteConfigOptions implements Parcelable {
 	}
 
 	/**
-	 * Set this if you want to filter out StopIDs before a certain number. 
+	 * Set this if you want to filter out StopIDs before a certain number.
 	 * @param startSeq StopID to filter before.
 	 */
 	public void setStartSequence(int startSeq) {
@@ -119,15 +119,15 @@ public class RouteConfigOptions implements Parcelable {
 	}
 
 	/**
-	 * Set this if you want to filter out StopIDs after a certain number. 
+	 * Set this if you want to filter out StopIDs after a certain number.
 	 * @param endSeq StopID to filter after.
 	 */
 	public void setEndSequence(int endSeq) {
 		mEndSeq = endSeq;
 	}
-	
-	
-	
+
+
+
 	// **********************************************
 	//  for implementing Parcelable
 	// **********************************************
@@ -169,11 +169,11 @@ public class RouteConfigOptions implements Parcelable {
 			mRoutes = new int[dest.readInt()];
 			dest.readIntArray(mRoutes);
 		}
-		
+
 		mDir      = dest.readInt();
 		mStops    = Boolean.parseBoolean(dest.readString());
 		mTP       = Boolean.parseBoolean(dest.readString());
 		mStartSeq = dest.readInt();
 		mEndSeq   = dest.readInt();
-	}	
+	}
 }

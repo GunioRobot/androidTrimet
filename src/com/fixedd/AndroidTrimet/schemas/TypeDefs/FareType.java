@@ -8,9 +8,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for FareType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="FareType">
  *   &lt;complexContent>
@@ -24,8 +24,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class FareType implements Parcelable {
 	protected String				mRegular	= "";
@@ -39,11 +39,11 @@ public class FareType implements Parcelable {
 
 	/**
 	 * Gets the value of the regular property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getRegular() {
 		return mRegular;
@@ -51,11 +51,11 @@ public class FareType implements Parcelable {
 
 	/**
 	 * Sets the value of the regular property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setRegular(String value) {
 		mRegular = value;
@@ -63,25 +63,25 @@ public class FareType implements Parcelable {
 
 	/**
 	 * Gets the value of the special property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the special property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getSpecial().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link SpecialFareType }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<SpecialFareType> getSpecial() {
 		if (mSpecial == null) {
@@ -92,11 +92,11 @@ public class FareType implements Parcelable {
 
 	/**
 	 * Gets the value of the provider property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getProvider() {
 		return mProvider;
@@ -104,11 +104,11 @@ public class FareType implements Parcelable {
 
 	/**
 	 * Sets the value of the provider property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setProvider(String value) {
 		mProvider = value;
@@ -131,7 +131,7 @@ public class FareType implements Parcelable {
 		if (mSpecial != null && mSpecial.size() > 0) {
 			dest.writeInt(1);
 			dest.writeTypedList(mSpecial);
-		} else 
+		} else
 			dest.writeInt(0);
 		dest.writeString(mProvider);
 	}

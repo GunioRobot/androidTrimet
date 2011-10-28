@@ -11,7 +11,7 @@ import android.os.Parcelable;
  */
 public class RouteType implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	/**
 	 * A "Bus" route type.
 	 * @see #setType(int)
@@ -33,17 +33,17 @@ public class RouteType implements Parcelable, Serializable {
 	protected int						mType   = 0;
 
 
-	public RouteType() {} 
+	public RouteType() {}
 
 	/**
 	 * Gets the directions list.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the direction list.
 	 * This is why there is not a <CODE>set</CODE> method for the dir property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
@@ -73,14 +73,14 @@ public class RouteType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the route's description.    
+	 * Gets the route's description.
 	 */
 	public String getDescription() {
 		return mDesc;
 	}
 
 	/**
-	 * Sets the route's description.    
+	 * Sets the route's description.
 	 */
 	public void setDescription(String description) {
 		mDesc = description;
@@ -94,7 +94,7 @@ public class RouteType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets whether the route has a detour in effect.    
+	 * Sets whether the route has a detour in effect.
 	 */
 	public void setDetour(boolean value) {
 		mDetour = value;
@@ -166,7 +166,7 @@ public class RouteType implements Parcelable, Serializable {
 	};
 
 	private RouteType(Parcel dest) {
-		if (dest.readInt() == 1) 
+		if (dest.readInt() == 1)
 			dest.readTypedList(mDirections, RouteDirectionType.CREATOR);
 
 		mRoute  = dest.readInt();

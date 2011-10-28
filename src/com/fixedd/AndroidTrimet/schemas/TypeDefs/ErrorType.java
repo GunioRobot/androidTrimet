@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for ErrorType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ErrorType">
  *   &lt;complexContent>
@@ -20,8 +20,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class ErrorType implements Parcelable {
 
@@ -35,11 +35,11 @@ public class ErrorType implements Parcelable {
 
 	/**
 	 * Gets the value of the message property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getMessage() {
 		return mMessage;
@@ -47,11 +47,11 @@ public class ErrorType implements Parcelable {
 
 	/**
 	 * Sets the value of the message property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setMessage(String value) {
 		mMessage = value;
@@ -59,11 +59,11 @@ public class ErrorType implements Parcelable {
 
 	/**
 	 * Gets the value of the code property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getCode() {
 		return mCode;
@@ -71,11 +71,11 @@ public class ErrorType implements Parcelable {
 
 	/**
 	 * Sets the value of the code property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setCode(String value) {
 		mCode = value;

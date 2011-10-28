@@ -4,10 +4,10 @@ import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/** 
+/**
  * <p>
- * Contains information about a location, usually a stop. This element can 
- * occur in two locations in a resultSet document. One to describe the stop 
+ * Contains information about a location, usually a stop. This element can
+ * occur in two locations in a resultSet document. One to describe the stop
  * requested, and others to describe the location of any layovers.
  */
 public class LocationType implements Parcelable, Serializable {
@@ -63,7 +63,7 @@ public class LocationType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the direction for the stop
-	 * @param direction A {@link String} indicating the direction the location is headed. 
+	 * @param direction A {@link String} indicating the direction the location is headed.
 	 */
 	public void setDirection(String direction) {
 		mDir = direction;

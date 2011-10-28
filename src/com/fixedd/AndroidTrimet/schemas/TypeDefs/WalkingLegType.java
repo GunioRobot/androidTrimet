@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for WalkingLegType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="WalkingLegType">
  *   &lt;complexContent>
@@ -19,8 +19,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class WalkingLegType extends LegType implements Parcelable {
 
@@ -33,11 +33,11 @@ public class WalkingLegType extends LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the direction property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getDirection() {
 		return mDirection;
@@ -45,11 +45,11 @@ public class WalkingLegType extends LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the direction property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setDirection(String value) {
 		mDirection = value;

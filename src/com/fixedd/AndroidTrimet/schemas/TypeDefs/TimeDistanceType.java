@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for TimeDistanceType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="TimeDistanceType">
  *   &lt;complexContent>
@@ -28,8 +28,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class TimeDistanceType implements Parcelable {
 
@@ -51,11 +51,11 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the date property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getDate() {
 		return mDate;
@@ -63,11 +63,11 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the date property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setDate(String value) {
 		mDate = value;
@@ -75,11 +75,11 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the startTime property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getStartTime() {
 		return mStartTime;
@@ -87,11 +87,11 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the startTime property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setStartTime(String value) {
 		mStartTime = value;
@@ -99,11 +99,11 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the endTime property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getEndTime() {
 		return mEndTime;
@@ -111,11 +111,11 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the endTime property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setEndTime(String value) {
 		mEndTime = value;
@@ -123,7 +123,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the duration property.
-	 * 
+	 *
 	 */
 	public int getDuration() {
 		return mDuration;
@@ -131,7 +131,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the duration property.
-	 * 
+	 *
 	 */
 	public void setDuration(int value) {
 		mDuration = value;
@@ -139,7 +139,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the distance property.
-	 * 
+	 *
 	 */
 	public double getDistance() {
 		return mDistance;
@@ -147,7 +147,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the distance property.
-	 * 
+	 *
 	 */
 	public void setDistance(double value) {
 		mDistance = value;
@@ -155,7 +155,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the numberOfTransfers property.
-	 * 
+	 *
 	 */
 	public int getNumberOfTransfers() {
 		return mNumberOfTransfers;
@@ -163,7 +163,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the numberOfTransfers property.
-	 * 
+	 *
 	 */
 	public void setNumberOfTransfers(int value) {
 		mNumberOfTransfers = value;
@@ -171,7 +171,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the numberOfTripLegs property.
-	 * 
+	 *
 	 */
 	public int getNumberOfTripLegs() {
 		return mNumberOfTripLegs;
@@ -179,7 +179,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the numberOfTripLegs property.
-	 * 
+	 *
 	 */
 	public void setNumberOfTripLegs(int value) {
 		mNumberOfTripLegs = value;
@@ -187,7 +187,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the walkingTime property.
-	 * 
+	 *
 	 */
 	public int getWalkingTime() {
 		return mWalkingTime;
@@ -195,7 +195,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the walkingTime property.
-	 * 
+	 *
 	 */
 	public void setWalkingTime(int value) {
 		mWalkingTime = value;
@@ -203,7 +203,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the transitTime property.
-	 * 
+	 *
 	 */
 	public int getTransitTime() {
 		return mTransitTime;
@@ -211,7 +211,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the transitTime property.
-	 * 
+	 *
 	 */
 	public void setTransitTime(int value) {
 		mTransitTime = value;
@@ -219,7 +219,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Gets the value of the waitingTime property.
-	 * 
+	 *
 	 */
 	public int getWaitingTime() {
 		return mWaitingTime;
@@ -227,7 +227,7 @@ public class TimeDistanceType implements Parcelable {
 
 	/**
 	 * Sets the value of the waitingTime property.
-	 * 
+	 *
 	 */
 	public void setWaitingTime(int value) {
 		mWaitingTime = value;

@@ -11,9 +11,9 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.ItineraryType;
 
 /**
  * <p>Java class for ItinerariesType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ItinerariesType">
  *   &lt;complexContent>
@@ -26,8 +26,8 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.ItineraryType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class ItinerariesType implements Parcelable {
 
@@ -41,25 +41,25 @@ public class ItinerariesType implements Parcelable {
 
 	/**
 	 * Gets the value of the itinerary property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the itinerary property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getItinerary().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link ItineraryType }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<ItineraryType> getItinerary() {
 		if (mItinerary == null) {
@@ -70,11 +70,11 @@ public class ItinerariesType implements Parcelable {
 
 	/**
 	 * Gets the value of the count property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link Integer }
-	 *     
+	 *
 	 */
 	public int getCount() {
 		return mCount;
@@ -82,11 +82,11 @@ public class ItinerariesType implements Parcelable {
 
 	/**
 	 * Sets the value of the count property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link Integer }
-	 *     
+	 *
 	 */
 	public void setCount(int value) {
 		mCount = value;
@@ -108,7 +108,7 @@ public class ItinerariesType implements Parcelable {
 		if (mItinerary != null && mItinerary.size() > 0) {
 			dest.writeInt(1);
 			dest.writeTypedList(mItinerary);
-		} else 
+		} else
 			dest.writeInt(0);
 		dest.writeInt      (mCount    );
 	}

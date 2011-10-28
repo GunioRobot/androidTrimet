@@ -8,9 +8,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for RouteType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="RouteType">
  *   &lt;complexContent>
@@ -29,8 +29,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class RouteType implements Parcelable {
 
@@ -50,11 +50,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the number property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getNumber() {
 		return mNumber;
@@ -62,11 +62,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the number property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setNumber(String value) {
 		mNumber = value;
@@ -74,11 +74,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the internalNumber property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getInternalNumber() {
 		return mInternalNumber;
@@ -86,11 +86,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the internalNumber property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setInternalNumber(String value) {
 		mInternalNumber = value;
@@ -98,11 +98,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the name property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getName() {
 		return mName;
@@ -110,11 +110,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the name property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setName(String value) {
 		mName = value;
@@ -122,11 +122,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the key property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getKey() {
 		return mKey;
@@ -134,11 +134,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the key property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setKey(String value) {
 		mKey = value;
@@ -146,11 +146,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the direction property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getDirection() {
 		return mDirection;
@@ -158,11 +158,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the direction property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setDirection(String value) {
 		mDirection = value;
@@ -170,11 +170,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the block property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getBlock() {
 		return mBlock;
@@ -182,11 +182,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the block property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setBlock(String value) {
 		mBlock = value;
@@ -194,11 +194,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the provider property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getProvider() {
 		return mProvider;
@@ -206,11 +206,11 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the provider property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setProvider(String value) {
 		mProvider = value;
@@ -218,25 +218,25 @@ public class RouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the alert property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the alert property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getAlert().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link AlertType }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<AlertType> getAlert() {
 		if (mAlert == null) {

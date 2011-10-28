@@ -9,9 +9,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for RouteSummaryType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="RouteSummaryType">
  *   &lt;complexContent>
@@ -23,8 +23,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class RouteSummaryType implements Parcelable {
 
@@ -37,25 +37,25 @@ public class RouteSummaryType implements Parcelable {
 
 	/**
 	 * Gets the value of the route property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the route property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getRoute().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link RouteIdType }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<RouteIdType> getRoute() {
 		if (mRoute == null) {

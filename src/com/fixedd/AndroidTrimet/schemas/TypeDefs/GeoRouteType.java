@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for GeoRouteType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="GeoRouteType">
  *   &lt;complexContent>
@@ -23,8 +23,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class GeoRouteType implements Parcelable {
 
@@ -41,11 +41,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the domain property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getDomain() {
 		return mDomain;
@@ -53,11 +53,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the domain property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setDomain(String value) {
 		mDomain = value;
@@ -65,11 +65,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the typeName property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getTypeName() {
 		return mTypeName;
@@ -77,11 +77,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the typeName property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setTypeName(String value) {
 		mTypeName = value;
@@ -89,11 +89,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the ogcFilter property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getOgcFilter() {
 		return mOgcFilter;
@@ -101,11 +101,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the ogcFilter property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setOgcFilter(String value) {
 		mOgcFilter = value;
@@ -113,11 +113,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the wfsUrl property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getWfsUrl() {
 		return mWfsUrl;
@@ -125,11 +125,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the wfsUrl property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setWfsUrl(String value) {
 		mWfsUrl = value;
@@ -137,11 +137,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Gets the value of the wmsUrl property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getWmsUrl() {
 		return mWmsUrl;
@@ -149,11 +149,11 @@ public class GeoRouteType implements Parcelable {
 
 	/**
 	 * Sets the value of the wmsUrl property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setWmsUrl(String value) {
 		mWmsUrl = value;

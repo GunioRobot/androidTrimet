@@ -11,7 +11,7 @@ import android.os.Parcelable;
  */
 public class ArrivalType implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	/**
 	 * Arrival time was estimated with vehicle position information.
 	 * @see #setStatus(int)
@@ -19,8 +19,8 @@ public class ArrivalType implements Parcelable, Serializable {
 	 */
 	public static int STATUS_ESTIMATED = 0;
 	/**
-	 * Scheduled arrival time is available only. No real time information 
-	 * available for estimation. Bus's radio may be down or vehicle may not be 
+	 * Scheduled arrival time is available only. No real time information
+	 * available for estimation. Bus's radio may be down or vehicle may not be
 	 * in service. Arrivals are not estimated when further than an hour away.
 	 * @see #setStatus(int)
 	 * @see #getStatus()
@@ -59,21 +59,21 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the value of the blockPosition property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the blockPosition list.
-	 * This is why there is not a <CODE>set</CODE> method for the 
+	 * This is why there is not a <CODE>set</CODE> method for the
 	 * blockPositions property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getBlockPositions().add(newItem);
 	 * </pre>
-	 *  
-	 * @return a List<BlockPostionType> 
+	 *
+	 * @return a List<BlockPostionType>
 	 */
 	public List<BlockPositionType> getBlockPositions() {
 		if (mBlockPositions == null) {
@@ -108,7 +108,7 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the location id.
-	 * @param locationId the location id for the arrival. 
+	 * @param locationId the location id for the arrival.
 	 */
 	public void setLocationId(int locationId) {
 		mLocid = locationId;
@@ -133,16 +133,16 @@ public class ArrivalType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the short version of text from the overhead sign of the vehicle 
+	 * Gets the short version of text from the overhead sign of the vehicle
 	 * when it arrives at the stop.
-	 * @return overhead sign as a {@link String}    
+	 * @return overhead sign as a {@link String}
 	 */
 	public String getShortSign() {
 		return mShortSign;
 	}
 
 	/**
-	 * Sets the short version of text from the overhead sign of the vehicle 
+	 * Sets the short version of text from the overhead sign of the vehicle
 	 * when it arrives at the stop.
 	 * @param signText overhead sign as a {@link String}
 	 */
@@ -151,18 +151,18 @@ public class ArrivalType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the full text of the overhead sign of the vehicle when it arrives 
+	 * Gets the full text of the overhead sign of the vehicle when it arrives
 	 * at the stop.
-	 * @return overhead sign as a {@link String}    
+	 * @return overhead sign as a {@link String}
 	 */
 	public String getFullSign() {
 		return mFullSign;
 	}
 
 	/**
-	 * Sets the full text of the overhead sign of the vehicle when it arrives 
+	 * Sets the full text of the overhead sign of the vehicle when it arrives
 	 * at the stop.
-	 * @param signText overhead sign as a {@link String}    
+	 * @param signText overhead sign as a {@link String}
 	 */
 	public void setFullSign(String signText) {
 		mFullSign = signText;
@@ -170,9 +170,9 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the estimated time for this arrival.
-	 * @return the milliseconds since epoch when the arrival is estimated as a 
-	 * {@link Long }. If this value is <b>-9223372036854775808</b> the arrival 
-	 * could not be estimated and the time from getSchedule() should be used 
+	 * @return the milliseconds since epoch when the arrival is estimated as a
+	 * {@link Long }. If this value is <b>-9223372036854775808</b> the arrival
+	 * could not be estimated and the time from getSchedule() should be used
 	 * instead.
 	 */
 	public Long getEstimatedTime() {
@@ -181,8 +181,8 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the estimated time for this arrival.
-	 * @param time The milliseconds since epoch when the arrival is estimated 
-	 * as a {@link Long}. 
+	 * @param time The milliseconds since epoch when the arrival is estimated
+	 * as a {@link Long}.
 	 */
 	public void setEstimatedTime(Long time) {
 		mEstimated = time;
@@ -190,8 +190,8 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the scheduled time for this arrival.
-	 * @return the milliseconds since epoch when the arrival is scheduled as a 
-	 * {@link Long }. If this value is <b>-9223372036854775808</b> the time 
+	 * @return the milliseconds since epoch when the arrival is scheduled as a
+	 * {@link Long }. If this value is <b>-9223372036854775808</b> the time
 	 * wasn't properly set.
 	 */
 	public long getScheduledTime() {
@@ -200,7 +200,7 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the scheduled time for this arrival.
-	 * @param time The milliseconds since epoch when the arrival is scheduled 
+	 * @param time The milliseconds since epoch when the arrival is scheduled
 	 * as a {@link Long}.
 	 */
 	public void setScheduledTime(long time) {
@@ -222,14 +222,14 @@ public class ArrivalType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the piece of the block for this arrival.    
+	 * Gets the piece of the block for this arrival.
 	 */
 	public String getPiece() {
 		return mPiece;
 	}
 
 	/**
-	 * Sets the block for this arrival.    
+	 * Sets the block for this arrival.
 	 */
 	public void setPiece(String value) {
 		mPiece = value;
@@ -257,7 +257,7 @@ public class ArrivalType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets whether the arrival may be effected by a detour in effect along the route.    
+	 * Sets whether the arrival may be effected by a detour in effect along the route.
 	 */
 	public void setDetour(Boolean value) {
 		mDetour = value;
@@ -265,9 +265,9 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Reports the current status of the arrival.
-	 * 
+	 *
 	 * @return The status of the arrival. Either {@link #STATUS_ESTIMATED},
-	 *     {@link #STATUS_SCHEDULED}, {@link #STATUS_DELAYED}, or 
+	 *     {@link #STATUS_SCHEDULED}, {@link #STATUS_DELAYED}, or
 	 *     {@link #STATUS_CANCELED}.
 	 */
 	public int getStatus() {
@@ -276,7 +276,7 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the status of the arrival.
-	 * @param status The status of the arrival as a {@link String}. Must be 
+	 * @param status The status of the arrival as a {@link String}. Must be
 	 *     either "estimated", "scheduled", "delayed", or "canceled".
 	 */
 	public void setStatus(String status) {
@@ -295,7 +295,7 @@ public class ArrivalType implements Parcelable, Serializable {
 	/**
 	 * Sets the status of the arrival.
 	 * @param status The status of the arrival. Either {@link #STATUS_ESTIMATED},
-	 *     {@link #STATUS_SCHEDULED}, {@link #STATUS_DELAYED}, or 
+	 *     {@link #STATUS_SCHEDULED}, {@link #STATUS_DELAYED}, or
 	 *     {@link #STATUS_CANCELED}.
 	 */
 	public void setStatus(int status) {
@@ -369,7 +369,7 @@ public class ArrivalType implements Parcelable, Serializable {
 
 	private ArrivalType(Parcel dest) {
 		mBlockPositions = new ArrayList<BlockPositionType>();
-		
+
 		if (dest.readInt() == 1)
 			dest.readTypedList(mBlockPositions, BlockPositionType.CREATOR);
 		mRoute     = dest.readInt();

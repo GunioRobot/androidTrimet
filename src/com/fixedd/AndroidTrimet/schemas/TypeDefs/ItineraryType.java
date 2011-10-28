@@ -8,9 +8,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for ItineraryType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="ItineraryType">
  *   &lt;complexContent>
@@ -28,8 +28,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class ItineraryType implements Parcelable {
 	protected TimeDistanceType		mTimeDistance;
@@ -47,11 +47,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Gets the value of the timeDistance property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link TimeDistanceType }
-	 *     
+	 *
 	 */
 	public TimeDistanceType getTimeDistance() {
 		return mTimeDistance;
@@ -59,11 +59,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Sets the value of the timeDistance property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link TimeDistanceType }
-	 *     
+	 *
 	 */
 	public void setTimeDistance(TimeDistanceType value) {
 		mTimeDistance = value;
@@ -71,11 +71,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Gets the value of the fare property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link FareType }
-	 *     
+	 *
 	 */
 	public FareType getFare() {
 		return mFare;
@@ -83,11 +83,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Sets the value of the fare property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link FareType }
-	 *     
+	 *
 	 */
 	public void setFare(FareType value) {
 		mFare = value;
@@ -95,11 +95,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Gets the value of the routes property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link RouteSummaryType }
-	 *     
+	 *
 	 */
 	public RouteSummaryType getRoutes() {
 		return mRoutes;
@@ -107,11 +107,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Sets the value of the routes property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link RouteSummaryType }
-	 *     
+	 *
 	 */
 	public void setRoutes(RouteSummaryType value) {
 		mRoutes = value;
@@ -119,25 +119,25 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Gets the value of the leg property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the leg property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getLeg().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link LegType }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<LegType> getLeg() {
 		if (mLeg == null) {
@@ -148,25 +148,25 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Gets the value of the geo property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the geo property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getGeo().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link GeoRouteType }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<GeoRouteType> getGeo() {
 		if (mGeo == null) {
@@ -177,11 +177,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Gets the value of the id property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getId() {
 		return mId;
@@ -189,11 +189,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Sets the value of the id property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setId(String value) {
 		mId = value;
@@ -201,11 +201,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Gets the value of the viaRoute property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getViaRoute() {
 		return mViaRoute;
@@ -213,11 +213,11 @@ public class ItineraryType implements Parcelable {
 
 	/**
 	 * Sets the value of the viaRoute property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setViaRoute(String value) {
 		mViaRoute = value;
@@ -239,19 +239,19 @@ public class ItineraryType implements Parcelable {
 		if (mTimeDistance != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mTimeDistance, flags);
-		} else 
+		} else
 			dest.writeInt(0);
 
 		if (mFare != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mFare, flags);
-		} else 
+		} else
 			dest.writeInt(0);
 
 		if (mRoutes != null) {
 			dest.writeInt(1);
 			dest.writeParcelable(mRoutes, flags);
-		} else 
+		} else
 			dest.writeInt(0);
 
 		if (mLeg != null && mLeg.size() > 0) {
@@ -281,7 +281,7 @@ public class ItineraryType implements Parcelable {
 		if (mGeo != null && mGeo.size() > 0) {
 			dest.writeInt(1);
 			dest.writeTypedList(mGeo);
-		} else 
+		} else
 			dest.writeInt(0);
 
 		dest.writeString(mId      );
@@ -302,7 +302,7 @@ public class ItineraryType implements Parcelable {
 		if (dest.readInt() == 1) mTimeDistance = (TimeDistanceType) dest.readParcelable(getClass().getClassLoader());
 		if (dest.readInt() == 1) mFare         = (FareType        ) dest.readParcelable(getClass().getClassLoader());
 		if (dest.readInt() == 1) mRoutes       = (RouteSummaryType) dest.readParcelable(getClass().getClassLoader());
-		
+
 		// mLeg can contain WalkingLegTypes or TransitLegTypes. Pull them out then combine them.
 		ArrayList<WalkingLegType> walkingLegs = new ArrayList<WalkingLegType>();
 		ArrayList<TransitLegType> transitLegs = new ArrayList<TransitLegType>();
@@ -313,7 +313,7 @@ public class ItineraryType implements Parcelable {
 		mLeg = new ArrayList<LegType>();
 		mLeg.addAll(walkingLegs);
 		mLeg.addAll(transitLegs);
-			
+
 		if (dest.readInt() == 1) {
 			mGeo = new ArrayList<GeoRouteType>();
 			dest.readTypedList(mGeo, GeoRouteType.CREATOR);

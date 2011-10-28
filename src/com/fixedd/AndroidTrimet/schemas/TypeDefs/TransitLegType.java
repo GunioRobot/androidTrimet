@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for TransitLegType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="TransitLegType">
  *   &lt;complexContent>
@@ -20,8 +20,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class TransitLegType extends LegType implements Parcelable {
 	protected RouteType	mRoute;
@@ -34,11 +34,11 @@ public class TransitLegType extends LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the route property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link RouteType }
-	 *     
+	 *
 	 */
 	public RouteType getRoute() {
 		return mRoute;
@@ -46,11 +46,11 @@ public class TransitLegType extends LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the route property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link RouteType }
-	 *     
+	 *
 	 */
 	public void setRoute(RouteType value) {
 		mRoute = value;
@@ -58,11 +58,11 @@ public class TransitLegType extends LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the fare property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link FareType }
-	 *     
+	 *
 	 */
 	public FareType getFare() {
 		return mFare;
@@ -70,11 +70,11 @@ public class TransitLegType extends LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the fare property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link FareType }
-	 *     
+	 *
 	 */
 	public void setFare(FareType value) {
 		mFare = value;

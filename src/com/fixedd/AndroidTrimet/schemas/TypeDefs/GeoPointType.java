@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for GeoPointType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="GeoPointType">
  *   &lt;complexContent>
@@ -24,8 +24,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class GeoPointType extends PointType implements Parcelable {
 
@@ -43,11 +43,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the x property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getX() {
 		return mX;
@@ -55,11 +55,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the x property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setX(String value) {
 		mX = value;
@@ -67,11 +67,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the y property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getY() {
 		return mY;
@@ -79,11 +79,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the y property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setY(String value) {
 		mY = value;
@@ -91,11 +91,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the lat property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getLat() {
 		return mLat;
@@ -103,11 +103,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the lat property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setLat(String value) {
 		mLat = value;
@@ -115,11 +115,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the lon property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getLon() {
 		return mLon;
@@ -127,11 +127,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the lon property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setLon(String value) {
 		mLon = value;
@@ -139,11 +139,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the srsName property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getSrsName() {
 		return mSrsName;
@@ -151,11 +151,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the srsName property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setSrsName(String value) {
 		mSrsName = value;
@@ -163,11 +163,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the id property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getId() {
 		return mId;
@@ -175,11 +175,11 @@ public class GeoPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the id property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setId(String value) {
 		mId = value;
@@ -208,7 +208,7 @@ public class GeoPointType extends PointType implements Parcelable {
 		dest.writeString(mAreaKey    );
 		dest.writeString(mAreaValue  );
 		dest.writeString(mId         );
-		
+
 		// from GeoPointType
 		dest.writeString(mX      );
 		dest.writeString(mY      );
@@ -235,7 +235,7 @@ public class GeoPointType extends PointType implements Parcelable {
 		mAreaKey     = dest.readString();
 		mAreaValue   = dest.readString();
 		mId          = dest.readString();
-		
+
 		// from GeoPointType
 		mX       = dest.readString();
 		mY       = dest.readString();
@@ -243,6 +243,6 @@ public class GeoPointType extends PointType implements Parcelable {
 		mLon     = dest.readString();
 		mSrsName = dest.readString();
 		mId      = dest.readString();
-		
+
 	}
 }

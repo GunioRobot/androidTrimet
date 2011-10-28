@@ -31,7 +31,7 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.TransitLegType;
 import com.fixedd.AndroidTrimet.schemas.TypeDefs.WalkingLegType;
 
 /*
- * This is a god-awful mess that'll be impossible to maintain. It should be 
+ * This is a god-awful mess that'll be impossible to maintain. It should be
  * rewritten to be clearer.
  */
 public class ItineraryHandler extends DefaultHandler {
@@ -81,7 +81,7 @@ public class ItineraryHandler extends DefaultHandler {
 	private boolean				mInMessage				= false;
 	private boolean 			mInFrom = false;
 	private boolean 			mInTo = false;
-	// 
+	//
 	private RequestType.Param	mCurrentParam			= null;
 	private PointType			mCurrentPointType		= null;
 	private GeoPointType		mCurrentGeoPointType	= null;
@@ -105,8 +105,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mInDate = true;
 		} else if (qualifiedName.equalsIgnoreCase("time") || localName.equalsIgnoreCase("time")) {
 			mInTime = true;
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("request") || localName.equalsIgnoreCase("request")) {
 			mResponse.setRequest(new RequestType());
 		} else if (qualifiedName.equalsIgnoreCase("url") || localName.equalsIgnoreCase("url")) {
@@ -115,13 +115,13 @@ public class ItineraryHandler extends DefaultHandler {
 			mInParam = true;
 			mCurrentParam = new RequestType.Param();
 			mCurrentParam.setName(attributes.getValue("name"));
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("from") || localName.equalsIgnoreCase("from")) {
 			mInFrom = true;
-			
-			// TODO: HACK! I can't seem to figure out how to just request the 
-			// "xsi:type" attribute without looping over the attribute list 
+
+			// TODO: HACK! I can't seem to figure out how to just request the
+			// "xsi:type" attribute without looping over the attribute list
 			// looking for it. This needs more research.
 			String val = null;
 			for (int i=0; i < attributes.getLength(); i++) {
@@ -139,7 +139,7 @@ public class ItineraryHandler extends DefaultHandler {
 			} else {
 				mCurrentPointType = new PointType();
 			}
-			
+
 			if (attributes.getValue("areaKey") != null)
 				mCurrentPointType.setAreaKey(attributes.getValue("areaKey"));
 			if (attributes.getValue("areaValue") != null)
@@ -162,13 +162,13 @@ public class ItineraryHandler extends DefaultHandler {
 			mInLon = true;
 		} else if (qualifiedName.equalsIgnoreCase("description") || localName.equalsIgnoreCase("description")) {
 			mInDescription = true;
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("to") || localName.equalsIgnoreCase("to")) {
 			mInTo = true;
-			
-			// TODO: HACK! I can't seem to figure out how to just request the 
-			// "xsi:type" attribute without looping over the attribute list 
+
+			// TODO: HACK! I can't seem to figure out how to just request the
+			// "xsi:type" attribute without looping over the attribute list
 			// looking for it. This needs more research.
 			String val = null;
 			for (int i=0; i < attributes.getLength(); i++) {
@@ -186,7 +186,7 @@ public class ItineraryHandler extends DefaultHandler {
 			} else {
 				mCurrentPointType = new PointType();
 			}
-			
+
 			if (attributes.getValue("areaKey") != null)
 				mCurrentPointType.setAreaKey(attributes.getValue("areaKey"));
 			if (attributes.getValue("areaValue") != null)
@@ -221,8 +221,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mInTransitTime = true;
 		} else if (qualifiedName.equalsIgnoreCase("waitingTime") || localName.equalsIgnoreCase("waitingTime")) {
 			mInWaitingTime = true;
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("fare") || localName.equalsIgnoreCase("fare")) {
 			if (mInLeg) {
 				((TransitLegType)mCurrentLeg).setFare(new FareType());
@@ -237,8 +237,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mInSpecial = true;
 			mCurrentSpecialFareType = new SpecialFareType();
 			mCurrentSpecialFareType.setId(attributes.getValue("id"));
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("routes") || localName.equalsIgnoreCase("routes")) {
 			mCurrentItinerary.setRoutes(new RouteSummaryType());
 		} else if (qualifiedName.equalsIgnoreCase("route") || localName.equalsIgnoreCase("route")) {
@@ -247,20 +247,20 @@ public class ItineraryHandler extends DefaultHandler {
 				((TransitLegType)mCurrentLeg).setRoute(new RouteType());
 			} else
 				mCurrentRouteId = new RouteIdType();
-		} else if (qualifiedName.equalsIgnoreCase("number") || localName.equalsIgnoreCase("number")) {	
+		} else if (qualifiedName.equalsIgnoreCase("number") || localName.equalsIgnoreCase("number")) {
 			mInNumber = true;
-		} else if (qualifiedName.equalsIgnoreCase("internalNumber") || localName.equalsIgnoreCase("internalNumber")) {	
+		} else if (qualifiedName.equalsIgnoreCase("internalNumber") || localName.equalsIgnoreCase("internalNumber")) {
 			mInInternalNumber = true;
-		} else if (qualifiedName.equalsIgnoreCase("direction") || localName.equalsIgnoreCase("direction")) {	
+		} else if (qualifiedName.equalsIgnoreCase("direction") || localName.equalsIgnoreCase("direction")) {
 			mInDirection = true;
-			
-		} else if (qualifiedName.equalsIgnoreCase("name") || localName.equalsIgnoreCase("name")) {	
+
+		} else if (qualifiedName.equalsIgnoreCase("name") || localName.equalsIgnoreCase("name")) {
 			mInName = true;
-		} else if (qualifiedName.equalsIgnoreCase("key") || localName.equalsIgnoreCase("key")) {	
+		} else if (qualifiedName.equalsIgnoreCase("key") || localName.equalsIgnoreCase("key")) {
 			mInKey = true;
-		} else if (qualifiedName.equalsIgnoreCase("block") || localName.equalsIgnoreCase("block")) {	
+		} else if (qualifiedName.equalsIgnoreCase("block") || localName.equalsIgnoreCase("block")) {
 			mInBlock = true;
-		} else if (qualifiedName.equalsIgnoreCase("provider") || localName.equalsIgnoreCase("provider")) {	
+		} else if (qualifiedName.equalsIgnoreCase("provider") || localName.equalsIgnoreCase("provider")) {
 			mInProvider = true;
 		} else if (qualifiedName.equalsIgnoreCase("alert") || localName.equalsIgnoreCase("alert")) {
 			mCurrentAlert = new AlertType();
@@ -270,12 +270,12 @@ public class ItineraryHandler extends DefaultHandler {
 			mInEnd = true;
 		} else if (qualifiedName.equalsIgnoreCase("status") || localName.equalsIgnoreCase("status")) {
 			mInStatus = true;
-			
+
 		} else if (qualifiedName.equalsIgnoreCase("leg") || localName.equalsIgnoreCase("leg")) {
 			mInLeg = true;
-			
-			// TODO: HACK! I can't seem to figure out how to just request the 
-			// "xsi:type" attribute without looping over the attribute list 
+
+			// TODO: HACK! I can't seem to figure out how to just request the
+			// "xsi:type" attribute without looping over the attribute list
 			// looking for it. This needs more research.
 			String val = null;
 			for (int i=0; i < attributes.getLength(); i++) {
@@ -286,8 +286,8 @@ public class ItineraryHandler extends DefaultHandler {
 			}
 			if (val == null)
 				throw new RuntimeException("can't find xsi:type");
-			
-			
+
+
 			if (val.equalsIgnoreCase("ns:TransitLegType")) {	// xsi:type
 					mCurrentLeg = new TransitLegType();
 			} else if (val.equalsIgnoreCase("ns:WalkingLegType")) {
@@ -303,8 +303,8 @@ public class ItineraryHandler extends DefaultHandler {
 		} else if (qualifiedName.equalsIgnoreCase("lineURL") || localName.equalsIgnoreCase("lineURL")) {
 			mCurrentLeg.setLineURL(new GeoURLType());
 			mCurrentLeg.getLineURL().setParam(attributes.getValue("param"));
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("geo") || localName.equalsIgnoreCase("geo")) {
 			mCurrentGeoRoute = new GeoRouteType();
 		} else if (qualifiedName.equalsIgnoreCase("domain") || localName.equalsIgnoreCase("domain")) {
@@ -317,14 +317,14 @@ public class ItineraryHandler extends DefaultHandler {
 			mInWfsUrl = true;
 		} else if (qualifiedName.equalsIgnoreCase("wmsUrl") || localName.equalsIgnoreCase("wmsUrl")) {
 			mInWmsUrl = true;
-			
-			
-			
-			
+
+
+
+
 		} else if (
 			qualifiedName.equalsIgnoreCase("locations") || localName.equalsIgnoreCase("locations") ||
 			qualifiedName.equalsIgnoreCase("fromList" ) || localName.equalsIgnoreCase("fromList" ) ||
-			qualifiedName.equalsIgnoreCase("toList"   ) || localName.equalsIgnoreCase("toList"   ) 
+			qualifiedName.equalsIgnoreCase("toList"   ) || localName.equalsIgnoreCase("toList"   )
 		) {
 			mCurrentLocationList = new LocationListType();
 			if (attributes.getValue("count") != null)
@@ -339,9 +339,9 @@ public class ItineraryHandler extends DefaultHandler {
 				mCurrentPointType.setAreaValue(attributes.getValue("areaValue"));
 			if (attributes.getValue("id") != null)
 				mCurrentPointType.setAreaKey(attributes.getValue("id"));
-			
-			
-			
+
+
+
 		} else if (qualifiedName.equalsIgnoreCase("walkingDirections") || localName.equalsIgnoreCase("walkingDirections")) {
 			mInWalkingDirections = true;
 			mResponse.setWalkingDirections(new WalkingDirectionsType());
@@ -350,8 +350,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mInTurn = true;
 			mCurrentTurn = new OrderedStringsType();
 			mCurrentTurn.setId(Integer.parseInt(attributes.getValue("id")));
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("error") || localName.equalsIgnoreCase("error")) {
 			mResponse.setError(new ErrorType());
 			mResponse.getError().setCode(attributes.getValue("code"));
@@ -362,12 +362,12 @@ public class ItineraryHandler extends DefaultHandler {
 		}
 	}
 
-	
-	
+
+
 	@Override
 	public void characters(char[] chars, int startIndex, int length) throws SAXException {
 		String dataString = new String(chars, startIndex, length);
-		
+
 		if (mInDate) {
 			if (mInTimeDistance) {
 				mCurrentTimeDistance.setDate(dataString);
@@ -394,10 +394,10 @@ public class ItineraryHandler extends DefaultHandler {
 			mCurrentGeoPointType.setLon(dataString);
 		} else if (mInDescription) {
 			if (mInLeg && !mInFrom && !mInTo)
-				mCurrentAlert.setDescription(dataString); 
+				mCurrentAlert.setDescription(dataString);
 			else
 				mCurrentPointType.appendDescription(dataString);
-			
+
 		} else if (mInStartTime) {
 			mCurrentTimeDistance.setStartTime(dataString);
 		} else if (mInEndTime) {
@@ -420,7 +420,7 @@ public class ItineraryHandler extends DefaultHandler {
 			mCurrentTimeDistance.setTransitTime(Integer.parseInt(dataString));
 		} else if (mInWaitingTime) {
 			mCurrentTimeDistance.setWaitingTime(Integer.parseInt(dataString));
-			
+
 		} else if (mInRegular) {
 			if (mInLeg)
 				((TransitLegType)mCurrentLeg).getFare().setRegular(dataString);
@@ -428,8 +428,8 @@ public class ItineraryHandler extends DefaultHandler {
 				mCurrentItinerary.getFare().setRegular(dataString);
 		} else if (mInSpecial) {
 			mCurrentSpecialFareType.setValue(dataString);
-			
-			
+
+
 		} else if (mInNumber) {
 			if (mInLeg)
 				((TransitLegType)mCurrentLeg).getRoute().setNumber(dataString);
@@ -462,8 +462,8 @@ public class ItineraryHandler extends DefaultHandler {
 			mCurrentAlert.setEnd(dataString);
 		} else if (mInStatus) {
 			mCurrentAlert.setStatus(StatusType.fromValue(dataString));
-			
-			
+
+
 		} else if (mInDomain) {
 			mCurrentGeoRoute.setDomain(dataString);
 		} else if (mInTypeName) {
@@ -474,18 +474,18 @@ public class ItineraryHandler extends DefaultHandler {
 			mCurrentGeoRoute.setWfsUrl(dataString);
 		} else if (mInWmsUrl) {
 			mCurrentGeoRoute.setWmsUrl(dataString);
-			
-			
+
+
 		} else if (mInQuery) {
 			mCurrentLocationList.setQuery(dataString);
-			
-			
+
+
 		} else if (mInTurn) {
 			mCurrentTurn.setValue(dataString);
-		
+
 		} else if  (mInMessage) {
 			mResponse.getError().setMessage(dataString);
-			
+
 		} else {
 			super.characters(chars, startIndex, length);
 		}
@@ -537,7 +537,7 @@ public class ItineraryHandler extends DefaultHandler {
 			} else {
 				mCurrentItinerary.setTimeDistance(mCurrentTimeDistance);
 			}
-			
+
 		} else if (qualifiedName.equalsIgnoreCase("startTime") || localName.equalsIgnoreCase("startTime")) {
 			mInStartTime = false;
 		} else if (qualifiedName.equalsIgnoreCase("endTime") || localName.equalsIgnoreCase("endTime")) {
@@ -554,14 +554,14 @@ public class ItineraryHandler extends DefaultHandler {
 			mInWalkingTime = false;
 		} else if (qualifiedName.equalsIgnoreCase("transitTime") || localName.equalsIgnoreCase("transitTime")) {
 			mInTransitTime = false;
-			
+
 		} else if (qualifiedName.equalsIgnoreCase("waitingTime") || localName.equalsIgnoreCase("waitingTime")) {
 			mInWaitingTime = false;
 		} else if (qualifiedName.equalsIgnoreCase("regular") || localName.equalsIgnoreCase("regular")) {
 			mInRegular = false;
 		} else if (qualifiedName.equalsIgnoreCase("special") || localName.equalsIgnoreCase("special")) {
 			mInSpecial = false;
-			
+
 			if (mInLeg)
 				((TransitLegType)mCurrentLeg).getFare().getSpecial().add(mCurrentSpecialFareType);
 			else
@@ -571,11 +571,11 @@ public class ItineraryHandler extends DefaultHandler {
 				mCurrentItinerary.getRoutes().getRoute().add(mCurrentRouteId);
 			else
 				mInTransitLegRoute = false;
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("alert") || localName.equalsIgnoreCase("alert")) {
 			((TransitLegType)mCurrentLeg).getRoute().getAlert().add(mCurrentAlert);
-		} else if (qualifiedName.equalsIgnoreCase("number") || localName.equalsIgnoreCase("number")) {	
+		} else if (qualifiedName.equalsIgnoreCase("number") || localName.equalsIgnoreCase("number")) {
 			mInNumber = false;
 		} else if (qualifiedName.equalsIgnoreCase("internalNumber") || localName.equalsIgnoreCase("internalNumber")) {
 			mInInternalNumber = false;
@@ -589,7 +589,7 @@ public class ItineraryHandler extends DefaultHandler {
 			mInBlock = false;
 		} else if (qualifiedName.equalsIgnoreCase("provider") || localName.equalsIgnoreCase("provider")) {
 			mInProvider = false;
-			
+
 		} else if (qualifiedName.equalsIgnoreCase("leg") || localName.equalsIgnoreCase("leg")) {
 			mInLeg = false;
 			mCurrentItinerary.getLeg().add(mCurrentLeg);
@@ -605,15 +605,15 @@ public class ItineraryHandler extends DefaultHandler {
 			mInWfsUrl = false;
 		} else if (qualifiedName.equalsIgnoreCase("wmsUrl") || localName.equalsIgnoreCase("wmsUrl")) {
 			mInWmsUrl = false;
-			
+
 		} else if (qualifiedName.equalsIgnoreCase("begin") || localName.equalsIgnoreCase("begin")) {
 			mInBegin = false;
 		} else if (qualifiedName.equalsIgnoreCase("end") || localName.equalsIgnoreCase("end")) {
 			mInEnd = false;
 		} else if (qualifiedName.equalsIgnoreCase("status") || localName.equalsIgnoreCase("status")) {
 			mInStatus = false;
-			
-		
+
+
 		} else if (qualifiedName.equalsIgnoreCase("locations") || localName.equalsIgnoreCase("locations")) {
 			mResponse.setLocations(mCurrentLocationList);
 		} else if (qualifiedName.equalsIgnoreCase("fromList") || localName.equalsIgnoreCase("fromList")) {
@@ -624,25 +624,25 @@ public class ItineraryHandler extends DefaultHandler {
 			mInQuery = false;
 		} else if (qualifiedName.equalsIgnoreCase("location") || localName.equalsIgnoreCase("location")) {
 			mCurrentLocationList.getLocation().add(mCurrentPointType);
-			
-		
+
+
 		} else if (qualifiedName.equalsIgnoreCase("walkingDirections") || localName.equalsIgnoreCase("walkingDirections")) {
 			mInWalkingDirections = false;
 		} else if (qualifiedName.equalsIgnoreCase("turn") || localName.equalsIgnoreCase("turn")) {
 			mInTurn = false;
 			mResponse.getWalkingDirections().getTurn().add(mCurrentTurn);
-			
-			
+
+
 		} else if (qualifiedName.equalsIgnoreCase("message") || localName.equalsIgnoreCase("message")) {
 			mInMessage = false;
 		} else {
 			Log.i(getClass().getSimpleName(), "Unknown end element: " + qualifiedName + "/" + localName);
 		}
 	}
-	
-	
+
+
 	/*
-	 * 
+	 *
 	 */
 	public ResponseType getResponse() {
 		return mResponse;

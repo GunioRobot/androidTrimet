@@ -15,17 +15,17 @@ import com.fixedd.AndroidTrimet.util.Util;
 /**
  * Base client class for talking to the Trimet API. Instantiate a copy of the
  * class then call one of the public methods to query the API.
- * 
+ *
  * @author Jeremy Logan
  * @version 1
- * 
+ *
  */
 public class TrimetClient {
 	private String	mAppId;
 
 	/**
 	 * Class constructor
-	 * 
+	 *
 	 * @since 1
 	 * @param appId The application ID assigned to your application by Trimet.
 	 *        This can be procured from <a
@@ -38,7 +38,7 @@ public class TrimetClient {
 
 	/**
 	 * Reports next arrivals at stops identified by location ID.
-	 * 
+	 *
 	 * @since 1
 	 * @param caller The ArrivalsTaskCaller that the task should report back to.
 	 * @param locationIDs The array of location IDs you want arrival info for.
@@ -54,7 +54,7 @@ public class TrimetClient {
 
 	/**
 	 * Looks up information on routes.
-	 * 
+	 *
 	 * @since 1
 	 * @param caller The SchedulesTaskCaller that the task should report back
 	 *        to.
@@ -102,7 +102,7 @@ public class TrimetClient {
 
 	/**
 	 * Retrieves a list of detours currently in effect by route.
-	 * 
+	 *
 	 * @since 1
 	 * @param caller The SchedulesTaskCaller that the task should report back
 	 *        to.
@@ -124,7 +124,7 @@ public class TrimetClient {
 
 	/**
 	 * Find stops near the specified location.
-	 * 
+	 *
 	 * @since 1
 	 * @param caller The ArrivalsTaskCaller that the task should report back to.
 	 * @param latitude The latitude in decimal format to center the search on
@@ -150,7 +150,7 @@ public class TrimetClient {
 
 	/**
 	 * Find stops near the specified location.
-	 * 
+	 *
 	 * @since 1
 	 * @param caller The ArrivalsTaskCaller that the task should report back to.
 	 * @param location The location to center the search on.
@@ -164,11 +164,11 @@ public class TrimetClient {
 
 	/**
 	 * Plan trips between two locations programmatically.
-	 * 
+	 *
 	 * @since 1
 	 * @param caller The TripTaskCaller that the task should report back to.
-	 * @param options The {@link TripPlannerOptions} you want to plan use to 
-	 *        plan the trip. Note that it must have had a datetime, from 
+	 * @param options The {@link TripPlannerOptions} you want to plan use to
+	 *        plan the trip. Note that it must have had a datetime, from
 	 *        location, and to locations set.
 	 */
 	public void planTrip(TripTaskCaller caller, TripPlannerOptions options) {
@@ -180,32 +180,32 @@ public class TrimetClient {
 			throw new RuntimeException("TripPlannerOptions must have a 'to' location set.");
 		if (options.getDate() == null || options.getTime() == null)
 			throw new RuntimeException("TripPlannerOptions must have a datetime set.");
-		
+
 		// build URL
 		try {
-			if (options.getFromPlace() != null) 
+			if (options.getFromPlace() != null)
 				url += "/fromPlace/" + URLEncoder.encode(options.getFromPlace(), "UTF-8");
-			if (options.getFromCoord() != null) 
+			if (options.getFromCoord() != null)
 				url += "/fromCoord/" + options.getFromCoord().getLongitude() + "," + options.getFromCoord().getLatitude();
-			if (options.getToPlace() != null) 
+			if (options.getToPlace() != null)
 				url += "/toPlace/" + URLEncoder.encode(options.getToPlace(), "UTF-8");
-			if (options.getToCoord() != null) 
+			if (options.getToCoord() != null)
 				url += "/toCoord/" + options.getToCoord().getLongitude() + "," + options.getToCoord().getLatitude();
 			url += "/Date/" + options.getDate();
 			url += "/Time/" + URLEncoder.encode(options.getTime(), "UTF-8");
-			if (options.getArriveDepart() != null) 
+			if (options.getArriveDepart() != null)
 				url += "/Arr/" + options.getArriveDepart();
-			if (options.getMaxWalk() != null) 
+			if (options.getMaxWalk() != null)
 				url += "/Walk/" + options.getMaxWalk();
-			if (options.getMode() != null) 
+			if (options.getMode() != null)
 				url += "/Mode/" + options.getMode();
-			if (options.getMaxIntineraries() > 0) 
+			if (options.getMaxIntineraries() > 0)
 				url += "/MaxIntineraries/" + options.getMaxIntineraries();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Could not build the URL from the supplied inputs.");
 		}
-		
+
 		// make the request
 		TripTask task = new TripTask(caller);
 		task.execute(new HttpGet(url.replace("+", "%20")));	// trimet doesn't like "+" in place of a space... requires "%20"

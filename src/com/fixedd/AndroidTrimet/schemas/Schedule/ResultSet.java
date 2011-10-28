@@ -6,15 +6,15 @@ import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/** 
+/**
  * <p>
- * This class holds information on a returned result set. This is basically 
- * the wrapper for all of the other information returned by a RouteConfig or 
+ * This class holds information on a returned result set. This is basically
+ * the wrapper for all of the other information returned by a RouteConfig or
  * Detour lookup.
  */
 public class ResultSet implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	protected String			mErrorMessage;
 	protected List<RouteType>	mRoutes;
 	protected List<DetourType>	mDetours;
@@ -37,16 +37,16 @@ public class ResultSet implements Parcelable, Serializable {
 
 	/**
 	 * Gets the value of the route property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list, not a
 	 * snapshot. Therefore any modification you make to the returned list will
 	 * be present inside the RouteType list. This is why there is not a
 	 * <CODE>set</CODE> method for the routes property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
-	 * 
+	 *
 	 * <pre>
 	 * getRoutes().add(newItem);
 	 * </pre>
@@ -60,16 +60,16 @@ public class ResultSet implements Parcelable, Serializable {
 
 	/**
 	 * Gets the value of the detour property.
-	 * 
+	 *
 	 * <p>
-	 * This accessor method returns a reference to the live list, not a 
+	 * This accessor method returns a reference to the live list, not a
 	 * snapshot. Therefore any modification you make to the returned list will
 	 * be present inside the Detour list. This is why there is not a
 	 * <CODE>set</CODE> method for the detours property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
-	 * 
+	 *
 	 * <pre>
 	 * getDetours().add(newItem);
 	 * </pre>
@@ -98,14 +98,14 @@ public class ResultSet implements Parcelable, Serializable {
 			dest.writeInt(1);
 			dest.writeString(mErrorMessage);
 		}
-		
+
 		if (mRoutes == null)
 			dest.writeInt(0);
 		else {
 			dest.writeInt(1);
 			dest.writeTypedList(mRoutes);
 		}
-		
+
 		if (mDetours == null)
 			dest.writeInt(0);
 		else {

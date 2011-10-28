@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for AlertType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="AlertType">
  *   &lt;complexContent>
@@ -22,8 +22,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class AlertType implements Parcelable {
 
@@ -39,11 +39,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Gets the value of the description property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getDescription() {
 		return mDescription;
@@ -51,11 +51,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Sets the value of the description property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setDescription(String value) {
 		mDescription = value;
@@ -63,11 +63,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Gets the value of the begin property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getBegin() {
 		return mBegin;
@@ -75,11 +75,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Sets the value of the begin property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setBegin(String value) {
 		mBegin = value;
@@ -87,11 +87,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Gets the value of the end property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getEnd() {
 		return mEnd;
@@ -99,11 +99,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Sets the value of the end property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setEnd(String value) {
 		mEnd = value;
@@ -111,11 +111,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Gets the value of the status property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link StatusType }
-	 *     
+	 *
 	 */
 	public StatusType getStatus() {
 		return mStatus;
@@ -123,11 +123,11 @@ public class AlertType implements Parcelable {
 
 	/**
 	 * Sets the value of the status property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link StatusType }
-	 *     
+	 *
 	 */
 	public void setStatus(StatusType value) {
 		mStatus = value;

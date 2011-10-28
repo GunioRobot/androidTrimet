@@ -7,15 +7,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-/** 
+/**
  * <p>
- * This class holds information on a returned result set. This is basically 
+ * This class holds information on a returned result set. This is basically
  * the wrapper for all of the other information returned by an Arrivals or Nearby
- * API call. 
+ * API call.
  */
 public class ResultSet implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	protected String                mErrorMessage;
 	protected List<LocationType   > mLocation;
 	protected List<ArrivalType    > mArrival;
@@ -45,7 +45,7 @@ public class ResultSet implements Parcelable, Serializable {
 	/**
 	 * Gets an error message.
 	 * @return A {@link String} containing an error message or null if there wasn't an error.
-	 *     
+	 *
 	 */
 	public String getErrorMessage() {
 		return mErrorMessage;
@@ -54,7 +54,7 @@ public class ResultSet implements Parcelable, Serializable {
 	/**
 	 * Sets the error message.
 	 * @param The {@link String} that contains the error message.
-	 *     
+	 *
 	 */
 	public void setErrorMessage(String message) {
 		mErrorMessage = message;
@@ -62,13 +62,13 @@ public class ResultSet implements Parcelable, Serializable {
 
 	/**
 	 * Gets the locations for the ResultSet.
-	 * 
+	 *
 	 * <p>
-	 * This accessor method returns a reference to the live list, not a 
-	 * snapshot. Therefore any modification you make to the returned 
-	 * list will be present inside the locations list. This is why there 
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned
+	 * list will be present inside the locations list. This is why there
 	 * is not a <CODE>set</CODE> method for the location property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
@@ -85,19 +85,19 @@ public class ResultSet implements Parcelable, Serializable {
 
 	/**
 	 * Gets the arrivals for the ResultSet.
-	 * 
+	 *
 	 * <p>
-	 * This accessor method returns a reference to the live list, not a 
-	 * snapshot. Therefore any modification you make to the returned list 
-	 * will be present inside the arrival list. This is why there is not 
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list
+	 * will be present inside the arrival list. This is why there is not
 	 * a <CODE>set</CODE> method for the arrival property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getArrivals().add(newItem);
 	 * </pre>
-	 * @return List<ArrivalType> All of the arrivals. 
+	 * @return List<ArrivalType> All of the arrivals.
 	 */
 	public List<ArrivalType> getArrivals() {
 		if (mArrival == null) {
@@ -108,20 +108,20 @@ public class ResultSet implements Parcelable, Serializable {
 
 	/**
 	 * Gets the routeStatuses for the ResultSet.
-	 * 
+	 *
 	 * <p>
-	 * This accessor method returns a reference to the live list, not a 
-	 * snapshot. Therefore any modification you make to the returned list 
-	 * will be present inside the RouteStatus list. This is why there is not 
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list
+	 * will be present inside the RouteStatus list. This is why there is not
 	 * a <CODE>set</CODE> method for the routeStatus property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getRouteStatuses().add(newItem);
 	 * </pre>
 	 * @return List<RouteStatusType> All of the route statuses.
-	 * 
+	 *
 	 */
 	public List<RouteStatusType> getRouteStatuses() {
 		if (mRouteStatus == null) {
@@ -140,7 +140,7 @@ public class ResultSet implements Parcelable, Serializable {
 
 	/**
 	 * Sets the time the query was made.
-	 * @param time The milliseconds since epoch that the query was made. 
+	 * @param time The milliseconds since epoch that the query was made.
 	 */
 	public void setQueryTime(long time) {
 		mQueryTime = time;
@@ -206,7 +206,7 @@ public class ResultSet implements Parcelable, Serializable {
 		mLocation    = new ArrayList<LocationType   >();
 		mArrival     = new ArrayList<ArrivalType    >();
 		mRouteStatus = new ArrayList<RouteStatusType>();
-		
+
 		if (dest.readInt() == 1) mErrorMessage = dest.readString();
 		if (dest.readInt() == 1) dest.readTypedList(mLocation   , LocationType   .CREATOR);
 		if (dest.readInt() == 1) dest.readTypedList(mArrival    , ArrivalType    .CREATOR);

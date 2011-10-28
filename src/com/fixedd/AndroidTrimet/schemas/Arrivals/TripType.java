@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * <p>This child of the blockPosition will occur for every trip the vehicle 
+ * <p>This child of the blockPosition will occur for every trip the vehicle
  * must traverse to arrive at the stop requested.
  */
 public class TripType implements Parcelable, Serializable {
@@ -22,7 +22,7 @@ public class TripType implements Parcelable, Serializable {
 	public TripType() {}
 
 	/**
-	 * Gets the number of feet the vehicle has traversed along this trip's 
+	 * Gets the number of feet the vehicle has traversed along this trip's
 	 * pattern.
 	 * @return feet or <b>-2147483648</b> if it wasn't set properly.
 	 */
@@ -31,7 +31,7 @@ public class TripType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets the number of feet the vehicle has traversed along this trip's 
+	 * Sets the number of feet the vehicle has traversed along this trip's
 	 * pattern.
 	 */
 	public void setProgress(int progress) {
@@ -39,8 +39,8 @@ public class TripType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the number of feet along this trip the vehicle must traverse to 
-	 * arrive at the stop requested. If the vehicle must traverse the entire 
+	 * Gets the number of feet along this trip the vehicle must traverse to
+	 * arrive at the stop requested. If the vehicle must traverse the entire
 	 * trip this number will always be the entire length of the trip.
 	 * @return length or <b>-2147483648</b> if it wasn't set properly.
 	 */
@@ -49,7 +49,7 @@ public class TripType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets the number of feet along this trip the vehicle must traverse to 
+	 * Sets the number of feet along this trip the vehicle must traverse to
 	 * arrive at the stop requested.
 	 */
 	public void setDestinationDistance(int dist) {
@@ -118,14 +118,14 @@ public class TripType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Gets the route's direction description of the trip.    
+	 * Gets the route's direction description of the trip.
 	 */
 	public String getDesc() {
 		return mDesc;
 	}
 
 	/**
-	 * Sets the route's direction description of the trip.    
+	 * Sets the route's direction description of the trip.
 	 */
 	public void setDesc(String value) {
 		mDesc = value;

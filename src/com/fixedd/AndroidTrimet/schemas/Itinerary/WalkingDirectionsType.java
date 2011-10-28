@@ -11,9 +11,9 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.OrderedStringsType;
 
 /**
  * <p>Java class for WalkingDirectionsType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="WalkingDirectionsType">
  *   &lt;complexContent>
@@ -27,8 +27,8 @@ import com.fixedd.AndroidTrimet.schemas.TypeDefs.OrderedStringsType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class WalkingDirectionsType implements Parcelable {
 
@@ -43,25 +43,25 @@ public class WalkingDirectionsType implements Parcelable {
 
 	/**
 	 * Gets the value of the turn property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the turn property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getTurn().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link OrderedStringsType }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<OrderedStringsType> getTurn() {
 		if (mTurn == null) {
@@ -72,7 +72,7 @@ public class WalkingDirectionsType implements Parcelable {
 
 	/**
 	 * Gets the value of the distance property.
-	 * 
+	 *
 	 */
 	public double getDistance() {
 		return mDistance;
@@ -80,7 +80,7 @@ public class WalkingDirectionsType implements Parcelable {
 
 	/**
 	 * Sets the value of the distance property.
-	 * 
+	 *
 	 */
 	public void setDistance(double value) {
 		mDistance = value;
@@ -88,11 +88,11 @@ public class WalkingDirectionsType implements Parcelable {
 
 	/**
 	 * Gets the value of the count property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link Integer }
-	 *     
+	 *
 	 */
 	public int getCount() {
 		return mCount;
@@ -100,11 +100,11 @@ public class WalkingDirectionsType implements Parcelable {
 
 	/**
 	 * Sets the value of the count property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link Integer }
-	 *     
+	 *
 	 */
 	public void setCount(Integer value) {
 		mCount = value;

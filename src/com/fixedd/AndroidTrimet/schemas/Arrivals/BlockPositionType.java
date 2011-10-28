@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * <p>The last known position of the vehicle along its block. Includes path 
+ * <p>The last known position of the vehicle along its block. Includes path
  * information from this position to the stop requested.
  */
 public class BlockPositionType implements Parcelable, Serializable {
@@ -26,13 +26,13 @@ public class BlockPositionType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the trips for the BlockPosition.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the trips list.
 	 * This is why there is not a <CODE>set</CODE> method for the trip property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
@@ -48,13 +48,13 @@ public class BlockPositionType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the layovers for the BlockPosition.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the layovers list.
 	 * This is why there is not a <CODE>set</CODE> method for the layover property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
@@ -85,14 +85,14 @@ public class BlockPositionType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the latitude of the vehicle at the time the position was reported.
-	 * @return latitude or or <b>-2147483648</b> if it wasn't set properly.    
+	 * @return latitude or or <b>-2147483648</b> if it wasn't set properly.
 	 */
 	public double getLatitude() {
 		return mLat;
 	}
 
 	/**
-	 * Sets the latitude of the vehicle at the time the position was reported.    
+	 * Sets the latitude of the vehicle at the time the position was reported.
 	 */
 	public void setLatitude(double lat) {
 		mLat = lat;
@@ -100,38 +100,38 @@ public class BlockPositionType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the longitude of the vehicle at the time the position was reported.
-	 * @return longitude or <b>-2147483648</b> if it wasn't set properly.    
+	 * @return longitude or <b>-2147483648</b> if it wasn't set properly.
 	 */
 	public double getLongitude() {
 		return mLng;
 	}
 
 	/**
-	 * Sets the longitude of the vehicle at the time the position was reported.    
+	 * Sets the longitude of the vehicle at the time the position was reported.
 	 */
 	public void setLongitude(double lng) {
 		mLng = lng;
 	}
 
 	/**
-	 * Gets the heading of the vehicle at the time of the position was 
+	 * Gets the heading of the vehicle at the time of the position was
 	 * reported.
-	 * @return heading or <b>-2147483648</b> if it wasn't set properly.    
+	 * @return heading or <b>-2147483648</b> if it wasn't set properly.
 	 */
 	public Integer getHeading() {
 		return mHeading;
 	}
 
 	/**
-	 * Sets the heading of the vehicle at the time of the position was 
-	 * reported.    
+	 * Sets the heading of the vehicle at the time of the position was
+	 * reported.
 	 */
 	public void setHeading(int heading) {
 		mHeading = heading;
 	}
 
 	/**
-	 * Gets the number of feet the vehicle is away from the stop at the time 
+	 * Gets the number of feet the vehicle is away from the stop at the time
 	 * the position was reported.
 	 * @return feet or <b>-2147483648</b> if it wasn't set properly.
 	 */
@@ -140,7 +140,7 @@ public class BlockPositionType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets the number of feet the vehicle is away from the stop at the time 
+	 * Sets the number of feet the vehicle is away from the stop at the time
 	 * the position was reported.
 	 */
 	public void setFeet(int feet) {
@@ -195,7 +195,7 @@ public class BlockPositionType implements Parcelable, Serializable {
 	private BlockPositionType(Parcel dest) {
 		mTrips    = new ArrayList<TripType   >();
 		mLayovers = new ArrayList<LayoverType>();
-		
+
 		if (dest.readInt() == 1) dest.readTypedList(mTrips   , TripType   .CREATOR);
 		if (dest.readInt() == 1) dest.readTypedList(mLayovers, LayoverType.CREATOR);
 		mAt      = dest.readLong  ();

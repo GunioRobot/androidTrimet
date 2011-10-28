@@ -3,7 +3,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
 
 /**
  * <p>Java class for StatusType.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
@@ -16,7 +16,7 @@ package com.fixedd.AndroidTrimet.schemas.TypeDefs;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
- * 
+ *
  */
 public enum StatusType {
 	DETOUR("Detour"),

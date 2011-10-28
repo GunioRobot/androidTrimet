@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for RouteIdType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="RouteIdType">
  *   &lt;complexContent>
@@ -21,8 +21,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class RouteIdType implements Parcelable {
 
@@ -37,11 +37,11 @@ public class RouteIdType implements Parcelable {
 
 	/**
 	 * Gets the value of the number property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getNumber() {
 		return mNumber;
@@ -49,11 +49,11 @@ public class RouteIdType implements Parcelable {
 
 	/**
 	 * Sets the value of the number property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setNumber(String value) {
 		mNumber = value;
@@ -61,11 +61,11 @@ public class RouteIdType implements Parcelable {
 
 	/**
 	 * Gets the value of the internalNumber property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getInternalNumber() {
 		return mInternalNumber;
@@ -73,11 +73,11 @@ public class RouteIdType implements Parcelable {
 
 	/**
 	 * Sets the value of the internalNumber property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setInternalNumber(String value) {
 		mInternalNumber = value;
@@ -85,11 +85,11 @@ public class RouteIdType implements Parcelable {
 
 	/**
 	 * Gets the value of the direction property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getDirection() {
 		return mDirection;
@@ -97,11 +97,11 @@ public class RouteIdType implements Parcelable {
 
 	/**
 	 * Sets the value of the direction property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setDirection(String value) {
 		mDirection = value;

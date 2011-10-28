@@ -9,7 +9,7 @@ import android.os.Parcelable;
  */
 public class StopType implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	protected String	mDesc;
 	protected int		mLocId	= -2147483648;
 	protected double	mLat	= -2147483648d;
@@ -20,14 +20,14 @@ public class StopType implements Parcelable, Serializable {
 	public StopType() {}
 
 	/**
-	 * Gets the description of the stop.    
+	 * Gets the description of the stop.
 	 */
 	public String getDescription() {
 		return mDesc;
 	}
 
 	/**
-	 * Sets the description of the stop.    
+	 * Sets the description of the stop.
 	 */
 	public void setDescription(String description) {
 		mDesc = description;
@@ -35,7 +35,7 @@ public class StopType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the stop's locationID.
-	 * @return locationID or <b>-2147483648</b> if it was not set properly. 
+	 * @return locationID or <b>-2147483648</b> if it was not set properly.
 	 */
 	public int getLocationId() {
 		return mLocId;
@@ -57,7 +57,7 @@ public class StopType implements Parcelable, Serializable {
 	}
 
 	/**
-	 * Sets the stop's latitude. 
+	 * Sets the stop's latitude.
 	 */
 	public void setLatitude(double lat) {
 		mLat = lat;

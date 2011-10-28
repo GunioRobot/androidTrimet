@@ -12,7 +12,7 @@ public class ScheduleHandler extends DefaultHandler {
 	private   RouteDirectionType mCurrentDirection = null;
 	private   DetourType         mCurrentDetour    = null;
 	private   Boolean            mInError          = false;
-	
+
 	@Override
 	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {
 		if ((qualifiedName.equalsIgnoreCase("resultSet")) || localName.equalsIgnoreCase("resultSet")) {
@@ -52,12 +52,12 @@ public class ScheduleHandler extends DefaultHandler {
 			Log.d(getClass().getSimpleName(), "There was an unknown XML element encountered: " + qualifiedName);
 		}
 	}
-	
+
 	@Override
 	public void endElement(String namespaceUri, String localName, String qualifiedName) throws SAXException {
 		if ((qualifiedName.equalsIgnoreCase("route")) || localName.equalsIgnoreCase("route")) {
 			// a route can belong to a resultSet or a detour
-			if (mCurrentDetour != null) 
+			if (mCurrentDetour != null)
 				mCurrentDetour.getRoutes().add(mCurrentRoute);
 			else
 				mResultSet.getRoutes().add(mCurrentRoute);
@@ -76,18 +76,18 @@ public class ScheduleHandler extends DefaultHandler {
 	@Override
 	public void characters(char[] chars, int startIndex, int length) throws SAXException {
 		String dataString = new String(chars, startIndex, length).trim();
-		
+
 		if (mInError) {
 			mResultSet.setErrorMessage(dataString);
 		} else {
 			super.characters(chars, startIndex, length);
 		}
 	}
-	
+
 	/*
-	 * 
+	 *
 	 */
 	public ResultSet getResultSet() {
-		return mResultSet;	
+		return mResultSet;
 	}
 }

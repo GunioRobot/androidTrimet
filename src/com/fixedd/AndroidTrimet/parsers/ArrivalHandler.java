@@ -12,9 +12,9 @@ public class ArrivalHandler extends DefaultHandler {
 	private  BlockPositionType mCurrentBlockPosition = null;
 	private  LayoverType       mCurrentLayover       = null;
 	private  Boolean           mInError              = false;
-	
+
 	@Override
-	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {		
+	public void startElement(String namespaceUri, String localName, String qualifiedName, Attributes attributes) throws SAXException {
 		if ((qualifiedName.equalsIgnoreCase("resultSet")) || (localName.equalsIgnoreCase("resultSet"))) {
 			mResultSet = new ResultSet();
 			if (attributes.getValue("queryTime") != null)
@@ -43,7 +43,7 @@ public class ArrivalHandler extends DefaultHandler {
 			if (attributes.getValue("estimated") != null)
 				mCurrentArrival.setEstimatedTime(Long.parseLong(attributes.getValue("estimated")));
 			if (attributes.getValue("detour") != null)
-				mCurrentArrival.setDetour(Boolean.parseBoolean(attributes.getValue("detour")));			
+				mCurrentArrival.setDetour(Boolean.parseBoolean(attributes.getValue("detour")));
 		} else if ((qualifiedName.equalsIgnoreCase("blockPosition")) || (localName.equalsIgnoreCase("blockPosition"))) {
 			mCurrentBlockPosition = new BlockPositionType();
 			// required
@@ -80,9 +80,9 @@ public class ArrivalHandler extends DefaultHandler {
 			System.out.println("    localName:     " + localName);
 			System.out.println("    namespaceUri:  " + namespaceUri);
 		}
-		
+
 	}
-	
+
 	@Override
 	public void endElement(String namespaceUri, String localName, String qualifiedName) throws SAXException {
 		if ((qualifiedName.equalsIgnoreCase("location")) || (localName.equalsIgnoreCase("location"))) {
@@ -105,11 +105,11 @@ public class ArrivalHandler extends DefaultHandler {
 			mInError = false;
 		}
 	}
-	
+
 	@Override
 	public void characters(char[] chars, int startIndex, int length) throws SAXException {
 		String dataString = new String(chars, startIndex, length).trim();
-		
+
 		if (mInError) {
 			mResultSet.setErrorMessage(dataString);
 		} else {
@@ -118,9 +118,9 @@ public class ArrivalHandler extends DefaultHandler {
 	}
 
 	/*
-	 * 
+	 *
 	 */
 	public ResultSet getResultSet() {
-		return mResultSet;	
+		return mResultSet;
 	}
 }

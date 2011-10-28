@@ -15,45 +15,45 @@ import android.location.Location;
  * Also note that coords (ToCoord, FromCoord) are always given preference over
  * places (ToPlace, FromPlace).
  * <p>
- * For a complete explanation of these options, please see <a 
+ * For a complete explanation of these options, please see <a
  * href="http://developer.trimet.org/ws_docs/tripplanner_ws.shtml">http://developer.trimet.org/ws_docs/tripplanner_ws.shtml</a>
- * 
+ *
  * @since 1
  * @author Jeremy Logan
- * 
+ *
  */
 public class TripPlannerOptions {
 	/**
 	 * All (both) modes.
-	 * 
+	 *
 	 * @see #setMode(String)
 	 * @see #getMode()
 	 */
 	public static final String	MODE_ALL			= "A";
 	/**
 	 * Bus-only modes.
-	 * 
+	 *
 	 * @see #setMode(String)
 	 * @see #getMode()
 	 */
 	public static final String	MODE_BUS			= "B";
 	/**
 	 * Train-only mode.
-	 * 
+	 *
 	 * @see #setMode(String)
 	 * @see #getMode()
 	 */
 	public static final String	MODE_TRAIN			= "T";
 	/**
 	 * Arrive by the time supplied.
-	 * 
+	 *
 	 * @see #setArriveDepart(String)
 	 * @see #getArriveDepart()
 	 */
 	public static final String	WHEN_ARRIVE_BY		= "A";
 	/**
 	 * Depart after the time supplied.
-	 * 
+	 *
 	 * @see #setArriveDepart(String)
 	 * @see #getArriveDepart()
 	 */
@@ -88,7 +88,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Gets the GPS coordinate pair for the origin to search for.
-	 * @return a {@link Location} object that wraps the coordinate pair or 
+	 * @return a {@link Location} object that wraps the coordinate pair or
 	 *         null, if not set.
 	 */
 	public Location getFromCoord() {
@@ -97,7 +97,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Gets the GPS coordinate pair for the destination to search for.
-	 * @return a {@link Location} object that wraps the coordinate pair or 
+	 * @return a {@link Location} object that wraps the coordinate pair or
 	 *         null, if not set.
 	 */
 	public Location getToCoord() {
@@ -105,7 +105,7 @@ public class TripPlannerOptions {
 	}
 
 	/**
-	 * Gets the date formatted for the request (e.g., "7-6-2010" for the 6th 
+	 * Gets the date formatted for the request (e.g., "7-6-2010" for the 6th
 	 * of July in 2010).
 	 * @return the date for the request or null, if not set.
 	 */
@@ -122,9 +122,9 @@ public class TripPlannerOptions {
 	}
 
 	/**
-	 * Gets whether to search for trips arriving by the date/time or departing 
+	 * Gets whether to search for trips arriving by the date/time or departing
 	 * after the date/time.
-	 * @return Either {@link #WHEN_ARRIVE_BY} or {@link #WHEN_DEPART_AFTER} or 
+	 * @return Either {@link #WHEN_ARRIVE_BY} or {@link #WHEN_DEPART_AFTER} or
 	 *         null, if not set.
 	 */
 	public String getArriveDepart() {
@@ -132,7 +132,7 @@ public class TripPlannerOptions {
 	}
 
 	/**
-	 * Gets the maximum walking distance to request. 
+	 * Gets the maximum walking distance to request.
 	 * @return maximum walking distance as a {@link String} or null, if not set.
 	 */
 	public String getMaxWalk() {
@@ -141,7 +141,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Gets the mode to restrict the requested search to.
-	 * @return Either {@link #MODE_ALL}, {@link #MODE_BUS}, or 
+	 * @return Either {@link #MODE_ALL}, {@link #MODE_BUS}, or
 	 *         {@link #MODE_TRAIN} or null, if not set.
 	 */
 	public String getMode() {
@@ -149,18 +149,18 @@ public class TripPlannerOptions {
 	}
 
 	/**
-	 * Gets the maximum number of itineraries to request. 
+	 * Gets the maximum number of itineraries to request.
 	 * @return a number between 1 and 6 or -1, if not set.
 	 */
 	public int getMaxIntineraries() {
 		return mMaxIntineraries;
 	}
 
-	
-	
+
+
 	/**
 	 * Set the location from which to begin the trip.
-	 * 
+	 *
 	 * @param fromPlace A textual representation of a location. For example, an
 	 *        address or a landmark (like 'zoo').
 	 */
@@ -173,7 +173,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Set the location from which to end the trip.
-	 * 
+	 *
 	 * @param toPlace A textual representation of a location. For example, an
 	 *        address or a landmark (like 'zoo').
 	 */
@@ -186,7 +186,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Set the location from which to begin the trip.
-	 * 
+	 *
 	 * @param location GPS representation of a {@link Location}.
 	 */
 	public void setFromCoord(Location location) {
@@ -195,7 +195,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Set the location from which to end the trip.
-	 * 
+	 *
 	 * @param location GPS representation of a {@link Location}.
 	 */
 	public void setToCoord(Location location) {
@@ -204,7 +204,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Set the date and time to begin or end the trip.
-	 * 
+	 *
 	 * @param year The year to begin/end trip (e.g., 2010).
 	 * @param monthOfYear The month of the year to begin/end trip (1-12).
 	 * @param dayOfMonth The day of the month to begin/end trip (1-31).
@@ -222,7 +222,7 @@ public class TripPlannerOptions {
 			throw new IllegalArgumentException("hourOfDay out of range (0-23, inclusive).");
 		if (minuteOfHour < 0 || minuteOfHour > 59)
 			throw new IllegalArgumentException("minuteOfHour out of range (0-59, inclusive).");
-		
+
 		mDate = monthOfYear + "-" + dayOfMonth + "-" + year;
 		if (hourOfDay > 11)
 			mTime = hourOfDay + ":" + minuteOfHour + " PM";
@@ -233,7 +233,7 @@ public class TripPlannerOptions {
 	/**
 	 * Set whether the trips should arrive by selected datetime or depart after
 	 * selected datetime.
-	 * 
+	 *
 	 * @param arriveDepart whether to arrive by or depart after. Must be either
 	 *        {@link #WHEN_ARRIVE_BY} or {@link #WHEN_DEPART_AFTER}.
 	 */
@@ -245,7 +245,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Set the maximum walking distance.
-	 * 
+	 *
 	 * @param maxWalk Maximum distance to walk (0.01 to 0.999).
 	 * @throws Exception thrown if the max walk distance is outside the range.
 	 */
@@ -258,7 +258,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * Set which transit modes you'd like to restrict the search to.
-	 * 
+	 *
 	 * @param mode Transit mode for search. Must be either {@link #MODE_ALL},
 	 *        {@link #MODE_BUS}, or {@link #MODE_TRAIN}.
 	 */
@@ -270,7 +270,7 @@ public class TripPlannerOptions {
 
 	/**
 	 * The number of different itineraries to return (minimum 1, maximum 6).
-	 * 
+	 *
 	 * @param maxIntineraries Max number of itineraries, between 1 and 6 (inclusive).
 	 */
 	public void setMaxIntineraries(int maxIntineraries) {

@@ -12,18 +12,18 @@ import android.os.Parcelable;
  */
 public class RouteStatusType implements Parcelable, Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	/**
-	 * Arrivals for this route are only being reported if they can be estimated 
+	 * Arrivals for this route are only being reported if they can be estimated
 	 * within the next hour. This occurs in inclement weather conditions.
 	 * @see #setStatus(int)
 	 * @see #getStatus()
 	 */
 	public final static int	STATUS_ESTIMATED_ONLY	= 0;
 	/**
-	 * No arrivals are being reported for this route. This occurs when 
-	 * conditions such as snow and ice cause vehicles along the route to travel 
-	 * off their trip patterns. In such cases predictions are highly inaccurate 
+	 * No arrivals are being reported for this route. This occurs when
+	 * conditions such as snow and ice cause vehicles along the route to travel
+	 * off their trip patterns. In such cases predictions are highly inaccurate
 	 * or impossible.
 	 * @see #setStatus(int)
 	 * @see #getStatus()
@@ -44,7 +44,7 @@ public class RouteStatusType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the route number for the route.
-	 * 
+	 *
 	 * @param the id for the route.
 	 */
 	public void setRouteNumber(int routeId) {
@@ -53,9 +53,9 @@ public class RouteStatusType implements Parcelable, Serializable {
 
 	/**
 	 * Gets the status of the route.
-	 * 
-	 * @return The status of the route. Either {@link #STATUS_ESTIMATED_ONLY} 
-	 *     or {@link #STATUS_OFF}. It could also be <b>-2147483648</b> if it 
+	 *
+	 * @return The status of the route. Either {@link #STATUS_ESTIMATED_ONLY}
+	 *     or {@link #STATUS_OFF}. It could also be <b>-2147483648</b> if it
 	 *     wasn't set properly.
 	 */
 	public int getStatus() {
@@ -64,7 +64,7 @@ public class RouteStatusType implements Parcelable, Serializable {
 
 	/**
 	 * Sets the route's status.
-	 * 
+	 *
 	 * @param status {@link String} must be either "estimatedOnly" or "off".
 	 */
 	public void setStatus(String status) {
@@ -75,11 +75,11 @@ public class RouteStatusType implements Parcelable, Serializable {
 		else
 			throw new RuntimeException("Passed in status was invalid.");
 	}
-	
+
 	/**
 	 * Sets the route's status.
-	 * 
-	 * @param the status of the route. Either {@link #STATUS_ESTIMATED_ONLY} 
+	 *
+	 * @param the status of the route. Either {@link #STATUS_ESTIMATED_ONLY}
 	 * or {@link #STATUS_OFF}.
 	 */
 	public void setStatus(int status) {

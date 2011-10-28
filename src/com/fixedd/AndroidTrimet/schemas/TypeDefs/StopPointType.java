@@ -11,9 +11,9 @@ import com.fixedd.AndroidTrimet.util.ParcelableString;
 
 /**
  * <p>Java class for StopPointType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="StopPointType">
  *   &lt;complexContent>
@@ -30,8 +30,8 @@ import com.fixedd.AndroidTrimet.util.ParcelableString;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public class StopPointType extends PointType implements Parcelable {
 
@@ -49,11 +49,11 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the stopId property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getStopId() {
 		return mStopId;
@@ -61,11 +61,11 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the stopId property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setStopId(String value) {
 		mStopId = value;
@@ -73,11 +73,11 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the streetPosition property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getStreetPosition() {
 		return mStreetPosition;
@@ -85,11 +85,11 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the streetPosition property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setStreetPosition(String value) {
 		mStreetPosition = value;
@@ -97,11 +97,11 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the fareZone property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getFareZone() {
 		return mFareZone;
@@ -109,11 +109,11 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the fareZone property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setFareZone(String value) {
 		mFareZone = value;
@@ -121,7 +121,7 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the stopSequence property.
-	 * 
+	 *
 	 */
 	public int getStopSequence() {
 		return mStopSequence;
@@ -129,7 +129,7 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the stopSequence property.
-	 * 
+	 *
 	 */
 	public void setStopSequence(int value) {
 		mStopSequence = value;
@@ -137,7 +137,7 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the distance property.
-	 * 
+	 *
 	 */
 	public double getDistance() {
 		return mDistance;
@@ -145,7 +145,7 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Sets the value of the distance property.
-	 * 
+	 *
 	 */
 	public void setDistance(double value) {
 		mDistance = value;
@@ -153,25 +153,25 @@ public class StopPointType extends PointType implements Parcelable {
 
 	/**
 	 * Gets the value of the comment property.
-	 * 
+	 *
 	 * <p>
 	 * This accessor method returns a reference to the live list,
 	 * not a snapshot. Therefore any modification you make to the
 	 * returned list will be present inside the JAXB object.
 	 * This is why there is not a <CODE>set</CODE> method for the comment property.
-	 * 
+	 *
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * <pre>
 	 *    getComment().add(newItem);
 	 * </pre>
-	 * 
-	 * 
+	 *
+	 *
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list
 	 * {@link String }
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public List<ParcelableString> getComment() {
 		if (mComment == null) {
@@ -203,7 +203,7 @@ public class StopPointType extends PointType implements Parcelable {
 		dest.writeString(mAreaKey    );
 		dest.writeString(mAreaValue  );
 		dest.writeString(mId         );
-		
+
 		// from StopPointType
 		dest.writeString(mStopId        );
 		dest.writeString(mStreetPosition);
@@ -234,7 +234,7 @@ public class StopPointType extends PointType implements Parcelable {
 		mAreaKey     = dest.readString();
 		mAreaValue   = dest.readString();
 		mId          = dest.readString();
-		
+
 		// from StopPointType
 		mStopId         = dest.readString();
 		mStreetPosition = dest.readString();

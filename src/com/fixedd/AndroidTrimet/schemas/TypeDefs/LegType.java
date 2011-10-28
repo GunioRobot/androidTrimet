@@ -4,9 +4,9 @@ import android.os.Parcelable;
 
 /**
  * <p>Java class for LegType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="LegType">
  *   &lt;complexContent>
@@ -24,8 +24,8 @@ import android.os.Parcelable;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 public abstract class LegType implements Parcelable {
 
@@ -39,11 +39,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the timeDistance property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link TimeDistanceType }
-	 *     
+	 *
 	 */
 	public TimeDistanceType getTimeDistance() {
 		return mTimeDistance;
@@ -51,11 +51,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the timeDistance property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link TimeDistanceType }
-	 *     
+	 *
 	 */
 	public void setTimeDistance(TimeDistanceType value) {
 		mTimeDistance = value;
@@ -63,11 +63,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the lineURL property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link GeoURLType }
-	 *     
+	 *
 	 */
 	public GeoURLType getLineURL() {
 		return mLineURL;
@@ -75,11 +75,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the lineURL property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link GeoURLType }
-	 *     
+	 *
 	 */
 	public void setLineURL(GeoURLType value) {
 		mLineURL = value;
@@ -87,11 +87,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the from property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public PointType getFrom() {
 		return mFrom;
@@ -99,11 +99,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the from property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public void setFrom(PointType value) {
 		mFrom = value;
@@ -111,11 +111,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the to property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public PointType getTo() {
 		return mTo;
@@ -123,11 +123,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the to property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link PointType }
-	 *     
+	 *
 	 */
 	public void setTo(PointType value) {
 		mTo = value;
@@ -135,11 +135,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the id property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getId() {
 		return mId;
@@ -147,11 +147,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the id property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setId(String value) {
 		mId = value;
@@ -159,11 +159,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the mode property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public String getMode() {
 		return mMode;
@@ -171,11 +171,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the mode property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link String }
-	 *     
+	 *
 	 */
 	public void setMode(String value) {
 		mMode = value;
@@ -183,11 +183,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Gets the value of the order property.
-	 * 
+	 *
 	 * @return
 	 *     possible object is
 	 *     {@link OrderType }
-	 *     
+	 *
 	 */
 	public OrderType getOrder() {
 		return mOrder;
@@ -195,11 +195,11 @@ public abstract class LegType implements Parcelable {
 
 	/**
 	 * Sets the value of the order property.
-	 * 
+	 *
 	 * @param value
 	 *     allowed object is
 	 *     {@link OrderType }
-	 *     
+	 *
 	 */
 	public void setOrder(OrderType value) {
 		mOrder = value;
